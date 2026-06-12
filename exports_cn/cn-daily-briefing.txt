@@ -1,0 +1,16 @@
+2026 世界杯智能分析 Dashboard
+报告类型: 今日情报（Daily Briefing）
+生成时间: 2026-06-07T19:23:44.379Z
+数据类型: 混合模拟数据（Mixed Demo / Mock / Sample）
+数据来源摘要: 本地模拟预测、模拟数据已标注的赛程层、示例伤病和示例赔率数据
+正文:
+今日重点: 巴西 vs 美国
+冷门观察: 荷兰 vs 挪威
+价值信号: 法国 vs 墨西哥
+高风险比赛: 荷兰 vs 挪威
+伤病提醒: 🇵🇱 波兰
+数据提醒: 当前为模拟预测。做判断前请核对实时数据。
+页脚 / Footer:
+本工具仅用于赛事分析、学习和情景推演。
+模拟预测、示例赔率和模型输出不构成投注建议。
+For sports analysis, education, and scenario tracking only. Not betting advice.
