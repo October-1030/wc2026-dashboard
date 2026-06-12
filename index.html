@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
-<!-- v20: private DeepSeek V4 Pro AI analyst mode -->
+<!-- v20.2: Titan007 real mode cleanup + simplified DeepSeek analysis -->
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2026世界杯 — DeepSeek私人AI分析台 v20</title>
+<title>2026世界杯 — Titan007实盘分析台 v20.2</title>
 <link rel="icon" href="data:,">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
@@ -78,6 +78,21 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
 .command-desc{font-size:.68rem;color:var(--muted);line-height:1.4;margin:4px 0 9px}
 .command-go{grid-column:2;background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.28);color:var(--accent);padding:5px 9px;border-radius:6px;cursor:pointer;font-size:.66rem;font-weight:900;width:max-content}
 .command-go:hover{background:rgba(0,212,255,.18)}
+.real-mode-panel{background:linear-gradient(135deg,rgba(0,212,255,.08),rgba(34,197,94,.05));border:1px solid rgba(0,212,255,.24);border-radius:var(--radius);padding:16px;margin-bottom:20px}
+.real-mode-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.real-mode-title{font-size:1rem;font-weight:900;color:var(--text)}
+.real-mode-sub{font-size:.74rem;color:var(--muted);line-height:1.55;margin-top:4px}
+.real-mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:12px 0}
+.real-mode-cell{background:var(--card);border:1px solid rgba(42,53,80,.72);border-radius:9px;padding:10px}
+.real-mode-cell .label{font-size:.62rem;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.real-mode-cell .value{font-size:.84rem;font-weight:900;color:var(--text);overflow-wrap:anywhere}
+.real-empty-state{border:1px solid rgba(249,115,22,.34);background:rgba(249,115,22,.09);color:#fb923c;border-radius:10px;padding:12px 14px;font-size:.78rem;line-height:1.65;margin:10px 0}
+.real-mode-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.dev-demo-details{background:var(--card);border:1px dashed rgba(249,115,22,.35);border-radius:var(--radius);padding:12px;margin:18px 0}
+.dev-demo-details>summary{cursor:pointer;font-size:.84rem;font-weight:900;color:#fb923c}
+.dev-demo-warning{font-size:.72rem;color:#fb923c;line-height:1.55;margin:10px 0 14px}
+.optional-api-details{margin-top:12px;border:1px dashed rgba(148,163,184,.25);border-radius:12px;padding:10px;background:rgba(255,255,255,.02)}
+.optional-api-details>summary{cursor:pointer;font-size:.82rem;font-weight:900;color:#94a3b8}
 .countdown{display:flex;gap:12px;flex-wrap:wrap}
 .cd-unit{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 14px;min-width:60px}
 .cd-num{font-size:1.4rem;font-weight:900;color:var(--accent);line-height:1}
@@ -682,6 +697,24 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
 .live-stat-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 14px;text-align:center;flex:1;min-width:70px}
 .live-stat-card .val{font-size:1.1rem;font-weight:900;color:var(--accent)}
 .live-stat-card .lbl{font-size:.62rem;color:var(--muted);margin-top:2px}
+.titan-sync-summary{background:linear-gradient(135deg,rgba(0,212,255,.08),rgba(168,85,247,.06));border:1px solid rgba(0,212,255,.22);border-radius:10px;padding:10px 12px;margin-bottom:14px;font-size:.72rem;color:var(--muted);line-height:1.55}
+.titan-sync-summary strong{color:var(--text)}
+.titan-table-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:16px}
+.titan-live-table{width:100%;min-width:1040px;border-collapse:collapse;font-size:.72rem}
+.titan-live-table th{padding:8px 9px;text-align:left;color:var(--muted);font-weight:900;border-bottom:1px solid var(--border);background:var(--surface);white-space:nowrap}
+.titan-live-table td{padding:8px 9px;border-bottom:1px solid rgba(42,53,80,.45);vertical-align:middle}
+.titan-live-table tr:hover td{background:rgba(0,212,255,.04)}
+.titan-live-table .score-cell{font-size:.9rem;font-weight:900;color:var(--accent);white-space:nowrap}
+.titan-source-pill{display:inline-flex;align-items:center;border:1px solid rgba(0,212,255,.28);background:rgba(0,212,255,.1);color:var(--accent);border-radius:999px;padding:2px 7px;font-size:.62rem;font-weight:900;white-space:nowrap}
+.titan-standings-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.titan-group-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;overflow:hidden}
+.titan-group-title{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.82rem;font-weight:900;color:var(--text);margin-bottom:8px}
+.titan-group-title span{font-size:.64rem;color:var(--accent);font-weight:900}
+.titan-group-table{width:100%;border-collapse:collapse;font-size:.7rem}
+.titan-group-table th{padding:6px 6px;text-align:center;color:var(--muted);font-weight:900;border-bottom:1px solid var(--border);white-space:nowrap}
+.titan-group-table td{padding:6px 6px;text-align:center;border-bottom:1px solid rgba(42,53,80,.42)}
+.titan-group-table td:nth-child(2),.titan-group-table th:nth-child(2){text-align:left}
+@media(max-width:700px){.titan-table-wrap{background:transparent;border:none;overflow:visible}.titan-live-table,.titan-live-table thead,.titan-live-table tbody,.titan-live-table th,.titan-live-table td,.titan-live-table tr{display:block}.titan-live-table{min-width:0}.titan-live-table thead{display:none}.titan-live-table tr{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:10px;padding:8px}.titan-live-table td{border:none;padding:5px 4px;display:grid;grid-template-columns:84px 1fr;gap:8px}.titan-live-table td::before{content:attr(data-label);color:var(--muted);font-size:.64rem;font-weight:900}.titan-standings-grid{grid-template-columns:1fr}}
 
 
 /* ── 双语球队名 ── */
@@ -876,29 +909,52 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
   <div class="hero">
     <div class="hero-left">
       <div class="hero-title-row">
-        <h1>2026世界杯 DeepSeek私人AI分析台</h1>
-        <span class="version-badge">v20 · DeepSeek-V4-Pro · 私人分析</span>
+        <h1>2026世界杯 Titan007 实盘同步分析台</h1>
+        <span class="version-badge">v20.2 · Titan007实盘 · DeepSeek分析</span>
       </div>
-      <p>本机保存 DeepSeek API Key，手动刷新真实赛程，让 DeepSeek-V4-Pro 帮你分析比赛、球队和风险。</p>
+      <p>本机同步 Titan007 赛程比分，用 DeepSeek 分析比赛走势、风险和关注点。</p>
       <div class="risk_note risk_secondary" style="margin-top:10px">这是私人分析工具。API Key 只保存在你的浏览器，不会写入网页文件。</div>
       <div class="hero-actions" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
-        <button class="calc-btn" onclick="showSection('live',document.querySelector('[data-section=&quot;live&quot;]'))">📡 打开实时赛程 / 粘贴 API Key</button>
-        <button class="detail-btn" onclick="showSection('odds',document.querySelector('[data-section=&quot;odds&quot;]'))">💰 查看赔率面板</button>
+        <button class="calc-btn" onclick="reloadTitanLocalSync()">重新读取本地同步数据</button>
+        <button class="detail-btn" onclick="showSection('live',document.querySelector('[data-section=&quot;live&quot;]'))">打开实盘赛程</button>
+        <button class="detail-btn" onclick="showSection('ai-analysis',document.querySelector('[data-section=&quot;ai-analysis&quot;]'))">打开 DeepSeek 分析台</button>
       </div>
     </div>
     <div class="countdown" id="countdown"></div>
   </div>
   <div class="data-status-strip" id="dataStatusStrip"></div>
+  <div class="real-mode-panel" id="realModeHomePanel" data-testid="real-mode-home">
+    <div class="real-mode-head">
+      <div>
+        <div class="real-mode-title">Titan007 本地同步状态</div>
+        <div class="real-mode-sub">页面只读取本机 JSON：<code>data/titan2026-matches.json</code> 和 <code>data/titan2026-groups.json</code>。网页不会直接请求 Titan007。</div>
+      </div>
+      <span class="real-data-chip mock" id="realModeHomeChip">检测中</span>
+    </div>
+    <div class="real-mode-grid" id="realModeHomeGrid"></div>
+    <div id="realModeHomeEmpty" class="real-empty-state" style="display:none">
+      <strong>暂无 Titan007 本地同步数据</strong><br>
+      请先：<br>
+      1. 在本机运行 <strong>sync-titan2026.bat</strong><br>
+      2. 刷新本页面<br>
+      3. 或导入本地 matches JSON
+    </div>
+    <div class="real-mode-actions">
+      <button class="calc-btn" onclick="reloadTitanLocalSync()">重新读取本地同步数据</button>
+      <button class="detail-btn" onclick="showSection('live',document.querySelector('[data-section=&quot;live&quot;]'))">打开实盘赛程</button>
+      <button class="detail-btn" onclick="showSection('ai-analysis',document.querySelector('[data-section=&quot;ai-analysis&quot;]'))">打开 DeepSeek 分析台</button>
+    </div>
+  </div>
   <div class="command-center-card">
     <div class="command-center-header">
       <div class="command-center-title">DeepSeek 私人快速分析</div>
       <span class="data-status-badge live">本机密钥 · 手动调用</span>
     </div>
     <div class="command-grid">
-      <div class="command-item"><div class="command-icon">📰</div><div><div class="command-title">DeepSeek分析今日情报</div><div class="command-desc">汇总重点比赛、风险、伤病和数据来源，由 DeepSeek 给出结论。</div></div><button class="command-go" onclick="deepSeekAnalysis('daily',null,true)">进入</button></div>
-      <div class="command-item"><div class="command-icon">⚽</div><div><div class="command-title">DeepSeek分析一场比赛</div><div class="command-desc">选择一场比赛，让 DeepSeek 解释胜负倾向、核心理由和不确定性。</div></div><button class="command-go" onclick="deepSeekAnalysis('match','pred:0',true)">进入</button></div>
-      <div class="command-item"><div class="command-icon">🛡️</div><div><div class="command-title">DeepSeek分析一支球队</div><div class="command-desc">选择球队，让 DeepSeek 分析实力、状态、伤病和相关比赛。</div></div><button class="command-go" onclick="deepSeekAnalysis('team',getCoachDefaultTeam(),true)">进入</button></div>
-      <div class="command-item"><div class="command-icon">🧑‍🏫</div><div><div class="command-title">DeepSeek生成教练组报告</div><div class="command-desc">以备战视角整理小组形势、未赛对手和路径风险。</div></div><button class="command-go" onclick="deepSeekAnalysis('coach',getCoachDefaultTeam(),true)">进入</button></div>
+      <div class="command-item"><div class="command-icon">📰</div><div><div class="command-title">DeepSeek分析今日实盘</div><div class="command-desc">基于 Titan007 本地同步赛程，整理今日重点和风险。</div></div><button class="command-go" onclick="startRealDeepSeekAnalysis('daily')">进入</button></div>
+      <div class="command-item"><div class="command-icon">⚽</div><div><div class="command-title">DeepSeek分析一场实盘</div><div class="command-desc">选择已同步比赛，让 DeepSeek 解释走势、盘口文字和不确定性。</div></div><button class="command-go" onclick="startRealDeepSeekAnalysis('match')">进入</button></div>
+      <div class="command-item"><div class="command-icon">🛡️</div><div><div class="command-title">DeepSeek分析球队</div><div class="command-desc">结合已同步赛程分析球队相关比赛，不使用伪实盘。</div></div><button class="command-go" onclick="startRealDeepSeekAnalysis('team')">进入</button></div>
+      <div class="command-item"><div class="command-icon">🧑‍🏫</div><div><div class="command-title">DeepSeek教练组报告</div><div class="command-desc">基于实盘赛程和小组积分整理备战关注点。</div></div><button class="command-go" onclick="startRealDeepSeekAnalysis('coach')">进入</button></div>
     </div>
   </div>
   <div class="command-center-card">
@@ -908,6 +964,9 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
     </div>
     <div class="command-grid" id="commandCenterGrid"></div>
   </div>
+  <details class="dev-demo-details" id="devDemoDetails">
+    <summary>开发示例数据（非实盘）</summary>
+    <div class="dev-demo-warning">以下 Daily Briefing、热门球队、模拟预测、示例赔率和图表仅用于开发验证，不是 Titan007 实盘数据，也不作为比赛结论。</div>
   <div class="daily-brief-card">
     <div class="daily-brief-header">
       <div class="daily-brief-title">今日情报 <span style="font-size:.72rem;color:var(--muted)">Daily Briefing</span></div>
@@ -938,6 +997,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
     <div class="section-title">⭐ 我的关注</div>
     <div class="favorites-grid" id="watchlistGrid"></div>
   </div>
+  </details>
 </div>
 
 <!-- TEAMS -->
@@ -980,7 +1040,11 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
 
 <!-- SCHEDULE -->
 <div id="sec-schedule" class="section">
-  <div class="section-title">📅 赛程 <span class="badge">Mock Groups + Demo Matches</span></div>
+  <div class="section-title">📅 赛程 <span class="badge">开发示例 · 非实盘</span></div>
+  <div class="real-empty-state">实盘赛程请进入“实时赛程”页，读取 Titan007 本地同步、用户导入或 API 缓存。下面的旧赛程模块仅作为开发示例，默认折叠，不代表实盘。</div>
+  <details class="dev-demo-details">
+    <summary>开发示例赛程（非实盘）</summary>
+    <div class="dev-demo-warning">这里保留 Mock Groups + Demo Matches 用于开发验证，不参与实盘分析 Prompt。</div>
   <div class="section-tabs">
     <button class="section-tab active" onclick="setScheduleView('cards',this)">卡片视图</button>
     <button class="section-tab" onclick="setScheduleView('compact',this)">紧凑表格</button>
@@ -991,6 +1055,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
   <div id="schedule-compact-view" class="schedule-view">
     <div class="compact-table-wrap"><table class="compact-schedule-table" id="compactScheduleTable"></table></div>
   </div>
+  </details>
 </div>
 
 <!-- PREDICTIONS -->
@@ -1608,11 +1673,24 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
       <div class="real-data-title">真实赛程 / 比分数据 <span>Private Live Schedule / Score</span></div>
       <span class="real-data-chip mock" id="realDataModeChip">未请求 API</span>
     </div>
-    <div class="real-data-note">页面打开和进入本页都不会自动请求外部 API。只有点击“测试连接”或“刷新真实赛程/比分”才会消耗免费额度；刷新成功后结果缓存到本机浏览器。football-data.org 若无 odds 字段，赔率面板继续使用 Sample 示例。</div>
+    <div class="real-data-note">页面打开和进入本页都不会自动请求外部 API。只有点击“测试连接”或“刷新赛程比分”才会消耗免费额度；刷新成功后结果缓存到本机浏览器。本版本不接真实赔率实盘。<br>本页不会直接请求 Titan007。若要更新 Titan007 实盘数据，请在本机运行 <strong>sync-titan2026.bat</strong> 后刷新页面。</div>
     <div id="realStatusMessage" class="real-status-message info" data-testid="real-status-message">正在读取本机缓存；暂无操作。</div>
 
     <div class="live-control-section">
-      <div class="live-control-title">A. API 设置 <span>保存 Key 不会请求 API</span></div>
+      <div class="live-control-title">A. 实盘数据入口 <span>Titan007 本地同步优先</span></div>
+      <div class="live-action-row">
+        <button class="btn-refresh" onclick="reloadTitanLocalSync()">重新读取本地同步数据</button>
+        <button class="detail-btn" onclick="startCustomDatasetImport('matches')">导入 matches JSON</button>
+        <button class="detail-btn" onclick="clearApiMatchesCache()">清除本机实盘缓存</button>
+        <button class="detail-btn" onclick="showSection('ai-analysis',document.querySelector('[data-section=&quot;ai-analysis&quot;]'))">打开 DeepSeek 分析台</button>
+      </div>
+      <div class="risk_note risk_secondary" style="margin-top:10px">主推荐路径：本机运行 <strong>sync-titan2026.bat</strong> 生成 JSON 后，页面只读取本地文件，不直接请求 Titan007。</div>
+    </div>
+
+    <details class="optional-api-details">
+      <summary>可选 API 刷新（不推荐，免费额度有限）</summary>
+    <div class="live-control-section">
+      <div class="live-control-title">B. API 设置 <span>保存 Key 不会请求 API</span></div>
       <div class="api-key-row">
         <select id="realApiProvider" data-testid="real-provider-select" onchange="changeRealApiProvider(this.value)">
           <option value="football_data">football-data.org</option>
@@ -1634,21 +1712,23 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
     </div>
 
     <div class="live-control-section">
-      <div class="live-control-title">B. 手动刷新 <span>唯一真实赛程刷新入口</span></div>
+      <div class="live-control-title">C. 手动刷新 <span>可选 API 刷新入口</span></div>
       <div class="live-action-row">
         <button class="btn-refresh" id="refreshBtn" data-testid="real-refresh-matches" onclick="refreshRealSchedule()">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
-          <span id="refreshBtnText">刷新真实赛程/比分</span>
+          <span id="refreshBtnText">刷新赛程比分</span>
         </button>
         <button class="detail-btn" id="realClearCacheBtn" data-testid="real-clear-cache" onclick="clearApiMatchesCache()">清除真实缓存</button>
       </div>
       <div class="risk_note risk_secondary" style="margin-top:10px">免费 API 次数有限，建议每天手动刷新 1–3 次。不要把真实 API Key 写进 HTML；只保存在本机浏览器。</div>
     </div>
+    </details>
 
     <div class="live-control-section">
-      <div class="live-control-title">C. 当前状态 <span>缓存、来源和回退状态</span></div>
+      <div class="live-control-title">D. 当前状态 <span>缓存、来源和回退状态</span></div>
       <div id="apiCacheStatus" style="font-size:.74rem;color:var(--muted);line-height:1.7">正在读取本机缓存...</div>
       <div class="real-data-grid" id="realDataStatusGrid"></div>
+      <div class="titan-sync-summary" id="titanSyncSummary" data-testid="titan-sync-summary">Titan007 本地同步：尚未读取本地 JSON。网页不会直接请求 Titan007。</div>
     </div>
   </div>  <div class="live-status-bar">
     <div id="liveSourceInfo" class="status-text"></div>
@@ -1669,7 +1749,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
   <div id="standingsBlock" style="margin-top:20px">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
       <div style="font-size:.9rem;font-weight:800;color:var(--accent)">&#x1F4CA; 小组积分榜</div>
-      <button class="qualify-recalc-btn" onclick="loadStandings()" style="border-color:var(--accent2);color:var(--accent2)">&#x1F504; 刷新本地积分榜</button>
+      <button class="qualify-recalc-btn" onclick="reloadTitanLocalSync()" style="border-color:var(--accent2);color:var(--accent2)">&#x1F504; 重新读取本地积分榜</button>
     </div>
     <div class="qualify-groups-tabs" id="standingsTabs"></div>
     <div id="standingsContent" style="font-size:.8rem;color:var(--muted);padding:10px 0">加载中...</div>
@@ -1758,7 +1838,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
       <div class="settings-field"><label>风险标签</label><select id="settingRiskLabels"><option value="show">显示</option><option value="compact">精简</option><option value="hide">隐藏</option></select></div>
       <div class="settings-field"><label>默认导出主题</label><select id="settingExportTheme"><option value="dark">深色</option><option value="light">浅色</option></select></div>
     </div>
-    <div class="risk_note risk_secondary" style="margin:6px 0 12px">省 API 模式下，页面打开不会自动请求外部 API。只有你点击刷新真实赛程/比分时才会消耗免费额度；本版本不接真实赔率。</div>
+    <div class="risk_note risk_secondary" style="margin:6px 0 12px">省 API 模式下，页面打开不会自动请求外部 API。只有你点击刷新赛程比分时才会消耗免费额度；本版本不接真实赔率。</div>
     <div class="settings-actions">
       <button class="detail-btn" onclick="saveSettings()">保存设置</button>
       <button class="detail-btn" onclick="openOnboarding(true)">重新打开使用说明</button>
@@ -1796,6 +1876,8 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
 
 <script>
 // ── DATA ──
+const REAL_MODE = true;
+const WC2026_DATA_MODE = 'titan_local';
 
 // ── 球队中文名映射 ──
 const TEAM_CN={
@@ -2253,9 +2335,11 @@ function getEffectiveTeamByName(name){
 function getBaseGroups(){return hasOfficialGroups()?OFFICIAL_GROUPS:MOCK_GROUPS;}
 function getEffectiveGroups(){return getCustomDataset('groups')||getBaseGroups();}
 function getBaseMatches(){
+  if(typeof titan2026MatchesPayload!=='undefined'&&titan2026MatchesPayload&&Array.isArray(titan2026MatchesPayload.matches)&&titan2026MatchesPayload.matches.length)return titan2026MatchesPayload.matches.map(m=>normalizeMatch(m,'titan_local_sync')).filter(Boolean);
   const cache=getApiMatchesCachePayload();
   if(cache&&Array.isArray(cache.matches)&&cache.matches.length)return cache.matches.map(m=>normalizeMatch(m,'live_api')).filter(Boolean);
   if(typeof liveIsRealData!=='undefined'&&liveIsRealData&&Array.isArray(liveMatches)&&liveMatches.length)return liveMatches.map(m=>normalizeMatch(m,'live_api')).filter(Boolean);
+  if(typeof REAL_MODE!=='undefined'&&REAL_MODE)return[];
   if(typeof OFFICIAL_MATCHES!=='undefined'&&Array.isArray(OFFICIAL_MATCHES)&&OFFICIAL_MATCHES.length)return OFFICIAL_MATCHES.map(m=>normalizeMatch(m,'official/manual')).filter(Boolean);
   if(typeof MOCK_MATCHES!=='undefined'&&Array.isArray(MOCK_MATCHES)&&MOCK_MATCHES.length)return MOCK_MATCHES.map(m=>normalizeMatch(m,'mock_schedule')).filter(Boolean);
   return PREDICTIONS.map(p=>normalizeMatch(p,'prediction_demo')).filter(Boolean);
@@ -2337,9 +2421,11 @@ function clearAllCustomData(){
 function refreshAfterDataImport(type){
   renderDataStatusStrip();
   renderRegistryMetaBadges();
+  renderRealModeHome();
   if(document.getElementById('sec-data')?.classList.contains('active'))renderDataManager();
   if(['teams','all'].includes(type)&&document.getElementById('sec-teams')?.classList.contains('active'))renderTeams(currentTeamFilter);
   if(['matches','groups','all'].includes(type)&&document.getElementById('sec-schedule')?.classList.contains('active'))renderSchedule();
+  if(['matches','groups','all'].includes(type)&&document.getElementById('sec-live')?.classList.contains('active'))initLiveSchedule();
   if(document.getElementById('sec-export')?.classList.contains('active'))renderExportCenter();
 }
 let watchlist=loadArrayFromStorage('wc2026_watchlist').filter(name=>TEAM_BY_NAME[name]);
@@ -2398,8 +2484,10 @@ function dataTypeLabel(type){
   const raw=String(type||'').trim();
   const lower=raw.toLowerCase();
   if(!raw)return'未知数据类型';
+  if(lower.includes('no_real_data')||lower.includes('no real')||lower.includes('empty'))return`暂无实盘数据（${raw}）`;
   if(/mixed.*demo.*mock.*sample/.test(lower))return`混合模拟数据（${raw}）`;
-  if(lower.includes('custom override'))return`自定义导入数据（${raw}）`;
+  if(lower.includes('custom override')||lower.includes('custom_import')||lower.includes('custom_json'))return`自定义导入数据（${raw}）`;
+  if(lower.includes('local_live_sync')||lower.includes('local live sync')||lower.includes('titan'))return`本地实盘同步（${raw}）`;
   if(lower.includes('api cache')||lower.includes('api_cache'))return`API 缓存数据（${raw}）`;
   if(lower.includes('static'))return`静态数据（${raw}）`;
   if(lower.includes('user recorded'))return`用户记录 + 模拟数据（${raw}）`;
@@ -2461,15 +2549,22 @@ function getRegistryDisplayType(key,entry){
     if(typeof liveDataSourceKind!=='undefined'){
       if(liveDataSourceKind==='cache')return'API Cache';
       if(liveDataSourceKind==='api')return'Live';
+      if(liveDataSourceKind==='custom')return'Custom Import';
+      if(liveDataSourceKind==='titan')return'Titan007 Local Sync';
+      if(liveDataSourceKind==='empty')return'No Real Data';
       if(liveDataSourceKind==='static')return'Static JSON';
     }
     const cache=getApiMatchesCachePayload();
     if(cache&&cache.matches&&cache.matches.length)return'API Cache';
     if(String(entry?.type||'').includes('static'))return'Static JSON';
     if(String(entry?.type||'').includes('api_cache'))return'API Cache';
+    if(String(entry?.type||'').includes('no_real_data'))return'No Real Data';
     return(typeof liveIsRealData!=='undefined'&&liveIsRealData)?'Live':'Mock';
   }
-  if(key==='groups')return getGroupLayerLabel();
+  if(key==='groups'){
+    if(typeof REAL_MODE!=='undefined'&&REAL_MODE)return(titan2026LocalStatus&&titan2026LocalStatus.hasGroups)?'Titan007 Local Sync':'No Real Data';
+    return getGroupLayerLabel();
+  }
   if(key==='predictions')return'Model Demo';
   if(key==='teams')return'Estimated';
   if(key==='odds')return'Sample';
@@ -2479,13 +2574,21 @@ function getRegistryBadgeClass(key,entry){
   if(entry?.overrideActive)return'live';
   const type=String(entry?.type||'').toLowerCase();
   if(key==='liveSchedule'){
+    if(typeof liveDataSourceKind!=='undefined'&&liveDataSourceKind==='custom')return'live';
+    if(typeof liveDataSourceKind!=='undefined'&&liveDataSourceKind==='titan')return'live';
     if(typeof liveDataSourceKind!=='undefined'&&(liveDataSourceKind==='cache'||liveDataSourceKind==='api'))return'live';
+    if(typeof liveDataSourceKind!=='undefined'&&liveDataSourceKind==='empty')return'mock';
     if(typeof liveDataSourceKind!=='undefined'&&liveDataSourceKind==='static')return'estimated';
+    if(type.includes('local_live_sync')||type.includes('titan'))return'live';
     if(String(entry?.type||'').includes('api_cache'))return'live';
     if(String(entry?.type||'').includes('static'))return'estimated';
+    if(String(entry?.type||'').includes('no_real_data'))return'mock';
     return(typeof liveIsRealData!=='undefined'&&liveIsRealData)?'live':'mock';
   }
-  if(key==='groups')return hasOfficialGroups()?'live':'mock';
+  if(key==='groups'){
+    if(typeof REAL_MODE!=='undefined'&&REAL_MODE)return(titan2026LocalStatus&&titan2026LocalStatus.hasGroups)?'live':'mock';
+    return hasOfficialGroups()?'live':'mock';
+  }
   if(type.includes('sample'))return'sample';
   if(type.includes('estimated'))return'estimated';
   if(type.includes('demo'))return'demo';
@@ -2503,9 +2606,15 @@ function updateDataRegistry(key,patch){
 function syncLiveScheduleRegistryFromLocal(){
   if(!DATA_REGISTRY.liveSchedule)return;
   if(typeof liveDataSourceKind!=='undefined'&&liveDataSourceKind==='api')return;
+  if(typeof titan2026LocalStatus!=='undefined'&&titan2026LocalStatus.hasMatches){
+    Object.assign(DATA_REGISTRY.liveSchedule,{type:'local_live_sync',source:'Titan007 local sync; local JSON only',updatedAt:titan2026LocalStatus.syncedAt||'local JSON',confidence:'medium',fallback:false,recordCount:titan2026LocalStatus.matchCount||0,validationStatus:'local sync JSON'});
+    return;
+  }
   const cache=getApiMatchesCacheStatus();
   if(cache.hasCache){
     Object.assign(DATA_REGISTRY.liveSchedule,{type:'api_cache',source:cache.source,updatedAt:cache.updatedAt,confidence:'medium',fallback:false,recordCount:cache.count,validationStatus:'cached localStorage'});
+  }else if(typeof REAL_MODE!=='undefined'&&REAL_MODE){
+    Object.assign(DATA_REGISTRY.liveSchedule,{type:'no_real_data',source:'暂无实盘数据；未读取 Titan007 本地同步 / 导入 / API 缓存',updatedAt:'—',confidence:'low',fallback:false,recordCount:0,validationStatus:'empty real mode'});
   }else if(typeof OFFICIAL_MATCHES!=='undefined'&&Array.isArray(OFFICIAL_MATCHES)&&OFFICIAL_MATCHES.length){
     Object.assign(DATA_REGISTRY.liveSchedule,{type:'static_json',source:'static OFFICIAL_MATCHES; no API request',updatedAt:DATA_REGISTRY.liveSchedule.updatedAt||'2026-06-07',confidence:'medium',fallback:true,recordCount:OFFICIAL_MATCHES.length,validationStatus:'static fallback'});
   }else{
@@ -2526,6 +2635,17 @@ function renderDataStatusStrip(){
   syncLiveScheduleRegistryFromLocal();
   const el=document.getElementById('dataStatusStrip');
   if(!el)return;
+  if(typeof REAL_MODE!=='undefined'&&REAL_MODE){
+    const live=DATA_REGISTRY.liveSchedule;
+    const groupType=(titan2026LocalStatus&&titan2026LocalStatus.hasGroups)?'Titan007 Local Sync':'No Real Data';
+    el.innerHTML=[
+      `<span class="data-status-badge ${getRegistryBadgeClass('liveSchedule',live)}">实盘赛程：${dataTypeLabel(getRegistryDisplayType('liveSchedule',live))}</span>`,
+      `<span class="data-status-badge ${titan2026LocalStatus&&titan2026LocalStatus.hasGroups?'live':'mock'}">小组积分：${dataTypeLabel(groupType)}</span>`,
+      '<span class="data-status-badge estimated">球队资料：估算基础资料</span>',
+      '<span class="data-status-badge sample">赔率：未接实盘</span>'
+    ].join('');
+    return;
+  }
   const labels={teams:'球队',groups:'小组',predictions:'预测',odds:'赔率',liveSchedule:'实时赛程'};
   el.innerHTML=['teams','groups','predictions','odds','liveSchedule'].map(key=>{
     const entry=DATA_REGISTRY[key];
@@ -2538,25 +2658,56 @@ function normalizeMatch(m,source){
   if(m.homeTeam&&m.awayTeam){
     const d=m.utcDate?new Date(m.utcDate):null;
     const score=m.score&&m.score.fullTime&&m.score.fullTime.home!==null&&m.score.fullTime.home!==undefined?`${m.score.fullTime.home}-${m.score.fullTime.away}`:'—';
-    return{id:String(m.id||m.utcDate||Math.random()),group:String(m.group||'').replace(/^Group\s+/i,''),stage:m.stage||'GROUP_STAGE',date:d&&!isNaN(d)?d.toISOString().slice(0,10):'TBD',time:d&&!isNaN(d)?d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'}):'TBD',venue:m.venue||'Unknown',city:m.city||'',home:m.homeTeam.name,away:m.awayTeam.name,status:m.status||'SCHEDULED',score,source:source||'live_api',dataType:source==='live_api'?'live_api':'mock_schedule',raw:m};
+    return{id:String(m.id||m.utcDate||Math.random()),utcDate:m.utcDate||'',displayDate:m.displayDate||'',displayTime:m.displayTime||'',group:String(m.group||'').replace(/^Group\s+/i,''),stage:m.stage||'GROUP_STAGE',date:m.displayDate||(d&&!isNaN(d)?d.toISOString().slice(0,10):'TBD'),time:m.displayTime||(d&&!isNaN(d)?d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'}):'TBD'),venue:m.venue||'Unknown',city:m.city||'',home:m.homeTeam.name,away:m.awayTeam.name,status:m.status||'SCHEDULED',score:m.scoreText||score,source:m.source||source||'live_api',dataType:m.dataType||(source==='live_api'?'live_api':source==='titan_local_sync'?'local_live_sync':'mock_schedule'),handicap:m.handicap||'',halfTime:m.halfTime||'',syncedAt:m.syncedAt||'',raw:m};
   }
   if(m.home&&m.away&&m.homeProb!==undefined){
     return{id:String(m.id||`${m.home}-${m.away}-${m.date}`),group:getPredictionGroupLabel(m).replace(/^Group\s+/i,''),stage:m.stage==='ko'?'KNOCKOUT_DEMO':'GROUP_STAGE',date:m.date||'Demo TBD',time:'TBD',venue:m.venue||'Neutral / Unknown',city:m.venue||'',home:m.home,away:m.away,status:'DEMO',score:m.score||'—',source:'prediction_demo',dataType:'demo_model',raw:m,predIndex:PREDICTIONS.indexOf(m)};
   }
-  return{id:String(m.id||`${m.home}-${m.away}-${m.date}`),group:m.group||'',stage:m.stage||'GROUP_STAGE',date:m.date||'TBD',time:m.time||'TBD',venue:m.venue||'Unknown',city:m.city||'',home:m.home||'TBD',away:m.away||'TBD',status:m.status||'SCHEDULED',score:m.score||'—',source:m.source||source||'official/manual',dataType:m.dataType||'official_partial',raw:m};
+  const utcDate=m.utcDate||((m.dataType==='local_live_sync'||m.source==='Titan007 local sync'||source==='titan_local_sync')?parseTitanUtcDate(m.date,m.time):'');
+  return{id:String(m.id||`${m.home}-${m.away}-${m.date}`),utcDate:utcDate,displayDate:m.displayDate||m.date||'',displayTime:m.displayTime||m.time||'',group:m.group||'',stage:m.stage||'GROUP_STAGE',date:m.date||'TBD',time:m.time||'TBD',venue:m.venue||'Unknown',city:m.city||'',home:m.home||'TBD',away:m.away||'TBD',status:m.status||'SCHEDULED',score:m.score||'—',source:m.source||source||'official/manual',dataType:m.dataType||'official_partial',raw:m};
 }
 function getActiveMatches(){return getEffectiveMatches();}
 function findPredictionForMatch(match){
   if(!match||isPlaceholderTeam(match.home)||isPlaceholderTeam(match.away))return null;
   return PREDICTIONS.find(p=>(p.home===match.home&&p.away===match.away)||(p.home===match.away&&p.away===match.home))||null;
 }
-function formatScheduleDate(match){
+function getViewerTimeZoneLabel(){
+  try{return Intl.DateTimeFormat().resolvedOptions().timeZone||'Local';}
+  catch(e){return'Local';}
+}
+function formatViewerLocalDateTime(value,options){
+  if(!value)return'TBD';
+  const d=value instanceof Date?value:new Date(value);
+  if(!d||isNaN(d.getTime()))return'TBD';
+  const locale=currentLang==='en'?'en-US':'zh-CN';
+  const opt=Object.assign({month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false,timeZoneName:'short'},options||{});
+  try{return new Intl.DateTimeFormat(locale,opt).format(d);}
+  catch(e){return d.toLocaleString();}
+}
+function formatViewerLocalNowLabel(){
+  return formatViewerLocalDateTime(new Date(),{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false,timeZoneName:'short'})+' · '+getViewerTimeZoneLabel();
+}
+function formatStoredTimestampLocal(value){
+  if(!value||value==='—')return'—';
+  const formatted=formatViewerLocalDateTime(value,{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false,timeZoneName:'short'});
+  return formatted==='TBD'?String(value):formatted;
+}
+function formatMatchLocalTime(match){
+  if(match?.utcDate)return formatViewerLocalDateTime(match.utcDate);
   const date=match?.date||'TBD';
   const time=match?.time&&match.time!=='TBD'?` ${match.time}`:'';
   return `${date}${time}`;
 }
+function formatMatchLocalTimeWithSource(match){
+  const local=formatMatchLocalTime(match);
+  const source=match?.displayDate&&match?.displayTime?`${match.displayDate} ${match.displayTime} 北京时间`:'';
+  return source&&local!=='TBD'?`${local}（源：${source}）`:local;
+}
+function formatScheduleDate(match){
+  return formatMatchLocalTime(match);
+}
 function getScheduleStageLabel(match){
-  if(match?.stage==='GROUP_STAGE')return match.group?`小组 ${match.group}`:'小组赛';
+  if(match?.stage==='GROUP_STAGE')return match.group?(String(match.group).includes('组')?String(match.group):`小组 ${match.group}`):'小组赛';
   if(typeof STAGE_LABELS!=='undefined'&&STAGE_LABELS[match?.stage])return STAGE_LABELS[match.stage];
   return String(match?.stage||'赛程').replace(/_/g,' ');
 }
@@ -3042,8 +3193,10 @@ function generateTeamReportText(teamName){
 }
 function getCoachReportDataLayer(){
   if(hasCustomDataset('matches')||hasCustomDataset('teams')||hasCustomDataset('groups')||hasCustomDataset('injuries'))return{source:'自定义导入数据',dataType:'Custom Override / Mixed',note:'已启用本机导入 JSON，优先于内置层。'};
+  if(typeof titan2026LocalStatus!=='undefined'&&titan2026LocalStatus.hasMatches)return{source:'Titan007 本地同步',dataType:'local_live_sync',note:`来自本机 JSON，同步时间 ${titan2026LocalStatus.syncedAt||'未知'}，比赛 ${titan2026LocalStatus.matchCount||0} 场，小组 ${titan2026LocalStatus.groupCount||0} 个。网页未直接请求 Titan007。`};
   const cache=getApiMatchesCachePayload();
   if(cache&&Array.isArray(cache.matches)&&cache.matches.length)return{source:'真实缓存',dataType:'API Cache / Mixed',note:`来自 ${cache.source||'API'} 的本机缓存，刷新时间 ${cache.updatedAt||'未知'}。`};
+  if(typeof REAL_MODE!=='undefined'&&REAL_MODE)return{source:'暂无实盘数据',dataType:'no_real_data',note:'当前未读取 Titan007 本地同步、用户导入或 API 缓存。实盘分析不会使用 Demo / Mock / Sample 伪数据。'};
   if(typeof OFFICIAL_MATCHES!=='undefined'&&Array.isArray(OFFICIAL_MATCHES)&&OFFICIAL_MATCHES.length)return{source:'静态数据',dataType:'Static / Manual / Demo',note:'当前使用静态/手动赛程层，未自动请求外部 API。'};
   return{source:'模拟数据',dataType:'Demo / Mock / Sample',note:'当前使用内置 Demo / Mock fallback。'};
 }
@@ -3559,7 +3712,21 @@ async function runDeepSeekAnalysis(){
 }function getAITypeLabel(type){
   return{daily:'今日情报',match:'单场比赛',team:'球队分析',coach:'教练组报告'}[type]||'DeepSeek分析';
 }
+function getRealAIMatchOptions(){
+  return getRealModeMatches().map((m,i)=>({value:'real:'+i,label:`实盘 · ${cnName(m.home)} vs ${cnName(m.away)} · ${formatScheduleDate(m)} · ${getScheduleStatusLabel(m)} · ${dataTypeLabel(m.dataType||m.source)}`}));
+}
 function getAIMatchSourceFromTarget(target){
+  if(typeof REAL_MODE!=='undefined'&&REAL_MODE){
+    if(target&&typeof target==='object'&&(target.prediction!==undefined||target.match!==undefined))return target;
+    if(target&&typeof target==='object'&&target.home&&target.away)return{kind:'match',match:target,index:-1};
+    const value=String(target||document.getElementById('aiMatchSelect')?.value||'');
+    const realMatches=getRealModeMatches();
+    if(value.startsWith('real:')){
+      const idx=Number(value.split(':')[1]);
+      return realMatches[idx]?{kind:'match',match:realMatches[idx],index:idx}:null;
+    }
+    return realMatches[0]?{kind:'match',match:realMatches[0],index:0}:null;
+  }
   if(target&&typeof target==='object'&&(target.prediction!==undefined||target.match!==undefined))return target;
   if(target&&typeof target==='object'&&target.home&&target.away)return{kind:'prediction',prediction:target,index:PREDICTIONS.indexOf(target)};
   return getMatchReportSourceFromValue(target||document.getElementById('aiMatchSelect')?.value||'pred:0');
@@ -3568,26 +3735,30 @@ function getAITeamName(target){
   return typeof target==='string'&&target?target:(document.getElementById('aiTeamSelect')?.value||getCoachDefaultTeam());
 }
 function summarizeAIMatchSource(src){
+  if(!src)return{home:'TBD',away:'TBD',date:'—',venue:'—',status:'暂无实盘数据',stage:'—',group:'',handicap:'',halfTime:'',score:'',source:'暂无实盘数据',dataType:'no_real_data',prediction:null,match:null};
   const p=src?.prediction||null,m=src?.match||null;
   const home=p?.home||m?.home||'TBD',away=p?.away||m?.away||'TBD';
   const date=p?.date||formatScheduleDate(m);
   const venue=p?.venue||m?.venue||m?.city||'Neutral / Unknown';
   const status=m?getScheduleStatusLabel(m):(p?'Model Demo prediction':'—');
-  return{home,away,date,venue,status,stage:p?(p.stage==='ko'?'淘汰赛':'小组赛'):(m?getScheduleStageLabel(m):'—'),prediction:p,match:m};
+  return{home,away,date,venue,status,stage:p?(p.stage==='ko'?'淘汰赛':'小组赛'):(m?getScheduleStageLabel(m):'—'),group:m?.group||'',handicap:m?.handicap||'',halfTime:m?.halfTime||'',score:m?.score||'',source:m?.source||'',dataType:m?.dataType||'',prediction:p,match:m};
 }
 function buildAIContext(type,target){
   const layer=getCoachReportDataLayer();
   const cache=getApiMatchesCacheStatus();
-  const ctx={type,dataSource:layer.source,dataType:layer.dataType,sourceNote:layer.note,apiCache:cache,activeMatches:[],predictions:[],selectedMatch:null,selectedTeam:null,teamStats:null,injuries:[],oddsSample:null,venue:null,lastApiCacheTime:cache.updatedAt};
-  ctx.activeMatches=getActiveMatches().slice(0,12).map(m=>({
+  const realMatches=getRealModeMatches();
+  const ctx={type,dataSource:layer.source,dataType:layer.dataType,sourceNote:layer.note,apiCache:cache,hasRealMatches:realMatches.length>0,activeMatches:[],predictions:[],selectedMatch:null,selectedTeam:null,teamStats:null,injuries:[],oddsSample:null,venue:null,lastApiCacheTime:cache.updatedAt};
+  ctx.activeMatches=realMatches.slice(0,12).map(m=>({
     match:`${cnName(m.home)} / ${m.home} vs ${cnName(m.away)} / ${m.away}`,
     date:formatScheduleDate(m),
     status:getScheduleStatusLabel(m),
     stage:getScheduleStageLabel(m),
+    handicap:m.handicap||'—',
+    halfTime:m.halfTime||'—',
     source:m.source||'schedule layer',
     dataType:dataTypeLabel(m.dataType||'schedule')
   }));
-  ctx.predictions=PREDICTIONS.slice(0,12).map(p=>({
+  ctx.predictions=(typeof REAL_MODE!=='undefined'&&REAL_MODE)?[]:PREDICTIONS.slice(0,12).map(p=>({
     match:`${cnName(p.home)} / ${p.home} vs ${cnName(p.away)} / ${p.away}`,
     pick:getModelPick(p).display,
     confidence:zhConfidence(getConfidenceLevel(p).label),
@@ -3607,12 +3778,12 @@ function buildAIContext(type,target){
     const t=getTeam(teamName);
     ctx.selectedTeam=teamName;
     ctx.teamStats={name:teamName,cn:cnName(teamName),fifaRank:t.rank,overall:t.overall,attack:t.attack,midfield:t.midfield,defense:t.defense,elo:t.elo,keyPlayer:t.key_player,worldCupTitles:t.wc_titles,form:getRecentForm(teamName).join(' '),formScore:getFormPoints(teamName)};
-    ctx.injuries=getTeamInjuryEntries(teamName).slice(0,6).map(e=>e.label);
-    ctx.oddsSample=getEffectiveOdds().find(o=>o.team===teamName)||null;
+    ctx.injuries=(typeof REAL_MODE!=='undefined'&&REAL_MODE)?['暂无真实球员状态数据，当前不使用示例伤病作为实盘依据。']:getTeamInjuryEntries(teamName).slice(0,6).map(e=>e.label);
+    ctx.oddsSample=(typeof REAL_MODE!=='undefined'&&REAL_MODE)?null:(getEffectiveOdds().find(o=>o.team===teamName)||null);
   }
   if(ctx.selectedMatch){
     const home=ctx.selectedMatch.home,away=ctx.selectedMatch.away;
-    ctx.injuries=[home,away].filter(n=>n&&!isPlaceholderTeam(n)).map(n=>`${cnName(n)}：${getInjuryImpactLine(n)}`);
+    ctx.injuries=(typeof REAL_MODE!=='undefined'&&REAL_MODE)?['暂无真实伤病/停赛数据，不能据此编造球员状态。']:[home,away].filter(n=>n&&!isPlaceholderTeam(n)).map(n=>`${cnName(n)}：${getInjuryImpactLine(n)}`);
     ctx.venue=ctx.selectedMatch.venue;
   }
   return ctx;
@@ -3633,9 +3804,12 @@ function formatAIContextBlock(ctx){
       '【选中比赛】',
       `- 比赛：${cnName(ctx.selectedMatch.home)} / ${ctx.selectedMatch.home} vs ${cnName(ctx.selectedMatch.away)} / ${ctx.selectedMatch.away}`,
       `- 时间/阶段/状态：${ctx.selectedMatch.date} · ${ctx.selectedMatch.stage} · ${ctx.selectedMatch.status}`,
-      `- 场馆：${ctx.selectedMatch.venue}`
+      `- 场馆：${ctx.selectedMatch.venue}`,
+      `- 小组/盘口/半场/比分：${ctx.selectedMatch.group||'—'} · ${ctx.selectedMatch.handicap||'—'} · ${ctx.selectedMatch.halfTime||'—'} · ${ctx.selectedMatch.score||'—'}`,
+      `- 数据源：${ctx.selectedMatch.source||ctx.dataSource} · ${dataTypeLabel(ctx.selectedMatch.dataType||ctx.dataType)}`
     );
-    if(p)lines.push(`- 模拟预测：${getModelPick(p).display}；信心 ${zhConfidence(getConfidenceLevel(p).label)}；比分 ${p.score}；概率 ${p.homeProb}/${p.drawProb}/${p.awayProb}`);
+    if(p&&!(typeof REAL_MODE!=='undefined'&&REAL_MODE))lines.push(`- 模拟预测：${getModelPick(p).display}；信心 ${zhConfidence(getConfidenceLevel(p).label)}；比分 ${p.score}；概率 ${p.homeProb}/${p.drawProb}/${p.awayProb}`);
+    else if(typeof REAL_MODE!=='undefined'&&REAL_MODE)lines.push('- 模型预测：实盘模式不使用内置模拟预测，请只基于赛程信息做谨慎分析。');
     else lines.push('- 模拟预测：暂无模型预测，请只基于赛程信息做谨慎分析。');
   }
   if(ctx.teamStats){
@@ -3649,18 +3823,22 @@ function formatAIContextBlock(ctx){
       `- 关键球员：${t.keyPlayer}；世界杯冠军次数：${t.worldCupTitles}`,
       `- 近期状态：${t.form}；Form Score：${t.formScore}`,
       `- 伤病摘要：${ctx.injuries.length?ctx.injuries.join('；'):'暂无示例伤病影响'}`,
-      `- 示例赔率：${ctx.oddsSample?`Sample Odds ${ctx.oddsSample.bet365}/${ctx.oddsSample.draftkings}/${ctx.oddsSample.fanduel}/${ctx.oddsSample.betmgm}`:'暂无示例赔率'}`
+      `- 赔率说明：${(typeof REAL_MODE!=='undefined'&&REAL_MODE)?'暂无真实赔率，当前未接赔率实盘':(ctx.oddsSample?`Sample Odds ${ctx.oddsSample.bet365}/${ctx.oddsSample.draftkings}/${ctx.oddsSample.fanduel}/${ctx.oddsSample.betmgm}`:'暂无示例赔率')}`
     );
   }
   if(ctx.venue)lines.push('',`【场地因素】${getVenueFactorLine(ctx.venue)}`);
   lines.push(
     '',
-    '【可用赛程摘要】',
-    ...(ctx.activeMatches.length?ctx.activeMatches.slice(0,8).map(m=>`- ${m.match}；${m.date}；${m.stage}；${m.status}；${m.dataType}`):['- 暂无可用赛程']),
-    '',
-    '【可用模拟预测摘要】',
-    ...(ctx.predictions.length?ctx.predictions.slice(0,8).map(p=>`- ${p.match}；倾向 ${p.pick}；${p.confidence}；比分 ${p.score}；${p.probs}；${p.tags}`):['- 暂无模拟预测'])
+    '【可用实盘赛程摘要】',
+    ...(ctx.activeMatches.length?ctx.activeMatches.slice(0,8).map(m=>`- ${m.match}；${m.date}；${m.stage}；${m.status}；盘口 ${m.handicap}；半场 ${m.halfTime}；${m.dataType}`):['- 暂无实盘赛程。请先同步 Titan007 数据或导入 matches JSON。'])
   );
+  if(!(typeof REAL_MODE!=='undefined'&&REAL_MODE)){
+    lines.push(
+      '',
+      '【可用模拟预测摘要】',
+      ...(ctx.predictions.length?ctx.predictions.slice(0,8).map(p=>`- ${p.match}；倾向 ${p.pick}；${p.confidence}；比分 ${p.score}；${p.probs}；${p.tags}`):['- 暂无模拟预测'])
+    );
+  }
   return lines.join('\n');
 }
 function buildAIPrompt(role,task,ctx,extra){
@@ -3692,22 +3870,22 @@ function buildAIPrompt(role,task,ctx,extra){
 }
 function generateDailyAIPrompt(){
   const ctx=buildAIContext('daily',null);
-  return buildAIPrompt('你是世界杯赛事分析顾问，擅长把多场比赛压缩成中文今日简报。','请生成一份今日情报分析，重点说明今日重点、冷门观察、价值信号、高风险比赛、伤病提醒和数据来源。',ctx,generateDailyBriefingText());
+  return buildAIPrompt('你是世界杯赛事分析顾问，擅长把多场比赛压缩成中文今日简报。','请基于当前实盘赛程生成一份今日情报分析，重点说明重点比赛、风险比赛、赛程状态和数据来源。',ctx,(typeof REAL_MODE!=='undefined'&&REAL_MODE)?'':generateDailyBriefingText());
 }
 function generateMatchAIPrompt(matchOrPrediction){
   const ctx=buildAIContext('match',matchOrPrediction);
   const src=getAIMatchSourceFromTarget(matchOrPrediction);
-  return buildAIPrompt('你是世界杯赛事分析顾问，擅长单场比赛赛前分析。','请分析这场比赛的倾向、关键因素、风险、可解释结论和普通球迷能看懂的总结。',ctx,generateMatchReportText(src));
+  return buildAIPrompt('你是世界杯赛事分析顾问，擅长单场比赛赛前分析。','请分析这场实盘比赛的走势、关键因素、风险、可解释结论和普通球迷能看懂的总结。',ctx,(typeof REAL_MODE!=='undefined'&&REAL_MODE)?'':generateMatchReportText(src));
 }
 function generateTeamAIPrompt(teamName){
   teamName=getAITeamName(teamName);
   const ctx=buildAIContext('team',teamName);
-  return buildAIPrompt('你是世界杯球队分析顾问，擅长用中文解释球队强弱、状态和风险。',`请分析 ${cnName(teamName)} / ${teamName} 的球队状态、优势、隐患、相关比赛和数据来源。`,ctx,generateTeamReportText(teamName));
+  return buildAIPrompt('你是世界杯球队分析顾问，擅长用中文解释球队强弱、状态和风险。',`请基于实盘赛程分析 ${cnName(teamName)} / ${teamName} 的相关比赛、球队风险、关注点和数据来源。`,ctx,(typeof REAL_MODE!=='undefined'&&REAL_MODE)?'':generateTeamReportText(teamName));
 }
 function generateCoachAIPrompt(teamName){
   teamName=getAITeamName(teamName);
   const ctx=buildAIContext('coach',teamName);
-  return buildAIPrompt('你是国家队教练组分析顾问，擅长从备战、出线和淘汰赛路径角度分析。',`请为 ${cnName(teamName)} / ${teamName} 生成教练组报告，覆盖球队现状、小组形势、已赛/未赛、球员状态、战术外部因素、出线路径和最终判断。`,ctx,generateCoachReportText(teamName));
+  return buildAIPrompt('你是国家队教练组分析顾问，擅长从备战、出线和淘汰赛路径角度分析。',`请基于实盘赛程为 ${cnName(teamName)} / ${teamName} 生成教练组报告，覆盖球队现状、小组形势、已赛/未赛、球员状态、战术外部因素、出线路径和最终判断。`,ctx,(typeof REAL_MODE!=='undefined'&&REAL_MODE)?'':generateCoachReportText(teamName));
 }
 function generateDeepSeekAnalysisPrompt(type,target){
   if(type==='match')return generateMatchAIPrompt(target);
@@ -3736,10 +3914,11 @@ function renderAIAnalysisControls(){
   const el=document.getElementById('aiTargetControls');
   if(!el)return;
   const type=document.getElementById('aiAnalysisType')?.value||'daily';
-  const matchOptions=getExportMatchOptions().map(o=>`<option value="${escapeHTML(o.value)}">${escapeHTML(o.label)}</option>`).join('');
+  const realMatchOptions=getRealAIMatchOptions();
+  const matchOptions=realMatchOptions.map(o=>`<option value="${escapeHTML(o.value)}">${escapeHTML(o.label)}</option>`).join('');
   const teamOptions=getEffectiveTeams().map(t=>`<option value="${escapeHTML(t.name)}">${t.flag} ${escapeHTML(cnName(t.name))} / ${escapeHTML(t.name)}</option>`).join('');
   if(type==='match'){
-    el.innerHTML=`<div class="export-form-row"><label>选择比赛</label><select id="aiMatchSelect">${matchOptions}</select></div>`;
+    el.innerHTML=realMatchOptions.length?`<div class="export-form-row"><label>选择实盘比赛</label><select id="aiMatchSelect">${matchOptions}</select></div>`:'<div class="real-empty-state">暂无实盘比赛可选。请先运行 sync-titan2026.bat，刷新页面，或导入 matches JSON。</div>';
   }else if(type==='team'||type==='coach'){
     el.innerHTML=`<div class="export-form-row"><label>选择球队</label><select id="aiTeamSelect">${teamOptions}</select></div>`;
   }else{
@@ -3753,7 +3932,7 @@ function renderAIAnalysisSection(){
   renderAIAnalysisControls();
 }
 function getAITargetFromUI(type){
-  if(type==='match')return document.getElementById('aiMatchSelect')?.value||'pred:0';
+  if(type==='match')return document.getElementById('aiMatchSelect')?.value||(typeof REAL_MODE!=='undefined'&&REAL_MODE?'':'pred:0');
   if(type==='team'||type==='coach')return document.getElementById('aiTeamSelect')?.value||getCoachDefaultTeam();
   return null;
 }
@@ -3768,6 +3947,36 @@ function updateAIDataSourceSummary(){
 function generateAIAnalysisPromptFromUI(overrideTarget){
   const type=document.getElementById('aiAnalysisType')?.value||'daily';
   const target=overrideTarget||getAITargetFromUI(type);
+  if(typeof REAL_MODE!=='undefined'&&REAL_MODE&&!hasRealModeMatches()){
+    const message='暂无实盘数据，无法生成实盘分析。请先同步 Titan007 数据或导入 matches JSON。';
+    const output=document.getElementById('aiPromptOutput');
+    if(output)output.value=message;
+    currentAIPromptMeta=null;
+    updateAIDataSourceSummary();
+    showToast(message,'error');
+    return;
+  }
+  if(type==='match'&&typeof REAL_MODE!=='undefined'&&REAL_MODE){
+    const src=getAIMatchSourceFromTarget(target);
+    const dt=String(src?.match?.dataType||src?.match?.source||'').toLowerCase();
+    const isRealSource=!!(src&&src.match&&(dt.includes('local_live_sync')||dt.includes('titan')||dt.includes('api')||dt.includes('custom')));
+    if(!isRealSource){
+      const message='当前选中内容不是实盘比赛，无法生成实盘分析。请从实盘赛程表选择 Titan007 本地同步、用户导入或 API 缓存比赛。';
+      const output=document.getElementById('aiPromptOutput');
+      if(output)output.value=message;
+      currentAIPromptMeta=null;
+      showToast(message,'error');
+      return;
+    }
+  }
+  if(type==='match'&&typeof REAL_MODE!=='undefined'&&REAL_MODE&&!getAIMatchSourceFromTarget(target)){
+    const message='暂无可选实盘比赛，无法生成单场分析。';
+    const output=document.getElementById('aiPromptOutput');
+    if(output)output.value=message;
+    currentAIPromptMeta=null;
+    showToast(message,'error');
+    return;
+  }
   const prompt=generateAIAnalysisPrompt(type,target);
   const output=document.getElementById('aiPromptOutput');
   if(output)output.value=prompt;
@@ -3863,6 +4072,32 @@ function deepSeekAnalysis(type,target,autoGenerate){
 function deepSeekAnalysisFromDaily(){deepSeekAnalysis('daily',null,true);}
 function deepSeekAnalysisFromCurrentMatch(){deepSeekAnalysis('match',getCurrentMatchReportSource(),true);}
 function deepSeekAnalysisFromTeam(name){deepSeekAnalysis('team',name||window.currentTeamProfileName||getCoachDefaultTeam(),true);}
+function getDefaultRealModeTeam(){
+  const first=getRealModeMatches()[0];
+  return first?.home||getCoachDefaultTeam();
+}
+function startRealDeepSeekAnalysis(type){
+  showSection('ai-analysis',document.querySelector('[data-section="ai-analysis"]'));
+  const typeEl=document.getElementById('aiAnalysisType');
+  if(typeEl)typeEl.value=type||'daily';
+  renderAIAnalysisControls();
+  if(!hasRealModeMatches()){
+    const msg='暂无实盘数据，无法生成实盘分析。请先运行 sync-titan2026.bat，刷新页面，或导入 matches JSON。';
+    const out=document.getElementById('aiPromptOutput');
+    if(out)out.value=msg;
+    showToast(msg,'error');
+    return;
+  }
+  if(type==='match'){
+    const sel=document.getElementById('aiMatchSelect');
+    if(sel&&sel.options.length)sel.value=sel.options[0].value;
+  }else if(type==='team'||type==='coach'){
+    const team=getDefaultRealModeTeam();
+    const sel=document.getElementById('aiTeamSelect');
+    if(sel)sel.value=team;
+  }
+  generateAIAnalysisPromptFromUI();
+}
 function setShareCardType(type){const el=document.getElementById('shareCardType');if(el)el.value=type;}
 function renderExportCenter(){
   const matchSelect=document.getElementById('exportMatchSelect');
@@ -4075,15 +4310,14 @@ function renderCommandCenter(){
   const grid=document.getElementById('commandCenterGrid');
   if(!grid)return;
   const items=[
-    ['📰','今日情报','查看今日重点比赛、冷门风险和数据提醒。','overview'],
-    ['🧠','比赛情报','查看每场比赛的预测、风险标签和详情。','intelligence'],
-    ['🛡️','球队资料','查看球队实力、近期状态、伤病和相关比赛。','teams'],
-    ['📡','实时赛程','查看赛程、比分状态和小组信息。','live'],
-    ['🗂️','数据管理','查看数据来源、完整性检查和自定义导入。','data'],
-    ['📈','模型审计','记录预测结果，复盘命中率和校准情况。','audit'],
-    ['📤','导出中心','生成报告、我的分析记录和本地图片。','export'],
-    ['🤖','DeepSeek分析助手','自动整理比赛、球队、赛程、伤病、数据来源，让 DeepSeek-V4-Pro 生成中文分析结论。','ai-analysis'],
-    ['🧑‍🏫','教练组报告','以国家队教练组视角，整合球队状态、小组形势、球员风险、未赛对手和出线路径。','coach'],
+    ['📡','实盘赛程','查看 Titan007 本地同步、用户导入或 API 缓存赛程。','live'],
+    ['🤖','DeepSeek分析台','基于实盘赛程生成中文分析 Prompt 或调用本机私钥。','ai-analysis'],
+    ['🗂️','数据状态','查看同步状态、完整性检查和自定义导入。','data'],
+    ['🛡️','球队资料','查看球队基础资料；伤病和赔率示例会标注非实盘。','teams'],
+    ['📤','本地导出','导出报告、我的分析记录和本地图片。','export'],
+    ['📈','分析记录','查看本地记录和复盘工具，模拟记录会明确标注。','audit'],
+    ['🧑‍🏫','教练组报告','基于实盘赛程整理球队备战和出线路径 Prompt。','coach'],
+    ['🧪','开发示例','查看旧 Demo / Mock / Sample 示例数据。','schedule'],
     ['⚙️','设置','调整语言、主题、数据偏好和本地数据。','settings']
   ];
   grid.innerHTML=items.map(([icon,title,desc,target])=>`<div class="command-item"><div class="command-icon">${icon}</div><div><div class="command-title">${escapeHTML(title)}</div><div class="command-desc">${escapeHTML(desc)}</div></div><button class="command-go" onclick="goCommand('${target}')">进入</button></div>`).join('');
@@ -4184,6 +4418,7 @@ function renderOverview(){
   document.getElementById('favCount').textContent=watchlist.length;
   renderDataStatusStrip();
   renderRegistryMetaBadges();
+  renderRealModeHome();
   renderCommandCenter();
   renderDailyBriefing();
   const top6=getEffectiveTeams().slice(0,6);
@@ -4472,6 +4707,7 @@ function buildScheduleOnlyInsightHTML(match){
     <div class="insight-explain-list">
       <div class="insight-explain-item"><strong>赛程来源（Schedule source）</strong>${escapeHTML(match.source||'Official/manual schedule layer')} · ${dataTypeLabel(match.dataType||'official_partial')}</div>
       <div class="insight-explain-item"><strong>阶段 / 小组（Stage / Group）</strong>${escapeHTML(getScheduleStageLabel(match))}${match.group?` · 小组 ${escapeHTML(match.group)}`:''}</div>
+      <div class="insight-explain-item"><strong>盘口 / 半场（Handicap / Half-time）</strong>${escapeHTML(match.handicap||'—')} · ${escapeHTML(match.halfTime&&match.halfTime!=='-'?('HT '+match.halfTime):'—')}</div>
       <div class="insight-explain-item"><strong>场地因素（Venue factor）</strong>${escapeHTML(venueLine)}</div>
       <div class="insight-explain-item"><strong>模型状态（Model status）</strong>暂无模型预测。本行不会生成倾向、信心等级、比分或市场偏差。</div>
     </div>
@@ -4691,12 +4927,12 @@ function renderBuildInfo(){
   if(!el)return;
   const keys=['wc2026_seen_onboarding','wc2026_settings','wc2026_watchlist','wc2026_prediction_ledger','wc2026_export_snapshots','wc2026_private_ai_reports','wc2026_deepseek_api_key','wc2026_deepseek_endpoint','wc2026_deepseek_model','wc2026_deepseek_output_style','wc2026_real_api_provider','wc2026_real_api_key_football_data','wc2026_real_api_key_api_football','wc2026_real_matches_cache','wc2026_real_matches_cache_updated_at','wc2026_real_matches_cache_source','wc2026_custom_teams','wc2026_custom_matches','wc2026_custom_groups','wc2026_custom_odds','wc2026_custom_injuries','wc2026_custom_meta'];
   el.innerHTML=[
-    ['版本','v20'],
+    ['版本','v20.1'],
     ['单 HTML 模式','true'],
     ['最近验证','2026-06-11'],
     ['使用的 LocalStorage keys',keys.join(', ')],
     ['外部依赖','Chart.js CDN 可选'],
-    ['API 依赖','football-data.org 可选；仅手动刷新赛程/比分，不接真实赔率']
+    ['API 依赖','Titan007 本地同步 JSON；football-data.org 可选；仅手动刷新赛程/比分，不接真实赔率']
   ].map(([k,v])=>`<div><span>${escapeHTML(k)}</span>${escapeHTML(v)}</div>`).join('');
 }
 function renderDataManager(){
@@ -4710,7 +4946,7 @@ function renderDataManager(){
   if(cards){
     const labels={teams:'球队',groups:'小组',matches:'比赛',predictions:'预测',odds:'赔率',injuries:'伤病',liveSchedule:'实时赛程'};
     const registryCards=Object.entries(DATA_REGISTRY).map(([key,entry])=>{
-      const status=key==='liveSchedule'?((typeof liveIsRealData!=='undefined'&&liveIsRealData)?'实时 API':'模拟回退'):key==='groups'?dataTypeLabel(getGroupLayerLabel()):(entry.fallback?'已启用回退':'主数据层');
+      const status=key==='liveSchedule'?(liveDataSourceKind==='titan'?'Titan007 本地同步':((typeof liveIsRealData!=='undefined'&&liveIsRealData)?'实时 API / 缓存':'模拟回退')):key==='groups'?dataTypeLabel(getGroupLayerLabel()):(entry.fallback?'已启用回退':'主数据层');
       return`<div class="data-source-card"><div class="card-title">${labels[key]||key}</div>
         <div class="data-source-row"><span>类型</span><b>${escapeHTML(dataTypeLabel(getRegistryDisplayType(key,entry)))}</b></div>
         <div class="data-source-row"><span>来源</span><b>${escapeHTML(entry.source)}</b></div>
@@ -4739,7 +4975,7 @@ function renderDataManager(){
       <div class="data-source-row"><span>当前数据来源</span><b>${sourceLabel}</b></div>
       <div class="data-source-row"><span>上次 API 刷新时间</span><b>${escapeHTML(apiCache.updatedAt)}</b></div>
       <div class="data-source-row"><span>本机缓存比赛数量</span><b>${apiCache.count}</b></div>
-      <div class="data-source-row"><span>真实赔率</span><b>未接入（赔率仍为 Sample）</b></div>
+      <div class="data-source-row"><span>赔率状态</span><b>暂无真实赔率，当前未接赔率实盘</b></div>
       <div class="data-source-row"><span>刷新模式</span><b>${wc2026Settings.apiRefreshMode==='auto'?'自动刷新（不推荐）':wc2026Settings.apiRefreshMode==='manual'?'手动刷新':'省 API 模式（推荐）'}</b></div>
       <div style="font-size:.7rem;color:var(--muted);line-height:1.55;margin-top:8px">免费 API 次数有限，建议每天手动刷新 1–3 次。页面打开不会自动请求外部 API。</div>
     </div>`);
@@ -4753,9 +4989,9 @@ function renderDataManager(){
       ['官方/手动小组数量',result.stats.officialGroups,dataTypeLabel(getGroupLayerLabel())],
       ['Mock 小组数量',result.stats.mockGroups,'保留 fallback'],
       ['赛程数量',result.stats.officialMatches,'手动/官方部分赛程层'],
-      ['实时 API 比赛数量',result.stats.liveApiMatches,(typeof liveIsRealData!=='undefined'&&liveIsRealData)?'实时 API 已加载':'Mock / 无 API key'],
+      ['实时 API 比赛数量',result.stats.liveApiMatches,(typeof liveIsRealData!=='undefined'&&liveIsRealData)?'实时 API 已加载':'暂无实盘 API 缓存'],
       ['API 缓存比赛数量',getApiMatchesCacheStatus().count,'localStorage: wc2026_real_matches_cache'],
-      ['上次 API 刷新时间',getApiMatchesCacheStatus().updatedAt,'仅手动刷新真实赛程/比分时更新'],
+      ['上次 API 刷新时间',getApiMatchesCacheStatus().updatedAt,'仅手动刷新赛程比分时更新'],
       ['预测比赛数量',result.stats.predictionMatches,dataTypeLabel('Model Demo')],
       ['赔率球队数量',result.stats.oddsTeams,'示例赔率面板（Sample）'],
       ['伤病记录数量',result.stats.injuryRecords,'示例伤病追踪（Sample）'],
@@ -5283,7 +5519,9 @@ renderOverview();
 openOnboarding(false);
 
 // ══ LIVE SCHEDULE ══
-var liveMatches=[], liveFilter='ALL', liveAutoRefreshTimer=null, liveIsRealData=false, liveDataSourceKind='mock';
+var liveMatches=[], liveFilter='ALL', liveAutoRefreshTimer=null, liveIsRealData=false, liveDataSourceKind='empty';
+var titan2026MatchesPayload=null, titan2026GroupsPayload=null, titan2026LocalLoadPromise=null;
+var titan2026LocalStatus={hasMatches:false,hasGroups:false,matchCount:0,groupCount:0,syncedAt:'',message:'尚未读取 Titan007 本地同步 JSON'};
 var REAL_API_PROVIDER_KEY='wc2026_real_api_provider';
 var REAL_API_KEY_FOOTBALL_DATA='wc2026_real_api_key_football_data';
 var REAL_API_KEY_API_FOOTBALL='wc2026_real_api_key_api_football';
@@ -5452,8 +5690,194 @@ function changeRealApiProvider(provider){
   updateApiCacheStatusUI();
   renderRealDataPanel();
   showToast('API Key 已保存到本机浏览器','success');
-}function normalizeLiveApiMatch(m){
+}
+async function fetchOptionalLocalJson(path){
+  try{
+    var res=await fetch(path,{cache:'no-store'});
+    if(!res.ok)return null;
+    return await res.json();
+  }catch(e){
+    return null;
+  }
+}
+function updateTitanSyncSummary(){
+  var el=document.getElementById('titanSyncSummary');
+  if(!el)return;
+  if(titan2026LocalStatus.hasMatches){
+    el.innerHTML='Titan007 本地同步：<strong>已读取</strong> · 比赛 <strong>'+escapeHTML(titan2026LocalStatus.matchCount)+'</strong> 场 · 小组 <strong>'+escapeHTML(titan2026LocalStatus.groupCount)+'</strong> 个 · 同步时间 <strong>'+escapeHTML(formatStoredTimestampLocal(titan2026LocalStatus.syncedAt)||'未知')+'</strong>。网页只读取本地 JSON，不直接请求 Titan007。';
+  }else{
+    el.innerHTML='Titan007 本地同步：<strong>未发现本地同步数据</strong>。请在本机运行 <strong>sync-titan2026.bat</strong> 后刷新页面；网页不会直接请求 Titan007。';
+  }
+}
+function getTitanPayloadSyncedAt(){
+  return titan2026MatchesPayload?.syncedAt||titan2026GroupsPayload?.syncedAt||'';
+}
+async function loadTitan2026LocalData(force){
+  if(titan2026LocalLoadPromise&&!force)return titan2026LocalLoadPromise;
+  titan2026LocalLoadPromise=(async function(){
+    if(safeStorageGet('wc2026_disable_titan_local_sync')==='true'){
+      titan2026MatchesPayload=null;
+      titan2026GroupsPayload=null;
+      titan2026LocalStatus={hasMatches:false,hasGroups:false,matchCount:0,groupCount:0,syncedAt:'',message:'Titan007 本地同步已在本机调试开关中禁用。'};
+      updateTitanSyncSummary();
+      return{matches:[],groups:[],syncedAt:''};
+    }
+    if(location.protocol==='file:'){
+      titan2026MatchesPayload=null;
+      titan2026GroupsPayload=null;
+      titan2026LocalStatus={hasMatches:false,hasGroups:false,matchCount:0,groupCount:0,syncedAt:'',message:'file:// 模式不读取本地 JSON；请用 run-local.bat 或静态服务器打开 dist。'};
+      updateTitanSyncSummary();
+      return{matches:[],groups:[],syncedAt:''};
+    }
+    var matchesPayload=await fetchOptionalLocalJson('./data/titan2026-matches.json');
+    var groupsPayload=await fetchOptionalLocalJson('./data/titan2026-groups.json');
+    titan2026MatchesPayload=matchesPayload&&Array.isArray(matchesPayload.matches)?matchesPayload:null;
+    titan2026GroupsPayload=groupsPayload&&Array.isArray(groupsPayload.groups)?groupsPayload:null;
+    titan2026LocalStatus={
+      hasMatches:!!(titan2026MatchesPayload&&titan2026MatchesPayload.matches.length),
+      hasGroups:!!(titan2026GroupsPayload&&titan2026GroupsPayload.groups.length),
+      matchCount:titan2026MatchesPayload?.matches?.length||0,
+      groupCount:titan2026GroupsPayload?.groups?.length||0,
+      syncedAt:getTitanPayloadSyncedAt(),
+      message:titan2026MatchesPayload?'Titan007 本地同步 JSON 已读取':'未发现 Titan007 本地同步 JSON'
+    };
+    updateTitanSyncSummary();
+    syncLiveScheduleRegistryFromLocal();
+    renderDataStatusStrip();
+    renderRegistryMetaBadges();
+    return{matches:titan2026MatchesPayload?.matches||[],groups:titan2026GroupsPayload?.groups||[],syncedAt:titan2026LocalStatus.syncedAt};
+  })();
+  return titan2026LocalLoadPromise;
+}
+function getRealModeMatches(){
+  const custom=getCustomDataset('matches');
+  if(Array.isArray(custom)&&custom.length){
+    return custom.map(m=>normalizeMatch(Object.assign({dataType:'custom_import',source:'用户导入 Matches JSON'},m),'custom_json')).filter(Boolean);
+  }
+  if(titan2026MatchesPayload&&Array.isArray(titan2026MatchesPayload.matches)&&titan2026MatchesPayload.matches.length){
+    return titan2026MatchesPayload.matches.map(m=>normalizeMatch(m,'titan_local_sync')).filter(Boolean);
+  }
+  const cache=getApiMatchesCachePayload();
+  if(cache&&Array.isArray(cache.matches)&&cache.matches.length){
+    return cache.matches.map(m=>normalizeMatch(m,'live_api')).filter(Boolean);
+  }
+  if(typeof liveIsRealData!=='undefined'&&liveIsRealData&&Array.isArray(liveMatches)&&liveMatches.length){
+    return liveMatches.map(m=>normalizeMatch(m,'live_api')).filter(Boolean);
+  }
+  return [];
+}
+function getRealModeDataSourceInfo(){
+  const custom=getCustomDataset('matches');
+  if(Array.isArray(custom)&&custom.length)return{source:'用户导入',dataType:'custom_import',updatedAt:customDatasetMeta.matches?.importedAt||'—',matchCount:custom.length,groupCount:0,hasReal:true};
+  if(titan2026LocalStatus&&titan2026LocalStatus.hasMatches)return{source:'Titan007 本地同步',dataType:'local_live_sync',updatedAt:titan2026LocalStatus.syncedAt||'—',matchCount:titan2026LocalStatus.matchCount||0,groupCount:titan2026LocalStatus.groupCount||0,hasReal:true};
+  const cache=getApiMatchesCacheStatus();
+  if(cache.hasCache)return{source:'API 缓存',dataType:'api_cache',updatedAt:cache.updatedAt||'—',matchCount:cache.count||0,groupCount:0,hasReal:true};
+  return{source:'暂无实盘数据',dataType:'no_real_data',updatedAt:'—',matchCount:0,groupCount:0,hasReal:false};
+}
+function hasRealModeMatches(){
+  return getRealModeMatches().length>0;
+}
+function renderRealModeHome(){
+  const chip=document.getElementById('realModeHomeChip');
+  const grid=document.getElementById('realModeHomeGrid');
+  const empty=document.getElementById('realModeHomeEmpty');
+  if(!chip&&!grid&&!empty)return;
+  const info=getRealModeDataSourceInfo();
+  const deepSeekKey=(typeof getDeepSeekKey==='function'&&getDeepSeekKey())?'已保存到本机':'未保存';
+  if(chip){
+    chip.textContent=info.hasReal?'已加载':'暂无实盘';
+    chip.className='real-data-chip '+(info.hasReal?'cache':'mock');
+  }
+  if(grid){
+    const rows=[
+      {label:'Titan007 本地同步状态',value:titan2026LocalStatus?.hasMatches?'已加载':'未加载'},
+      {label:'最近同步时间',value:formatStoredTimestampLocal(info.updatedAt)},
+      {label:'本地时间显示',value:formatViewerLocalNowLabel()},
+      {label:'已同步比赛数',value:String(info.matchCount||0)},
+      {label:'已同步小组数',value:String(info.groupCount||0)},
+      {label:'当前数据源',value:info.source},
+      {label:'DeepSeek Key 状态',value:deepSeekKey}
+    ];
+    grid.innerHTML=rows.map(r=>`<div class="real-mode-cell"><div class="label">${escapeHTML(r.label)}</div><div class="value">${escapeHTML(r.value)}</div></div>`).join('');
+  }
+  if(empty)empty.style.display=info.hasReal?'none':'block';
+}
+async function reloadTitanLocalSync(){
+  const titan=await loadTitan2026LocalData(true);
+  renderRealModeHome();
+  if(titan&&Array.isArray(titan.matches)&&titan.matches.length){
+    applyLiveDataset(titan.matches,{kind:'titan',source:'Titan007 本地同步',updatedAt:titan.syncedAt||'',message:'Titan local JSON reloaded'});
+    showToast('已重新读取 Titan007 本地同步数据','success');
+  }else if(document.getElementById('sec-live')?.classList.contains('active')){
+    applyLiveDataset([],{kind:'empty',source:'暂无实盘数据',updatedAt:'—',message:'暂无 Titan007 实盘同步数据'});
+    showToast('未发现 Titan007 本地同步数据','info');
+  }else{
+    showToast('未发现 Titan007 本地同步数据','info');
+  }
+}
+setTimeout(function(){
+  loadTitan2026LocalData().then(function(titan){
+    renderRealModeHome();
+    if(titan&&Array.isArray(titan.matches)&&titan.matches.length&&document.getElementById('sec-live')?.classList.contains('active')){
+      applyLiveDataset(titan.matches,{kind:'titan',source:'Titan007 本地同步',updatedAt:titan.syncedAt||'',message:'Titan local JSON loaded'});
+    }
+  }).catch(function(e){
+    console.warn('Titan local init failed:',e);
+    renderRealModeHome();
+  });
+},0);
+function isTitanLocalMatch(m){
+  return !!(m&&(m.dataType==='local_live_sync'||m.source==='Titan007 local sync'||m.raw?.rowId));
+}
+function parseTitanUtcDate(date,time){
+  var d=String(date||'').trim();
+  var t=String(time||'').trim();
+  if(/^\d{2}-\d{2}$/.test(d))d='2026-'+d;
+  if(!/^\d{2}:\d{2}$/.test(t))t='20:00';
+  var parts=d.split('-').map(Number);
+  var hm=t.split(':').map(Number);
+  if(parts.length<3||hm.length<2||parts.some(function(n){return!Number.isFinite(n);})||hm.some(function(n){return!Number.isFinite(n);})){
+    return d+'T'+t+':00';
+  }
+  var sourceOffsetMinutes=8*60;
+  var utcMs=Date.UTC(parts[0],parts[1]-1,parts[2],hm[0],hm[1])-sourceOffsetMinutes*60000;
+  return new Date(utcMs).toISOString();
+}
+function normalizeTitanStage(stage){
+  var text=String(stage||'').trim();
+  if(text.includes('三十二')||text.includes('32'))return'ROUND_OF_32';
+  if(text.includes('十六')||text.includes('16'))return'ROUND_OF_16';
+  if(text.includes('半准')||text.includes('八强')||text.includes('Quarter'))return'QUARTER_FINALS';
+  if(text.includes('准决')||text.includes('半决'))return'SEMI_FINALS';
+  if(text.includes('季军'))return'THIRD_PLACE';
+  if(text.includes('决赛'))return'FINAL';
+  return'GROUP_STAGE';
+}
+function normalizeLiveApiMatch(m){
   if(!m)return null;
+  if(isTitanLocalMatch(m))return{
+    id:m.id||m.raw?.rowId||('titan-'+Math.random()),
+    utcDate:parseTitanUtcDate(m.date,m.time),
+    displayDate:m.date||'',
+    displayTime:m.time||'',
+    status:m.status||'UNKNOWN',
+    statusText:m.statusText||'',
+    stage:normalizeTitanStage(m.stage),
+    stageText:m.stage||'小组赛',
+    group:m.group||null,
+    matchday:m.matchday||null,
+    venue:m.venue||'',
+    homeTeam:{name:m.home||'TBD',crest:getFlag(m.home)},
+    awayTeam:{name:m.away||'TBD',crest:getFlag(m.away)},
+    score:{fullTime:{home:m.homeScore===undefined?null:m.homeScore,away:m.awayScore===undefined?null:m.awayScore}},
+    scoreText:m.score||'-',
+    handicap:m.handicap||'-',
+    halfTime:m.halfTime||'-',
+    source:m.source||'Titan007 local sync',
+    dataType:m.dataType||'local_live_sync',
+    syncedAt:m.syncedAt||titan2026LocalStatus.syncedAt||'',
+    raw:m.raw||{}
+  };
   if(m.homeTeam&&m.awayTeam)return{
     id:m.id||m.utcDate||Math.random(),
     utcDate:m.utcDate||m.date||new Date().toISOString(),
@@ -5464,7 +5888,9 @@ function changeRealApiProvider(provider){
     homeTeam:{name:m.homeTeam.name||m.homeTeam,crest:m.homeTeam.crest||getFlag(m.homeTeam.name||m.homeTeam)},
     awayTeam:{name:m.awayTeam.name||m.awayTeam,crest:m.awayTeam.crest||getFlag(m.awayTeam.name||m.awayTeam)},
     score:m.score||{fullTime:{home:null,away:null}},
-    odds:m.odds||null
+    odds:m.odds||null,
+    source:m.source||null,
+    dataType:m.dataType||null
   };
   if(m.home&&m.away)return{
     id:m.id||m.date||Math.random(),
@@ -5475,8 +5901,13 @@ function changeRealApiProvider(provider){
     matchday:m.matchday||null,
     homeTeam:{name:m.home,crest:getFlag(m.home)},
     awayTeam:{name:m.away,crest:getFlag(m.away)},
-    score:{fullTime:{home:null,away:null}},
-    odds:m.odds||null
+    score:{fullTime:{home:m.homeScore===undefined?null:m.homeScore,away:m.awayScore===undefined?null:m.awayScore}},
+    scoreText:m.score||'-',
+    handicap:m.handicap||null,
+    halfTime:m.halfTime||null,
+    odds:m.odds||null,
+    source:m.source||null,
+    dataType:m.dataType||null
   };
   return null;
 }
@@ -5592,31 +6023,31 @@ function setRefreshBusy(busy){
   var btn=document.getElementById('refreshBtn');
   var txt=document.getElementById('refreshBtnText');
   if(btn){btn.disabled=busy;btn.classList.toggle('spinning',!!busy);}
-  if(txt)txt.textContent=busy?'正在刷新...':'刷新真实赛程/比分';
+  if(txt)txt.textContent=busy?'正在刷新...':'刷新赛程比分';
 }
 function getLiveFallbackLabel(){
+  if(typeof REAL_MODE!=='undefined'&&REAL_MODE)return'暂无实盘数据';
   return (typeof OFFICIAL_MATCHES!=='undefined'&&Array.isArray(OFFICIAL_MATCHES)&&OFFICIAL_MATCHES.length)?'静态JSON / 手动层':'Demo / Mock 回退';
 }
 function getRealOddsText(){
-  var odds=getRealOddsStatus();
-  return odds.count?('已缓存 '+odds.count+' 场 1X2 赔率'):'暂无真实赔率；赔率面板使用 Sample 示例';
+  return '赔率：暂无真实赔率，当前未接赔率实盘';
 }function renderRealDataPanel(){
   var grid=document.getElementById('realDataStatusGrid');
   var chip=document.getElementById('realDataModeChip');
   if(!grid&&!chip)return;
   var cache=getApiMatchesCacheStatus();
   var provider=getRealApiProvider();
-  var kind=typeof liveDataSourceKind!=='undefined'?liveDataSourceKind:(cache.hasCache?'cache':'mock');
-  var isReal=kind==='api'||kind==='cache';
+  var kind=typeof liveDataSourceKind!=='undefined'?liveDataSourceKind:(cache.hasCache?'cache':'empty');
+  var isReal=kind==='api'||kind==='cache'||kind==='titan'||kind==='custom';
   var isCache=kind==='cache';
   var matchCount=(typeof liveMatches!=='undefined'&&Array.isArray(liveMatches)&&liveMatches.length)?liveMatches.length:cache.count;
-  var source=kind==='api'?getRealApiSourceLabel(provider)+' 实时刷新':kind==='cache'?'真实缓存数据':kind==='static'?'静态JSON / 手动层':'Demo / Mock 回退';
-  var lastRefresh=cache.updatedAt||'—';
+  var source=kind==='api'?getRealApiSourceLabel(provider)+' 实时刷新':kind==='cache'?'真实缓存数据':kind==='titan'?'Titan007 本地同步':kind==='custom'?'用户导入 Matches JSON':kind==='static'?'静态JSON / 手动层':'暂无实盘数据';
+  var lastRefresh=kind==='titan'?(titan2026LocalStatus.syncedAt||'—'):kind==='custom'?(customDatasetMeta.matches?.importedAt||'—'):(cache.updatedAt||'—');
   var keyStatus=(getRealApiKey(provider)||(document.getElementById('apiKeyInput')?.value||'').trim())?'已保存到本机浏览器':'未保存';
-  var cacheLabel=kind==='api'?'刚手动刷新，已写入本机缓存':isCache?'正在读取本机缓存':'暂无真实缓存，当前使用 '+getLiveFallbackLabel();
+  var cacheLabel=kind==='api'?'刚手动刷新，已写入本机缓存':isCache?'正在读取本机缓存':kind==='titan'?'正在读取 Titan007 本地同步 JSON':kind==='custom'?'正在读取用户导入 Matches JSON':'暂无实盘缓存';
   if(chip){
-    chip.textContent=kind==='api'?'实时刷新':kind==='cache'?'真实缓存':kind==='static'?'静态回退':'Demo 回退';
-    chip.className='real-data-chip '+(isReal?(isCache?'cache':'real'):'mock');
+    chip.textContent=kind==='api'?'实时刷新':kind==='cache'?'真实缓存':kind==='titan'?'本地同步':kind==='custom'?'用户导入':kind==='static'?'静态回退':'暂无实盘';
+    chip.className='real-data-chip '+(isReal?(isCache||kind==='titan'?'cache':'real'):'mock');
   }
   if(grid){
     var rows=[
@@ -5624,10 +6055,12 @@ function getRealOddsText(){
       {label:'当前 API 数据源',value:getRealApiSourceLabel(provider)},
       {label:'Key 是否已保存',value:keyStatus,testId:'real-key-status'},
       {label:'缓存状态',value:cacheLabel,testId:'real-cache-status'},
-      {label:'上次刷新时间',value:lastRefresh,testId:'real-last-updated'},
+      {label:'上次刷新时间',value:formatStoredTimestampLocal(lastRefresh),testId:'real-last-updated'},
+      {label:'本地时间显示',value:formatViewerLocalNowLabel()},
       {label:'缓存比赛数量',value:String(cache.count||0),testId:'real-match-count'},
       {label:'当前显示比赛数量',value:String(matchCount||0)},
-      {label:'真实赔率状态',value:getRealOddsText()}
+      {label:'Titan 本地同步',value:titan2026LocalStatus.hasMatches?('已读取 '+titan2026LocalStatus.matchCount+' 场 · '+formatStoredTimestampLocal(titan2026LocalStatus.syncedAt)):'未读取 / 未生成'},
+      {label:'赔率状态',value:getRealOddsText()}
     ];
     grid.innerHTML=rows.map(function(row){var attr=row.testId?' data-testid="'+escapeHTML(row.testId)+'"':'';return'<div class="real-data-cell"'+attr+'><div class="label">'+escapeHTML(row.label)+'</div><div class="value">'+escapeHTML(row.value)+'</div></div>';}).join('');
   }
@@ -5637,13 +6070,16 @@ function getRealOddsText(){
   var cache=getApiMatchesCacheStatus();
   var provider=getRealApiProvider();
   var fallback=getLiveFallbackLabel();
+  var isTitan=typeof liveDataSourceKind!=='undefined'&&liveDataSourceKind==='titan';
   el.innerHTML=[
-    '当前显示数据来源：<strong style="color:var(--text)">'+(cache.hasCache?'真实缓存数据':'暂无真实缓存，当前使用 '+fallback)+'</strong>',
+    '当前显示数据来源：<strong style="color:var(--text)">'+(isTitan?'Titan007 本地同步':cache.hasCache?'真实缓存数据':fallback)+'</strong>',
     '当前 API 数据源：'+escapeHTML(getRealApiSourceLabel(provider)),
     'Key 状态：'+escapeHTML(getRealApiKey(provider)?'已保存到本机浏览器':'未保存'),
-    '上次刷新时间：'+escapeHTML(cache.updatedAt),
+    '上次刷新时间：'+escapeHTML(formatStoredTimestampLocal(cache.updatedAt)),
+    '本地时间显示：'+escapeHTML(formatViewerLocalNowLabel()),
     '本机缓存比赛数量：'+cache.count,
-    '真实赔率状态：'+escapeHTML(getRealOddsText()),
+    'Titan 本地同步：'+escapeHTML(titan2026LocalStatus.hasMatches?('已读取 '+titan2026LocalStatus.matchCount+' 场，同步时间 '+formatStoredTimestampLocal(titan2026LocalStatus.syncedAt)):'未读取 / 未生成'),
+    '赔率状态：'+escapeHTML(getRealOddsText()),
     '免费额度提醒：免费 API 次数有限，建议每天手动刷新 1–3 次。',
     '省 API 模式：页面打开和进入实时赛程页都不会自动请求外部 API。'
   ].join('<br>');
@@ -5651,26 +6087,26 @@ function getRealOddsText(){
 }function applyLiveDataset(matches,meta){
   meta=meta||{};
   liveMatches=(matches||[]).map(normalizeLiveApiMatch).filter(Boolean);
-  liveIsRealData=meta.kind==='api'||meta.kind==='cache';
-  liveDataSourceKind=meta.kind||'mock';
+  liveIsRealData=meta.kind==='api'||meta.kind==='cache'||meta.kind==='titan'||meta.kind==='custom';
+  liveDataSourceKind=meta.kind||'empty';
   liveScheduleError=meta.message||'';
-  var type=liveDataSourceKind==='api'?'live_api':liveDataSourceKind==='cache'?'api_cache':liveDataSourceKind==='static'?'static_json':'mock_fallback';
+  var type=liveDataSourceKind==='api'?'live_api':liveDataSourceKind==='cache'?'api_cache':liveDataSourceKind==='titan'?'local_live_sync':liveDataSourceKind==='custom'?'custom_import':liveDataSourceKind==='static'?'static_json':liveDataSourceKind==='empty'?'no_real_data':'mock_fallback';
   var source=meta.source||type;
-  updateDataRegistry('liveSchedule',{type:type,source:source,updatedAt:meta.updatedAt||new Date().toISOString().slice(0,19).replace('T',' '),confidence:liveIsRealData?'medium':'low',fallback:!liveIsRealData,recordCount:liveMatches.length,validationStatus:liveDataSourceKind==='cache'?'cached localStorage':liveDataSourceKind==='api'?'manual API refresh':'no API request'});
+  updateDataRegistry('liveSchedule',{type:type,source:source,updatedAt:meta.updatedAt||new Date().toISOString().slice(0,19).replace('T',' '),confidence:liveIsRealData?'medium':'low',fallback:!liveIsRealData,recordCount:liveMatches.length,validationStatus:liveDataSourceKind==='titan'?'local sync JSON':liveDataSourceKind==='custom'?'custom imported JSON':liveDataSourceKind==='cache'?'cached localStorage':liveDataSourceKind==='api'?'manual API refresh':'no API request'});
   var badge=document.getElementById('liveSourceBadge');
   if(badge){
-    badge.textContent=liveDataSourceKind==='api'?'LIVE':liveDataSourceKind==='cache'?'CACHE':liveDataSourceKind==='static'?'STATIC':'MOCK';
+    badge.textContent=liveDataSourceKind==='api'?'LIVE':liveDataSourceKind==='cache'?'CACHE':liveDataSourceKind==='titan'?'LOCAL':liveDataSourceKind==='custom'?'CUSTOM':liveDataSourceKind==='static'?'STATIC':'EMPTY';
     badge.style.background=liveIsRealData?'rgba(0,255,136,.15)':liveDataSourceKind==='static'?'rgba(59,130,246,.16)':'rgba(255,165,0,.15)';
     badge.style.color=liveIsRealData?'#00ff88':liveDataSourceKind==='static'?'#60a5fa':'orange';
   }
   var info=document.getElementById('liveSourceInfo');
   if(info){
-    var label=liveDataSourceKind==='api'?'实时数据（已缓存到本机）':liveDataSourceKind==='cache'?'API缓存数据（本机 localStorage）':liveDataSourceKind==='static'?'暂无真实缓存，当前使用静态JSON':'暂无真实缓存，当前使用模拟数据';
+    var label=liveDataSourceKind==='api'?'实时数据（已缓存到本机）':liveDataSourceKind==='cache'?'API缓存数据（本机 localStorage）':liveDataSourceKind==='titan'?'Titan007 本地同步（本机 JSON，网页未直连 Titan007）':liveDataSourceKind==='custom'?'用户导入 Matches JSON':liveDataSourceKind==='static'?'静态JSON / 手动层':'暂无实盘赛程数据';
     var cls=liveIsRealData?'real':'mock';
     info.innerHTML='<span class="live-source-badge '+cls+'">'+label+'</span>';
   }
   var last=document.getElementById('liveLastUpdated');
-  if(last)last.textContent=liveDataSourceKind==='cache'?'缓存时间：'+(meta.updatedAt||'未知'):'显示更新时间：'+new Date().toLocaleTimeString();
+  if(last)last.textContent=liveDataSourceKind==='titan'?'本地同步时间：'+formatStoredTimestampLocal(meta.updatedAt||''):liveDataSourceKind==='cache'?'缓存时间：'+formatStoredTimestampLocal(meta.updatedAt||''):'显示更新时间：'+formatViewerLocalDateTime(new Date());
   updateApiCacheStatusUI();
   renderDataStatusStrip();
   renderRegistryMetaBadges();
@@ -5678,8 +6114,9 @@ function getRealOddsText(){
   if(document.getElementById('sec-data')?.classList.contains('active'))renderDataManager();
   renderLiveStats();
   renderLiveMatches();
+  renderTitanGroupStandings();
 }
-function initLiveSchedule(){
+async function initLiveSchedule(){
   var provider=getRealApiProvider();
   var select=document.getElementById('realApiProvider');
   if(select)select.value=provider;
@@ -5687,6 +6124,22 @@ function initLiveSchedule(){
   var savedKey=getRealApiKey(provider);
   var input=document.getElementById('apiKeyInput');
   if(input)input.value=savedKey||'';
+  var customMatches=getCustomDataset('matches');
+  if(Array.isArray(customMatches)&&customMatches.length){
+    var customStatus=document.getElementById('apiKeyStatus');
+    if(customStatus)customStatus.textContent='已读取自定义导入 Matches JSON；页面没有请求外部 API。';
+    setRealStatusMessage('已读取自定义导入赛程：'+customMatches.length+' 场比赛。','success');
+    applyLiveDataset(customMatches.map(m=>Object.assign({dataType:'custom_import',source:'用户导入 Matches JSON'},m)),{kind:'custom',source:'用户导入 Matches JSON',updatedAt:customDatasetMeta.matches?.importedAt||'',message:'Custom matches loaded'});
+    return;
+  }
+  var titan=await loadTitan2026LocalData();
+  if(titan&&Array.isArray(titan.matches)&&titan.matches.length){
+    var titanStatus=document.getElementById('apiKeyStatus');
+    if(titanStatus)titanStatus.textContent='已读取 Titan007 本地同步 JSON；页面没有直接请求 Titan007 或外部 API。';
+    setRealStatusMessage('已读取 Titan007 本地同步：'+titan.matches.length+' 场比赛。若要更新，请运行 sync-titan2026.bat 后刷新页面。','success');
+    applyLiveDataset(titan.matches,{kind:'titan',source:'Titan007 本地同步',updatedAt:titan.syncedAt||'',message:'Titan local JSON loaded'});
+    return;
+  }
   var cache=readApiMatchesCache();
   if(cache&&cache.matches.length){
     var status=document.getElementById('apiKeyStatus');
@@ -5695,13 +6148,11 @@ function initLiveSchedule(){
     applyLiveDataset(cache.matches,{kind:'cache',source:cache.source,updatedAt:cache.updatedAt,message:'API cache loaded'});
     return;
   }
-  var staticMatches=getStaticLiveMatches();
-  var hasStatic=typeof OFFICIAL_MATCHES!=='undefined'&&Array.isArray(OFFICIAL_MATCHES)&&OFFICIAL_MATCHES.length;
-  var msg='暂无真实缓存，当前使用'+(hasStatic?'静态JSON / 手动层':'Demo / Mock 回退')+'。只有点击“刷新真实赛程/比分”才会请求 API。';
+  var msg='暂无实盘赛程数据。请运行 sync-titan2026.bat 或导入 matches JSON。页面不会自动请求 Titan007、football-data 或 API-FOOTBALL。';
   var statusEl=document.getElementById('apiKeyStatus');
   if(statusEl)statusEl.textContent=msg;
   setRealStatusMessage(msg,'info');
-  applyLiveDataset(staticMatches,{kind:hasStatic?'static':'mock',source:hasStatic?'static OFFICIAL_MATCHES':'built-in MOCK_MATCHES',message:'No cache; no API request'});
+  applyLiveDataset([],{kind:'empty',source:'暂无实盘数据',updatedAt:'—',message:'No real schedule data; no API request'});
 }function saveAndLoadApi(){
   saveRealApiKey();
 }
@@ -5721,7 +6172,7 @@ function clearRealApiKey(){
   clearRealApiKey();
 }
 function clearApiMatchesCache(){
-  if(!confirm('确定清除真实数据缓存？清除后会回到静态JSON / Demo 数据，但不会删除 API Key。'))return;
+  if(!confirm('确定清除本机实盘缓存？清除后如果没有 Titan007 本地同步或导入数据，页面会显示空状态，但不会删除 API Key。'))return;
   localStorage.removeItem(API_MATCHES_CACHE_KEY);
   localStorage.removeItem(API_MATCHES_CACHE_UPDATED_AT_KEY);
   localStorage.removeItem(API_SOURCE_KEY);
@@ -5729,8 +6180,9 @@ function clearApiMatchesCache(){
   localStorage.removeItem(LEGACY_API_MATCHES_CACHE_UPDATED_AT_KEY);
   localStorage.removeItem(LEGACY_API_SOURCE_KEY);
   showToast('真实数据缓存已清除','success');
-  initLiveSchedule();
-  setRealStatusMessage('真实缓存已清除；API Key 保留，当前回到静态/Demo 数据。','success');
+  Promise.resolve(initLiveSchedule()).then(function(){
+    setRealStatusMessage('真实缓存已清除；API Key 保留。若没有 Titan007 本地同步或导入数据，将显示空状态。','success');
+  });
 }
 async function fetchMatchesForCurrentProvider(key){
   var provider=getRealApiProvider();
@@ -5755,7 +6207,7 @@ async function testRealApiConnection(){
     updateApiCacheStatusUI();
   }catch(e){
     console.warn('API connection test failed:',e.message);
-    var msg='测试失败：'+String(e.message||'API error').slice(0,160)+'。未覆盖缓存，当前仍使用缓存/静态/Demo 数据。';
+    var msg='测试失败：'+String(e.message||'API error').slice(0,160)+'。未覆盖缓存，当前仍使用已有实盘缓存或空状态。';
     if(status)status.textContent=msg;
     setRealStatusMessage(msg,'error');
     showToast('测试连接失败，未覆盖缓存','error');
@@ -5768,7 +6220,7 @@ async function refreshRealSchedule(){
   var provider=getRealApiProvider();
   var source=getRealApiSourceLabel(provider);
   var k=(document.getElementById('apiKeyInput')?.value||getRealApiKey(provider)||'').trim();
-  if(!k){setRealStatusMessage('请输入 API Key 后再刷新真实赛程/比分。','error');showToast('请输入 API key 后再手动刷新','error');return;}
+  if(!k){setRealStatusMessage('请输入 API Key 后再刷新赛程比分。','error');showToast('请输入 API key 后再手动刷新','error');return;}
   safeStorageSet(getRealApiKeyStorageKey(provider),k);
   var last=safeStorageGet(API_MATCHES_CACHE_UPDATED_AT_KEY);
   if(last){
@@ -5779,11 +6231,11 @@ async function refreshRealSchedule(){
     }
   }
   setRefreshBusy(true);
-  setRealStatusMessage('正在刷新真实赛程/比分...','loading');
+  setRealStatusMessage('正在刷新赛程比分...','loading');
   var status=document.getElementById('apiKeyStatus');
   if(status)status.textContent='正在刷新 '+source+'；成功后会写入本机缓存。';
   var list=document.getElementById('liveMatchList');
-  if(list)list.innerHTML='<div class="live-loading"><div class="spinner"></div><div>正在刷新真实赛程/比分...</div></div>';
+  if(list)list.innerHTML='<div class="live-loading"><div class="spinner"></div><div>正在刷新赛程比分...</div></div>';
   try{
     var matches=await fetchMatchesForCurrentProvider(k);
     var payload=saveApiMatchesCache(source,matches);
@@ -5791,24 +6243,115 @@ async function refreshRealSchedule(){
     var msg='已缓存 '+matches.length+' 场比赛；当前显示真实缓存数据。';
     if(status)status.textContent=msg;
     setRealStatusMessage(msg,'success');
-    showToast('真实赛程/比分已刷新并缓存','success');
+    showToast('赛程比分已刷新并缓存','success');
     applyLiveDataset(matches,{kind:'api',source:source,updatedAt:payload.updatedAt,message:'Manual refresh'});
   }catch(e){
     console.warn('Manual API refresh failed:',e.message);
     var refreshRaw=String(e.message||'API error');
-    liveScheduleError=/Failed to fetch|NetworkError|Load failed|CORS/i.test(refreshRaw)?(provider==='football_data'&&isLocalProxyEnabled()?'请求失败：本机代理未启动或不可访问。请运行 run-local-proxy.bat，再刷新真实赛程/比分。':'请求失败：浏览器直连 football-data.org 可能被跨域/CORS 限制拦截。当前缓存/静态/Demo 数据保持不变。'):'请求失败：'+refreshRaw.slice(0,160);
-    var failMsg=liveScheduleError+' 继续使用缓存/静态/Demo 数据。';
+    liveScheduleError=/Failed to fetch|NetworkError|Load failed|CORS/i.test(refreshRaw)?(provider==='football_data'&&isLocalProxyEnabled()?'请求失败：本机代理未启动或不可访问。请运行 run-local-proxy.bat，再刷新赛程比分。':'请求失败：浏览器直连 football-data.org 可能被跨域/CORS 限制拦截。当前实盘缓存或空状态保持不变。'):'请求失败：'+refreshRaw.slice(0,160);
+    var failMsg=liveScheduleError+' 继续使用已有实盘缓存；如无缓存则显示空状态。';
     var statusEl=document.getElementById('apiKeyStatus');
     if(statusEl)statusEl.textContent=failMsg;
-    showToast('真实赛程/比分刷新失败，未覆盖缓存','error');
-    initLiveSchedule();
-    if(statusEl)statusEl.textContent=failMsg;
-    setRealStatusMessage(failMsg,'error');
+    showToast('赛程比分刷新失败，未覆盖缓存','error');
+    Promise.resolve(initLiveSchedule()).then(function(){
+      if(statusEl)statusEl.textContent=failMsg;
+      setRealStatusMessage(failMsg,'error');
+    });
   }finally{
     setRefreshBusy(false);
   }
 }function loadLiveSchedule(){
   initLiveSchedule();
+}
+function getLiveMatchById(encodedId){
+  var id=decodeURIComponent(String(encodedId||''));
+  return liveMatches.find(function(m){return String(m.id)===id;})||null;
+}
+function getScheduleMatchFromLive(m){
+  if(!m)return null;
+  return normalizeMatch(m,isTitanLocalMatch(m)?'titan_local_sync':'live_api');
+}
+function formatLiveScore(m){
+  var text=m.scoreText||'';
+  var home=m.score&&m.score.fullTime?m.score.fullTime.home:null;
+  var away=m.score&&m.score.fullTime?m.score.fullTime.away:null;
+  if(text&&text!=='-'&&text!=='—')return text;
+  if(home!==null&&home!==undefined&&away!==null&&away!==undefined)return home+'-'+away;
+  return'VS';
+}
+function formatTitanHalfTime(m){
+  var ht=m.halfTime||'-';
+  return ht&&ht!=='-'&&ht!=='—'?'HT '+ht:'—';
+}
+function getLiveStatusLabel(m){
+  if(m.statusText)return m.statusText;
+  var st=STATUS_MAP[m.status]||null;
+  if(!st)return m.status||'UNKNOWN';
+  if(m.status==='SCHEDULED'||m.status==='TIMED')return'未开赛';
+  if(m.status==='IN_PLAY')return'进行中';
+  if(m.status==='PAUSED')return'半场';
+  if(m.status==='FINISHED'||m.status==='AWARDED')return'完场';
+  return st.label;
+}
+function getLiveStatusClass(m){
+  return (STATUS_MAP[m.status]||{cls:'scheduled'}).cls;
+}
+function openLiveMatchInsight(encodedId){
+  var live=getLiveMatchById(encodedId);
+  var match=getScheduleMatchFromLive(live);
+  if(!match){showToast('未找到该场比赛','error');return;}
+  cleanupModalCharts();
+  var p=(typeof REAL_MODE!=='undefined'&&REAL_MODE)?null:findPredictionForMatch(match);
+  window.currentMatchInsightContext={kind:'match',match:match,prediction:p,index:-1};
+  document.getElementById('matchInsightContent').innerHTML=p?buildMatchInsightHTML(Object.assign({},p,{date:match.date||p.date,venue:match.venue||p.venue,dataType:(match.dataType||'schedule')+' + demo_model',_predictionIndex:PREDICTIONS.indexOf(p)})):buildScheduleOnlyInsightHTML(match);
+  document.getElementById('matchInsightModal').classList.add('open');
+}
+function deepSeekAnalysisFromLiveMatch(encodedId){
+  var live=getLiveMatchById(encodedId);
+  var match=getScheduleMatchFromLive(live);
+  if(!match){showToast('未找到该场比赛','error');return;}
+  deepSeekAnalysis('match',{kind:'match',match:match,prediction:(typeof REAL_MODE!=='undefined'&&REAL_MODE)?null:findPredictionForMatch(match),index:-1},true);
+}
+function getLiveTableSourceLabel(m){
+  var text=String(m?.dataType||m?.source||liveDataSourceKind||'').toLowerCase();
+  if(text.includes('custom'))return'用户导入';
+  if(text.includes('titan')||text.includes('local_live_sync'))return'Titan007 本地同步';
+  if(text.includes('api')||liveDataSourceKind==='cache'||liveDataSourceKind==='api')return'API缓存';
+  return'暂无实盘数据';
+}
+function renderTitanLiveTable(matches){
+  var sourceLabel=matches[0]?getLiveTableSourceLabel(matches[0]):'暂无实盘数据';
+  var html='<div class="titan-sync-summary"><strong>实盘赛程表格</strong><br>数据来源：'+escapeHTML(sourceLabel)+' · '+matches.length+' 场。时间按浏览器本地时区显示（'+escapeHTML(getViewerTimeZoneLabel())+'），括号内保留源站北京时间。网页不会直接请求 Titan007；如需更新 Titan007 数据请运行 sync-titan2026.bat 后刷新。</div>';
+  html+='<div class="titan-table-wrap" data-testid="titan-live-table"><table class="titan-live-table"><thead><tr><th>轮次/小组</th><th>时间</th><th>状态</th><th>主队</th><th>比分</th><th>客队</th><th>盘口</th><th>半场</th><th>数据源</th><th>DeepSeek分析</th><th>详情</th></tr></thead><tbody>';
+  html+=matches.map(function(m){
+    var id=encodeURIComponent(String(m.id));
+    var stage=(m.group||m.stageText||STAGE_LABELS[m.stage]||m.stage||'赛程');
+    var time=formatMatchLocalTimeWithSource(m);
+    var score=formatLiveScore(m);
+    return'<tr data-testid="titan-live-row"><td data-label="轮次/小组">'+escapeHTML(stage)+'</td><td data-label="时间">'+escapeHTML(time)+'</td><td data-label="状态"><span class="status-badge '+getLiveStatusClass(m)+'">'+escapeHTML(getLiveStatusLabel(m))+'</span></td><td data-label="主队">'+escapeHTML(m.homeTeam.name)+'</td><td data-label="比分" class="score-cell">'+escapeHTML(score==='-'?'VS':score)+'</td><td data-label="客队">'+escapeHTML(m.awayTeam.name)+'</td><td data-label="盘口">'+escapeHTML(m.handicap||'—')+'</td><td data-label="半场">'+escapeHTML(formatTitanHalfTime(m))+'</td><td data-label="数据源"><span class="titan-source-pill">'+escapeHTML(getLiveTableSourceLabel(m))+'</span></td><td data-label="DeepSeek分析"><button class="detail-btn" onclick="event.stopPropagation();deepSeekAnalysisFromLiveMatch(\''+id+'\')">DeepSeek分析</button></td><td data-label="详情"><button class="detail-btn" onclick="event.stopPropagation();openLiveMatchInsight(\''+id+'\')">详情</button></td></tr>';
+  }).join('');
+  html+='</tbody></table></div>';
+  return html;
+}
+function renderTitanGroupStandings(){
+  updateTitanSyncSummary();
+  var content=document.getElementById('standingsContent');
+  var tabs=document.getElementById('standingsTabs');
+  if(!content)return;
+  if(!titan2026GroupsPayload||!Array.isArray(titan2026GroupsPayload.groups)||!titan2026GroupsPayload.groups.length){
+    if(tabs)tabs.innerHTML='';
+    content.innerHTML='<div class="live-empty">暂无 Titan007 小组积分同步数据。请先运行 sync-titan2026.bat。</div>';
+    var qs=document.getElementById('qualifySection');
+    if(qs)qs.style.display='none';
+    return;
+  }
+  if(tabs)tabs.innerHTML='<span class="titan-source-pill">数据来源：Titan007 本地同步</span>';
+  content.innerHTML='<div class="titan-standings-grid" data-testid="titan-groups-panel">'+titan2026GroupsPayload.groups.map(function(g){
+    var teams=Array.isArray(g.teams)?g.teams:[];
+    return'<div class="titan-group-card"><div class="titan-group-title">'+escapeHTML(g.group||'小组')+'<span>'+escapeHTML(g.source||'Titan007 local sync')+'</span></div><table class="titan-group-table"><thead><tr><th>排名</th><th>球队</th><th>总</th><th>胜</th><th>平</th><th>负</th><th>净胜球</th><th>积分</th><th>晋级指数</th><th>数据源</th></tr></thead><tbody>'+teams.map(function(t,i){
+      return'<tr><td>'+escapeHTML(t.rank||i+1)+'</td><td>'+escapeHTML(t.name||'—')+'</td><td>'+escapeHTML(t.played??0)+'</td><td>'+escapeHTML(t.wins??0)+'</td><td>'+escapeHTML(t.draws??0)+'</td><td>'+escapeHTML(t.losses??0)+'</td><td>'+escapeHTML(t.goalDiff??0)+'</td><td><strong>'+escapeHTML(t.points??0)+'</strong></td><td>'+escapeHTML(t.qualifyIndex||'—')+'</td><td>Titan007 本地同步</td></tr>';
+    }).join('')+'</tbody></table></div>';
+  }).join('')+'</div>';
 }
 function renderLiveStats(){
   var total=liveMatches.length,finished=liveMatches.filter(function(m){return m.status==='FINISHED'||m.status==='AWARDED';}).length,live=liveMatches.filter(function(m){return m.status==='IN_PLAY'||m.status==='PAUSED';}).length,upcoming=liveMatches.filter(function(m){return m.status==='SCHEDULED'||m.status==='TIMED';}).length;
@@ -5817,7 +6360,11 @@ function renderLiveStats(){
 function filterLive(stage,btn){liveFilter=stage;document.querySelectorAll('.live-filter-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderLiveMatches();}
 function renderLiveMatches(){
   var filtered=liveFilter==='ALL'?liveMatches:liveMatches.filter(function(m){return m.stage===liveFilter;});
-  if(!filtered.length){document.getElementById('liveMatchList').innerHTML='<div class="live-empty">当前筛选没有比赛。</div>';return;}
+  if(!filtered.length){document.getElementById('liveMatchList').innerHTML='<div class="live-empty">暂无实盘赛程数据。请运行 sync-titan2026.bat 或导入 matches JSON。</div>';return;}
+  if(liveDataSourceKind==='titan'||(typeof REAL_MODE!=='undefined'&&REAL_MODE)){
+    document.getElementById('liveMatchList').innerHTML=renderTitanLiveTable(filtered);
+    return;
+  }
   var byDate={};
   filtered.forEach(function(m){
     var d=new Date(m.utcDate);
@@ -6300,6 +6847,12 @@ function buildStandingsFromActiveGroups() {
 async function loadStandings() {
   var content = document.getElementById('standingsContent');
   if (!content) return;
+  if (typeof REAL_MODE !== 'undefined' && REAL_MODE) {
+    renderTitanGroupStandings();
+    var qs = document.getElementById('qualifySection');
+    if (qs) qs.style.display='none';
+    return;
+  }
   content.innerHTML = '<span style="color:var(--muted);font-size:.75rem">正在使用本地静态 / Mock 积分数据...</span>';
   standingsData = buildStandingsFromActiveGroups();
   renderStandings(standingsData, true);
@@ -7295,11 +7848,21 @@ function injectLiveInjuryPanel() {
 })();
 
 // Also inject if live section is already active on load
+function refreshLocalTimeDisplays(){
+  try{
+    renderRealModeHome();
+    renderRealDataPanel();
+  }catch(e){
+    console.warn('Local time display refresh failed:',e);
+  }
+}
+setInterval(refreshLocalTimeDisplays,60000);
 document.addEventListener('DOMContentLoaded', function() {
   var liveSection = document.getElementById('sec-live');
   if (liveSection && liveSection.classList.contains('active')) {
     setTimeout(injectLiveInjuryPanel, 300);
   }
+  setTimeout(refreshLocalTimeDisplays,300);
 });
 </script>
 

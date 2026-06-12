@@ -1,0 +1,26 @@
+2026 世界杯智能分析 Dashboard
+报告类型: 球队报告（Team Report）
+生成时间: 2026-06-07T19:23:44.380Z
+数据类型: 估算/示例数据（Estimated / Sample / Model Demo）
+数据来源摘要: 本地估算球队模型、示例伤病、示例赔率、模拟预测
+
+正文:
+球队名称（中文 / 英文）: 巴西 / Brazil
+FIFA 排名: 1
+综合 / 进攻 / 中场 / 防守: 92 / 94 / 91 / 88
+ELO: 2050
+关键球员: Vinicius Jr.
+世界杯冠军次数: 5
+近期状态: W W W D W W
+状态分: 16 分
+伤病摘要: Neymar Jr. out - ACL recovery; 内马尔 Neymar injured; 加布里埃尔 Gabriel doubtful
+赔率快照: 示例赔率（Sample Odds） 4.5/4.75/4.6/4.8
+相关比赛 / 模拟预测:
+  Brazil vs USA · Jun 14 · 巴西 Win · 高信心
+  Brazil vs Argentina · Jul 4 · 巴西 Win · 低信心
+风险说明: 仅为估算球队模型和示例数据。做判断前请核对实时数据。
+数据来源: 本地估算球队模型 + 示例伤病追踪 + 示例赔率面板
+页脚 / Footer:
+本工具仅用于赛事分析、学习和情景推演。
+模拟预测、示例赔率和模型输出不构成投注建议。
+For sports analysis, education, and scenario tracking only. Not betting advice.

@@ -1,0 +1,625 @@
+{
+  "source": "Titan007 local sync",
+  "dataType": "local_live_sync",
+  "sourceUrl": "https://2026.titan007.com/?from=3",
+  "syncedAt": "2026-06-12T14:44:44.853Z",
+  "count": 12,
+  "groups": [
+    {
+      "group": "A组",
+      "teams": [
+        {
+          "name": "墨西哥",
+          "rank": 1,
+          "played": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 2,
+          "points": 3,
+          "qualifyIndex": "1.5"
+        },
+        {
+          "name": "韩国",
+          "rank": 2,
+          "played": 1,
+          "wins": 1,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 1,
+          "points": 3,
+          "qualifyIndex": "3"
+        },
+        {
+          "name": "捷克",
+          "rank": 3,
+          "played": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "goalDiff": -1,
+          "points": 0,
+          "qualifyIndex": "13"
+        },
+        {
+          "name": "南非",
+          "rank": 4,
+          "played": 1,
+          "wins": 0,
+          "draws": 0,
+          "losses": 1,
+          "goalDiff": -2,
+          "points": 0,
+          "qualifyIndex": "131"
+        }
+      ],
+      "source": "Titan007 local sync",
+      "syncedAt": "2026-06-12T14:44:44.853Z"
+    },
+    {
+      "group": "B组",
+      "teams": [
+        {
+          "name": "瑞士",
+          "rank": 1,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "1.73"
+        },
+        {
+          "name": "波黑",
+          "rank": 2,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "6"
+        },
+        {
+          "name": "加拿大",
+          "rank": 3,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "3"
+        },
+        {
+          "name": "卡塔尔",
+          "rank": 4,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "36"
+        }
+      ],
+      "source": "Titan007 local sync",
+      "syncedAt": "2026-06-12T14:44:44.853Z"
+    },
+    {
+      "group": "C组",
+      "teams": [
+        {
+          "name": "苏格兰",
+          "rank": 1,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "13"
+        },
+        {
+          "name": "巴西",
+          "rank": 2,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "1.22"
+        },
+        {
+          "name": "摩洛哥",
+          "rank": 3,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "4.5"
+        },
+        {
+          "name": "海地",
+          "rank": 4,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "101"
+        }
+      ],
+      "source": "Titan007 local sync",
+      "syncedAt": "2026-06-12T14:44:44.853Z"
+    },
+    {
+      "group": "D组",
+      "teams": [
+        {
+          "name": "土耳其",
+          "rank": 1,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "2.75"
+        },
+        {
+          "name": "巴拉圭",
+          "rank": 2,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "4.75"
+        },
+        {
+          "name": "美国",
+          "rank": 3,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "2.2"
+        },
+        {
+          "name": "澳大利亚",
+          "rank": 4,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "9"
+        }
+      ],
+      "source": "Titan007 local sync",
+      "syncedAt": "2026-06-12T14:44:44.853Z"
+    },
+    {
+      "group": "E组",
+      "teams": [
+        {
+          "name": "德国",
+          "rank": 1,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "1.29"
+        },
+        {
+          "name": "厄瓜多尔",
+          "rank": 2,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "4.5"
+        },
+        {
+          "name": "科特迪瓦",
+          "rank": 3,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "8"
+        },
+        {
+          "name": "库拉索",
+          "rank": 4,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "101"
+        }
+      ],
+      "source": "Titan007 local sync",
+      "syncedAt": "2026-06-12T14:44:44.853Z"
+    },
+    {
+      "group": "F组",
+      "teams": [
+        {
+          "name": "瑞典",
+          "rank": 1,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "5.5"
+        },
+        {
+          "name": "荷兰",
+          "rank": 2,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "1.73"
+        },
+        {
+          "name": "突尼斯",
+          "rank": 3,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "11"
+        },
+        {
+          "name": "日本",
+          "rank": 4,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "3.5"
+        }
+      ],
+      "source": "Titan007 local sync",
+      "syncedAt": "2026-06-12T14:44:44.853Z"
+    },
+    {
+      "group": "G组",
+      "teams": [
+        {
+          "name": "比利时",
+          "rank": 1,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "1.36"
+        },
+        {
+          "name": "埃及",
+          "rank": 2,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "4.75"
+        },
+        {
+          "name": "伊朗",
+          "rank": 3,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "7.5"
+        },
+        {
+          "name": "新西兰",
+          "rank": 4,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "26"
+        }
+      ],
+      "source": "Titan007 local sync",
+      "syncedAt": "2026-06-12T14:44:44.853Z"
+    },
+    {
+      "group": "H组",
+      "teams": [
+        {
+          "name": "乌拉圭",
+          "rank": 1,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "4.5"
+        },
+        {
+          "name": "西班牙",
+          "rank": 2,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "1.17"
+        },
+        {
+          "name": "佛得角",
+          "rank": 3,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "41"
+        },
+        {
+          "name": "沙特阿拉伯",
+          "rank": 4,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "31"
+        }
+      ],
+      "source": "Titan007 local sync",
+      "syncedAt": "2026-06-12T14:44:44.853Z"
+    },
+    {
+      "group": "I组",
+      "teams": [
+        {
+          "name": "挪威",
+          "rank": 1,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "3.75"
+        },
+        {
+          "name": "法国",
+          "rank": 2,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "1.4"
+        },
+        {
+          "name": "塞内加尔",
+          "rank": 3,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "8"
+        },
+        {
+          "name": "伊拉克",
+          "rank": 4,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "41"
+        }
+      ],
+      "source": "Titan007 local sync",
+      "syncedAt": "2026-06-12T14:44:44.853Z"
+    },
+    {
+      "group": "J组",
+      "teams": [
+        {
+          "name": "奥地利",
+          "rank": 1,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "4.3"
+        },
+        {
+          "name": "阿根廷",
+          "rank": 2,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "1.33"
+        },
+        {
+          "name": "约旦",
+          "rank": 3,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "51"
+        },
+        {
+          "name": "阿尔及利亚",
+          "rank": 4,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "7"
+        }
+      ],
+      "source": "Titan007 local sync",
+      "syncedAt": "2026-06-12T14:44:44.853Z"
+    },
+    {
+      "group": "K组",
+      "teams": [
+        {
+          "name": "葡萄牙",
+          "rank": 1,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "1.44"
+        },
+        {
+          "name": "哥伦比亚",
+          "rank": 2,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "2.75"
+        },
+        {
+          "name": "刚果民主共和国",
+          "rank": 3,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "19"
+        },
+        {
+          "name": "乌兹别克斯坦",
+          "rank": 4,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "41"
+        }
+      ],
+      "source": "Titan007 local sync",
+      "syncedAt": "2026-06-12T14:44:44.853Z"
+    },
+    {
+      "group": "L组",
+      "teams": [
+        {
+          "name": "英格兰",
+          "rank": 1,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "1.29"
+        },
+        {
+          "name": "克罗地亚",
+          "rank": 2,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "4.5"
+        },
+        {
+          "name": "巴拿马",
+          "rank": 3,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "51"
+        },
+        {
+          "name": "加纳",
+          "rank": 4,
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 0,
+          "qualifyIndex": "11"
+        }
+      ],
+      "source": "Titan007 local sync",
+      "syncedAt": "2026-06-12T14:44:44.853Z"
+    }
+  ],
+  "meta": {
+    "title": "2026世界杯比分",
+    "notes": "Group standings parsed from the public World Cup topic page."
+  }
+}
