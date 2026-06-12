@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<!-- v19.2: private live schedule data mode -->
+<!-- v20: private AI analyst mode -->
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2026世界杯 — 智能分析中心 v19.2</title>
+<title>2026世界杯 — 私人AI分析台 v20</title>
+<link rel="icon" href="data:,">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 :root[data-theme="dark"]{--bg:#0a0e1a;--surface:#111827;--card:#1a2235;--card2:#1e2a40;--border:#2a3550;--accent:#00d4ff;--accent2:#ff6b35;--gold:#ffd700;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--purple:#a855f7;--text:#e2e8f0;--muted:#64748b;--radius:12px;--header-bg:#0d1220;--input-bg:#0f1623;--modal-bg:rgba(0,0,0,.75)}
@@ -384,6 +385,10 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
 .modal-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;position:relative}
 #teamDetailModal .modal-box{max-width:760px}
 .match-insight-box{max-width:760px}
+.coach-report-box{max-width:820px}
+.coach-report-toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 12px}
+.coach-report-toolbar select{background:var(--card2);border:1px solid var(--border);border-radius:7px;color:var(--text);padding:7px 10px;font-size:.72rem;min-width:180px;max-width:100%}
+.coach-report-preview{min-height:360px;max-height:52vh}
 .modal-close{position:absolute;top:12px;right:14px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.2rem;line-height:1}
 .modal-close:hover{color:var(--text)}
 .modal-flag{font-size:3rem;text-align:center;margin-bottom:6px}
@@ -517,7 +522,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
 .export-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .export-form-row{display:flex;flex-direction:column;gap:4px;min-width:170px;flex:1}
 .export-form-row label{font-size:.68rem;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.05em}
-.export-form-row select{background:var(--input-bg);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:8px 10px;font-size:.78rem;min-width:0}
+.export-form-row select,.export-form-row input{background:var(--input-bg);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:8px 10px;font-size:.78rem;min-width:0}
 .report-preview{white-space:pre-wrap;background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:12px;min-height:180px;max-height:360px;overflow:auto;color:var(--text);font:12px/1.55 Consolas,'Microsoft YaHei',monospace;margin-top:12px}
 .share-card-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:12px}
 .share-card-preview-wrap{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:10px;overflow:auto;text-align:center}
@@ -526,6 +531,19 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
 .snapshot-table th{padding:8px 9px;text-align:left;color:var(--muted);font-weight:900;border-bottom:1px solid var(--border);background:var(--surface);white-space:nowrap}
 .snapshot-table td{padding:8px 9px;border-bottom:1px solid rgba(42,53,80,.45);vertical-align:top}
 .snapshot-actions{display:flex;gap:6px;flex-wrap:wrap}
+.ai-free-note{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:.76rem;line-height:1.6;color:var(--text)}
+.ai-settings-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;align-items:end;margin-bottom:10px}
+.ai-status-line{font-size:.7rem;color:var(--muted);line-height:1.5;margin-top:8px}
+.ai-workspace{display:grid;grid-template-columns:minmax(260px,320px) 1fr;gap:16px;align-items:start}
+.ai-control-panel{position:sticky;top:72px}
+.ai-target-controls{display:flex;flex-direction:column;gap:10px;margin:10px 0 12px}
+.ai-textarea{width:100%;min-height:260px;resize:vertical;background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:12px;font:12px/1.6 Consolas,'Microsoft YaHei',monospace;outline:none}
+.ai-textarea:focus{border-color:var(--accent)}
+.ai-result-textarea{min-height:220px}
+.ai-helper-text{font-size:.7rem;color:var(--muted);line-height:1.5;margin-top:8px}
+.ai-snapshot-card{background:var(--card2);border:1px solid rgba(42,53,80,.75);border-radius:8px;padding:10px;margin-bottom:8px}
+.ai-snapshot-title{font-size:.78rem;font-weight:900;margin-bottom:4px}
+.ai-snapshot-meta{font-size:.66rem;color:var(--muted);margin-bottom:8px;line-height:1.45}
 .print-report{display:none}
 /* INTELLIGENCE */
 .intel-controls{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
@@ -539,7 +557,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
 .intel-card-title{font-weight:900;font-size:.84rem;margin-bottom:8px}
 .intel-card-meta{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:.7rem;color:var(--muted);margin-bottom:8px}
 @media(max-width:700px){.intel-table-wrap{display:none}.intel-cards{display:grid}.group-analysis-grid{grid-template-columns:1fr}.team-search-input{min-width:0}.daily-brief-grid{grid-template-columns:1fr}}
-@media(max-width:600px){.insight-top-grid,.verdict-grid{grid-template-columns:repeat(2,1fr)}.match-insight-box{max-width:100%;padding:16px}.group-schedule-row{grid-template-columns:60px 1fr}.group-schedule-row .meta{grid-column:1/-1;text-align:left}.data-status-strip{gap:6px}.data-status-badge{font-size:.62rem;padding:4px 8px}.team-profile-grid{grid-template-columns:repeat(2,1fr)}.team-profile-header{align-items:flex-start}.profile-match-row{align-items:flex-start;flex-direction:column}.scorecard-table{font-size:.68rem}.data-source-grid{grid-template-columns:1fr}.coverage-table,.warnings-table{font-size:.68rem}.audit-summary-grid{grid-template-columns:repeat(2,1fr)}.audit-toolbar{gap:6px}.audit-table{font-size:.68rem}.result-form{grid-template-columns:1fr}.share-card-controls{display:grid;grid-template-columns:1fr}.export-actions{gap:6px}.snapshot-table{font-size:.68rem}}
+@media(max-width:600px){.insight-top-grid,.verdict-grid{grid-template-columns:repeat(2,1fr)}.match-insight-box,.coach-report-box{max-width:100%;padding:16px}.coach-report-toolbar{display:grid;grid-template-columns:1fr}.coach-report-toolbar select,.coach-report-toolbar button{width:100%}.group-schedule-row{grid-template-columns:60px 1fr}.group-schedule-row .meta{grid-column:1/-1;text-align:left}.data-status-strip{gap:6px}.data-status-badge{font-size:.62rem;padding:4px 8px}.team-profile-grid{grid-template-columns:repeat(2,1fr)}.team-profile-header{align-items:flex-start}.profile-match-row{align-items:flex-start;flex-direction:column}.scorecard-table{font-size:.68rem}.data-source-grid{grid-template-columns:1fr}.coverage-table,.warnings-table{font-size:.68rem}.audit-summary-grid{grid-template-columns:repeat(2,1fr)}.audit-toolbar{gap:6px}.audit-table{font-size:.68rem}.result-form{grid-template-columns:1fr}.share-card-controls{display:grid;grid-template-columns:1fr}.export-actions{gap:6px}.snapshot-table{font-size:.68rem}.ai-settings-grid,.ai-workspace{grid-template-columns:1fr}.ai-control-panel{position:static}.ai-textarea{min-height:220px}}
 @media print{
   header,nav,.mobile-nav,.ctrl-btn,button,.no-print{display:none!important}
   body{background:#fff!important;color:#000!important}
@@ -804,6 +822,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
           <button data-section="tools" onclick="showSection('tools',this)">🔧 工具</button>
           <button data-section="audit" onclick="showSection('audit',this)">📈 审计</button>
           <button data-section="export" onclick="showSection('export',this)">📤 导出</button>
+          <button data-section="ai-analysis" onclick="showSection('ai-analysis',this)">🤖 AI助手</button>
           <button data-section="model" onclick="showSection('model',this)">🤖 AI模型</button>
         </div>
       </div>
@@ -824,6 +843,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
   <button data-section="tools" onclick="showSection('tools',this)">工具</button>
   <button data-section="audit" onclick="showSection('audit',this)">审计</button>
   <button data-section="export" onclick="showSection('export',this)">导出</button>
+  <button data-section="ai-analysis" onclick="showSection('ai-analysis',this)">AI</button>
   <button data-section="live" onclick="showSection('live',this)">实时</button>
   <button data-section="odds" onclick="showSection('odds',this)">赔率</button>
   <button data-section="players" onclick="showSection('players',this)">球员</button>
@@ -837,14 +857,27 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
   <div class="hero">
     <div class="hero-left">
       <div class="hero-title-row">
-        <h1>WC 2026 智能分析中心</h1>
-        <span class="version-badge">v19.2 · 私人实盘数据 · Mock-aware</span>
+        <h1>2026世界杯 私人AI分析台</h1>
+        <span class="version-badge">v20 · 私人AI分析 · 本机密钥</span>
       </div>
-      <p>中文优先 · 模拟预测 / 示例赔率 / 实时赛程状态均有清晰标注</p>
+      <p>本机保存 API Key，手动刷新真实赛程，让 AI 帮你分析比赛、球队和风险。</p>
+      <div class="risk-note risk-secondary" style="margin-top:10px">这是私人分析工具。API Key 只保存在你的浏览器，不会写入网页文件。</div>
     </div>
     <div class="countdown" id="countdown"></div>
   </div>
   <div class="data-status-strip" id="dataStatusStrip"></div>
+  <div class="command-center-card">
+    <div class="command-center-header">
+      <div class="command-center-title">私人 AI 快速分析</div>
+      <span class="data-status-badge live">本机密钥 · 手动调用</span>
+    </div>
+    <div class="command-grid">
+      <div class="command-item"><div class="command-icon">📰</div><div><div class="command-title">AI分析今日情报</div><div class="command-desc">汇总重点比赛、风险、伤病和数据来源，由 AI 给出结论。</div></div><button class="command-go" onclick="openAIAnalysis('daily',null,true)">进入</button></div>
+      <div class="command-item"><div class="command-icon">⚽</div><div><div class="command-title">AI分析一场比赛</div><div class="command-desc">选择一场比赛，让 AI 解释胜负倾向、核心理由和不确定性。</div></div><button class="command-go" onclick="openAIAnalysis('match','pred:0',true)">进入</button></div>
+      <div class="command-item"><div class="command-icon">🛡️</div><div><div class="command-title">AI分析一支球队</div><div class="command-desc">选择球队，让 AI 分析实力、状态、伤病和相关比赛。</div></div><button class="command-go" onclick="openAIAnalysis('team',getCoachDefaultTeam(),true)">进入</button></div>
+      <div class="command-item"><div class="command-icon">🧑‍🏫</div><div><div class="command-title">AI生成教练组报告</div><div class="command-desc">以备战视角整理小组形势、未赛对手和路径风险。</div></div><button class="command-go" onclick="openAIAnalysis('coach',getCoachDefaultTeam(),true)">进入</button></div>
+    </div>
+  </div>
   <div class="command-center-card">
     <div class="command-center-header">
       <div class="command-center-title">指挥中心 / Command Center</div>
@@ -859,7 +892,8 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
         <span class="data-status-badge demo">模拟情报简报（Demo）</span>
         <button class="mini-action-btn" onclick="copyDailyBriefing()">复制情报</button>
         <button class="mini-action-btn" onclick="saveDailyBriefingSnapshot()">保存快照</button>
-        <button class="mini-action-btn" onclick="exportDailyBriefingCard()">导出图片</button>
+        <button class="mini-action-btn" onclick="exportDailyBriefingCard()">本地图片</button>
+        <button class="mini-action-btn" onclick="openAIAnalysisFromDaily()">AI分析今日情报</button>
       </div>
     </div>
     <div class="daily-brief-grid" id="dailyBriefGrid"></div>
@@ -967,6 +1001,84 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
   <div class="intel-cards" id="intelligenceCards"></div>
 </div>
 
+<!-- AI ANALYSIS ASSISTANT -->
+<div id="sec-ai-analysis" class="section">
+  <div class="section-title">🤖 AI 分析工作台 <span class="badge">私人本机模式</span></div>
+  <div class="ai-free-note">
+    默认不会自动调用 AI，也不会消耗 API。你可以复制 Prompt 到 ChatGPT 手动使用；
+    也可以填写自己的 OpenAI API Key，只有点击“使用 OpenAI 分析”时才会请求 OpenAI Responses API。
+    API Key 只保存在当前浏览器 localStorage，不会上传到服务器，不会写入 HTML。清除浏览器数据会删除 Key。
+  </div>
+  <div class="card export-panel">
+    <div class="card-title">OpenAI 私人分析设置</div>
+    <div class="ai-settings-grid">
+      <div class="export-form-row">
+        <label>OpenAI API Key</label>
+        <input id="openaiApiKeyInput" type="password" autocomplete="off" placeholder="粘贴你自己的 OpenAI API key">
+      </div>
+      <div class="export-form-row">
+        <label>模型选择</label>
+        <select id="openaiModelSelect">
+          <option value="gpt-5.5">gpt-5.5</option>
+          <option value="gpt-5.4-mini">gpt-5.4-mini</option>
+          <option value="gpt-5.4-nano">gpt-5.4-nano</option>
+        </select>
+      </div>
+      <div class="export-form-row">
+        <label>输出风格</label>
+        <select id="openaiOutputStyleSelect">
+          <option value="brief">简短结论</option>
+          <option value="standard">标准分析</option>
+          <option value="detailed">深度教练组报告</option>
+        </select>
+      </div>
+    </div>
+    <div class="export-actions">
+      <button class="detail-btn" onclick="saveOpenAISettings()">保存 Key 到本机</button>
+      <button class="detail-btn" onclick="clearOpenAIKey()">清除 Key</button>
+      <button class="detail-btn" onclick="testOpenAIConnection()" id="openaiTestBtn">测试 OpenAI 连接</button>
+    </div>
+    <div class="ai-status-line" id="openaiSettingsStatus">API Key 只保存在当前浏览器 localStorage，不会上传到服务器，不会写入 HTML。清除浏览器数据会删除 Key。</div>
+  </div>
+  <div class="ai-workspace">
+    <div class="card export-panel ai-control-panel">
+      <div class="card-title">生成 AI 分析提示词</div>
+      <div class="export-form-row">
+        <label>分析类型</label>
+        <select id="aiAnalysisType" onchange="renderAIAnalysisControls()">
+          <option value="daily">今日情报</option>
+          <option value="match">单场比赛</option>
+          <option value="team">球队分析</option>
+          <option value="coach">教练组报告</option>
+        </select>
+      </div>
+      <div class="ai-target-controls" id="aiTargetControls"></div>
+      <div class="ai-status-line" id="aiDataSourceSummary">数据来源：等待生成 Prompt</div>
+      <button class="calc-btn" onclick="generateAIAnalysisPromptFromUI()">生成 AI 分析提示词</button>
+      <div class="ai-helper-text">页面负责整理上下文，AI 负责分析。所有数据来源和 Demo / Mock / Sample 标签会写入 Prompt。</div>
+    </div>
+    <div class="card export-panel">
+      <div class="card-title">Prompt 输出区</div>
+      <textarea id="aiPromptOutput" class="ai-textarea" placeholder="点击“生成 AI 分析提示词”后，这里会出现可编辑的中文 Prompt。"></textarea>
+      <div class="export-actions" style="margin-top:10px">
+        <button class="detail-btn" onclick="generateAIAnalysisPromptFromUI()">生成 Prompt</button>
+        <button class="detail-btn" onclick="copyAIPrompt()">一键复制</button>
+        <button class="calc-btn" onclick="runOpenAIAnalysis()" id="openaiGenerateBtn">使用 OpenAI 分析</button>
+        <button class="detail-btn" onclick="clearAIPrompt()">一键清空</button>
+      </div>
+    </div>
+  </div>
+  <div class="card export-panel">
+    <div class="card-title">AI 分析结果</div>
+    <textarea id="aiResultInput" class="ai-textarea ai-result-textarea" placeholder="OpenAI 生成的中文分析会显示在这里；也可以把手动使用 ChatGPT 得到的结果粘贴回来保存。"></textarea>
+    <div class="export-actions" style="margin-top:10px">
+      <button class="detail-btn" onclick="saveAIAnalysisSnapshot()">保存分析结果</button>
+      <button class="detail-btn" onclick="downloadAIResultText()">导出 TXT</button>
+      <button class="detail-btn" onclick="copyAIResult()">复制结果</button>
+    </div>
+  </div>
+</div>
+
 <!-- MODEL AUDIT -->
 <div id="sec-audit" class="section">
   <div class="section-title">📈 模型审计 / 复盘 <span class="badge">模拟记录 · Demo Ledger</span> <span class="registry-meta" data-registry-key="predictions"></span></div>
@@ -1000,7 +1112,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
 
 <!-- EXPORT CENTER -->
 <div id="sec-export" class="section">
-  <div class="section-title">📤 导出中心 <span class="badge">报告 + 分享图</span> <span class="registry-meta" data-registry-key="predictions"></span></div>
+  <div class="section-title">📤 导出中心 <span class="badge">报告 + 本地图片</span> <span class="registry-meta" data-registry-key="predictions"></span></div>
   <div class="grid-2">
     <div class="card export-panel">
       <div class="card-title">今日情报导出 <span style="font-size:.68rem;color:var(--muted)">Daily Briefing Export</span></div>
@@ -1050,10 +1162,25 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
       </div>
       <pre class="report-preview" id="teamReportPreview"></pre>
     </div>
+    <div class="card export-panel">
+      <div class="card-title">教练组报告导出 <span style="font-size:.68rem;color:var(--muted)">Coach Report Export</span></div>
+      <div class="export-form-row">
+        <label>选择球队</label>
+        <select id="exportCoachTeamSelect"></select>
+      </div>
+      <div class="export-actions">
+        <button class="detail-btn" onclick="previewCoachExportReport()">预览报告</button>
+        <button class="detail-btn" onclick="copyCoachExportReport()">复制报告</button>
+        <button class="detail-btn" onclick="downloadCoachExportReport()">下载 .txt</button>
+        <button class="detail-btn" onclick="printCoachExportReport()">打印 / 另存 PDF</button>
+        <button class="detail-btn" onclick="saveCoachExportSnapshot()">保存快照</button>
+      </div>
+      <pre class="report-preview" id="coachReportPreview"></pre>
+    </div>
   </div>
 
   <div class="card export-panel">
-    <div class="card-title">分享卡生成器 <span style="font-size:.68rem;color:var(--muted)">Share Card Generator</span></div>
+    <div class="card-title">本地图片导出 <span style="font-size:.68rem;color:var(--muted)">Local Image Export</span></div>
     <div class="share-card-controls">
       <div class="export-form-row">
         <label>卡片类型</label>
@@ -1061,6 +1188,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
           <option value="daily_briefing">今日情报</option>
           <option value="match_insight">比赛详情</option>
           <option value="team_profile">球队资料</option>
+          <option value="coach_report">教练组报告</option>
           <option value="audit_summary">审计摘要</option>
         </select>
       </div>
@@ -1087,6 +1215,11 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
   <div class="card export-panel">
     <div class="card-title">已保存快照</div>
     <div id="snapshotManager"></div>
+  </div>
+
+  <div class="card export-panel">
+    <div class="card-title">我的 AI 分析记录 <span style="font-size:.68rem;color:var(--muted)">Private AI Reports</span></div>
+    <div id="aiSnapshotManager"></div>
   </div>
 </div>
 
@@ -1445,7 +1578,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
   <div class="section-title">&#x1F4E1; 实时赛程 <span class="badge" id="liveSourceBadge" style="font-size:.6rem;padding:2px 8px;border-radius:8px"></span> <span class="registry-meta" data-registry-key="liveSchedule"></span></div>
   <div class="api-key-box" id="apiKeyBox">
     <h3>&#x1F511; 私人 API Key / 真实赛程比分</h3>
-    <p>页面打开不会自动请求外部 API。朋友访问网页不需要 API key，也不会消耗你的免费额度。只有点击“测试连接”或“刷新真实赛程”才会请求接口并缓存到本机。<br>
+    <p>页面打开不会自动请求外部 API。只有我在本机点击“测试连接”或“刷新真实赛程”时才会请求接口并缓存到本机浏览器。<br>
     仅接真实赛程/比分：football-data.org World Cup matches 或 API-FOOTBALL fixtures；不接真实赔率。</p>
     <div class="api-key-row">
       <select id="realApiProvider" onchange="changeRealApiProvider(this.value)">
@@ -1475,7 +1608,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
       <button class="detail-btn" onclick="refreshRealSchedule()">手动刷新真实赛程/比分</button>
       <button class="detail-btn" onclick="clearApiMatchesCache()">清除真实数据缓存</button>
     </div>
-    <div class="risk-note risk-secondary" style="margin-top:10px">免费 API 次数有限，建议每天手动刷新 1–3 次。不要把真实 API key 写进 HTML 或分享给朋友。</div>
+    <div class="risk-note risk-secondary" style="margin-top:10px">免费 API 次数有限，建议每天手动刷新 1–3 次。不要把真实 API Key 写进 HTML；只保存在本机浏览器。</div>
   </div>
   <div class="live-status-bar">
     <div id="liveSourceInfo" class="status-text"></div>
@@ -1551,6 +1684,20 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
     <div id="matchInsightContent"></div>
   </div>
 </div>
+<div class="modal-overlay" id="coachReportModal">
+  <div class="modal-box coach-report-box">
+    <button class="modal-close" onclick="closeModal('coachReportModal')">✕</button>
+    <div class="match-insight-title" id="coachReportTitle">教练组报告</div>
+    <div class="modal-sub" id="coachReportContext">以国家队教练组视角整合球队状态、小组形势、球员风险、未赛对手和出线路径。</div>
+    <div class="coach-report-toolbar">
+      <select id="coachReportTeamSelect" onchange="refreshCoachReportModal(this.value)"></select>
+      <button class="detail-btn" onclick="copyCoachReportModal()">复制报告</button>
+      <button class="detail-btn" onclick="saveCoachReportModalSnapshot()">保存快照</button>
+      <button class="detail-btn" onclick="downloadCoachReportModal()">下载 TXT</button>
+    </div>
+    <pre class="report-preview coach-report-preview" id="coachReportContent"></pre>
+  </div>
+</div>
 <div class="modal-overlay" id="setResultModal">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal('setResultModal')">✕</button>
@@ -1600,7 +1747,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
       <div class="onboarding-step"><b>Step 1</b><br>这是一个 2026 世界杯赛事分析 Dashboard。<br>它会清楚标注哪些是真实数据、模拟数据、示例数据。</div>
       <div class="onboarding-step"><b>Step 2</b><br>先看「今日情报」和「比赛详情」。<br>它们会告诉你重点比赛、风险点、预测倾向和数据来源。</div>
       <div class="onboarding-step"><b>Step 3</b><br>用「审计」记录你的判断。<br>比赛结束后可以回填比分，复盘模型是否靠谱。</div>
-      <div class="onboarding-step"><b>Step 4</b><br>用「导出」生成文字报告和分享图片。<br>适合发给朋友、社群，或做内容测试。</div>
+      <div class="onboarding-step"><b>Step 4</b><br>用「导出」生成文字报告和本地图片。<br>适合保存我的 AI 分析记录和本地备份。</div>
     </div>
     <div class="onboarding-risk risk-secondary">风险提示：当前预测和赔率大多是 Demo / Sample，不代表真实结果，也不构成投注建议。</div>
     <div class="settings-actions">
@@ -2185,9 +2332,13 @@ const exportSnapshotsRaw=localStorage.getItem('wc2026_export_snapshots');
 let exportSnapshotsStorageCorrupt=false;
 try{if(exportSnapshotsRaw!==null&&!Array.isArray(JSON.parse(exportSnapshotsRaw)))exportSnapshotsStorageCorrupt=true;}catch(e){exportSnapshotsStorageCorrupt=exportSnapshotsRaw!==null;}
 let exportSnapshots=safeJsonParse(exportSnapshotsRaw,[]).filter(s=>s&&typeof s==='object');
+const aiAnalysisSnapshotsRaw=localStorage.getItem('wc2026_private_ai_reports');
+let aiAnalysisSnapshots=safeJsonParse(aiAnalysisSnapshotsRaw,[]).filter(s=>s&&typeof s==='object');
 let currentShareCardDataUrl='';
 let lastMatchReportText='';
 let lastTeamReportText='';
+let lastCoachReportText='';
+let currentAIPromptMeta=null;
 const CUSTOM_DATASET_CONFIG={
   teams:{label:'Teams JSON',storageKey:'wc2026_custom_teams',registryKey:'teams',template:[{name:'Brazil',cn:'巴西',flag:'🇧🇷',rank:1,overall:91,attack:93,midfield:90,defense:88,elo:2140,wc_titles:5,key_player:'Vinicius Jr.',form:['W','W','D','W','W','D']}]},
   matches:{label:'Matches JSON',storageKey:'wc2026_custom_matches',registryKey:'matches',template:[{id:'custom-m001',home:'Brazil',away:'France',stage:'GROUP_STAGE',group:'A',date:'2026-06-12',time:'20:00',venue:'MetLife Stadium',status:'SCHEDULED'}]},
@@ -2854,6 +3005,201 @@ function generateTeamReportText(teamName){
   ];
   return body.join('\n')+reportFooter();
 }
+function getCoachReportDataLayer(){
+  if(hasCustomDataset('matches')||hasCustomDataset('teams')||hasCustomDataset('groups')||hasCustomDataset('injuries'))return{source:'自定义导入数据',dataType:'Custom Override / Mixed',note:'已启用本机导入 JSON，优先于内置层。'};
+  const cache=getApiMatchesCachePayload();
+  if(cache&&Array.isArray(cache.matches)&&cache.matches.length)return{source:'真实缓存',dataType:'API Cache / Mixed',note:`来自 ${cache.source||'API'} 的本机缓存，刷新时间 ${cache.updatedAt||'未知'}。`};
+  if(typeof OFFICIAL_MATCHES!=='undefined'&&Array.isArray(OFFICIAL_MATCHES)&&OFFICIAL_MATCHES.length)return{source:'静态数据',dataType:'Static / Manual / Demo',note:'当前使用静态/手动赛程层，未自动请求外部 API。'};
+  return{source:'模拟数据',dataType:'Demo / Mock / Sample',note:'当前使用内置 Demo / Mock fallback。'};
+}
+function getCoachDefaultTeam(){
+  const teams=getEffectiveTeams();
+  return teams.find(t=>t.name==='Brazil')?.name||teams[0]?.name||'Brazil';
+}
+function getCoachTeamGroupInfo(teamName){
+  const groups=getEffectiveGroups()||{};
+  for(const [group,rows] of Object.entries(groups)){
+    const names=(rows||[]).map(r=>typeof r==='string'?r:(r.name||r.team||r.slot||''));
+    if(names.includes(teamName)){
+      const ranked=names.filter(Boolean).map(name=>({name,overall:getTeam(name).overall||0,form:getFormPoints(name)})).sort((a,b)=>b.overall-a.overall||b.form-a.form);
+      const rank=ranked.findIndex(r=>r.name===teamName)+1;
+      return{group,teams:names,rank,ranked};
+    }
+  }
+  const t=getTeam(teamName);
+  return{group:t.group||'暂无分组',teams:[],rank:0,ranked:[]};
+}
+function isFinishedCoachMatch(m){
+  const status=String(m?.status||'').toUpperCase();
+  return status==='FINISHED'||status==='AWARDED'||/FT|FINISHED/.test(status)||String(m?.score||'').match(/\d/);
+}
+function getCoachOpponent(teamName,m){
+  return m.home===teamName?m.away:m.away===teamName?m.home:null;
+}
+function getCoachRelatedMatches(teamName){
+  return getActiveMatches().filter(m=>m&&getCoachOpponent(teamName,m));
+}
+function getCoachRiskLevel(teamName,opponent){
+  if(!opponent||isPlaceholderTeam(opponent))return'未知';
+  const t=getTeam(teamName),opp=getTeam(opponent);
+  const diff=(opp.overall||70)-(t.overall||70);
+  const injury=hasTeamInjuryRisk(teamName);
+  if(diff>=5||injury)return'高';
+  if(diff>=-4)return'中';
+  return'低';
+}
+function getCoachFocusPoint(teamName,opponent){
+  if(!opponent||isPlaceholderTeam(opponent))return'等待官方对手确认，优先准备通用控球和定位球方案。';
+  const t=getTeam(teamName),opp=getTeam(opponent);
+  if((opp.attack||70)>(t.defense||70))return'重点压缩肋部空间，保护后防线身后。';
+  if((opp.midfield||70)>(t.midfield||70))return'重点争夺中场二点球，避免被连续推进。';
+  if((t.attack||70)>(opp.defense||70))return'可主动提高前场压迫，利用进攻端优势尽早建立比分。';
+  return'保持攻守平衡，重点管理转换阶段和定位球。';
+}
+function getCoachStrategyLine(groupInfo,teamName){
+  const rank=groupInfo.rank||0;
+  if(!rank)return'暂无真实排名，先按小组目标拆解积分需求。';
+  if(rank===1)return'争第一：优先锁定净胜球和轮换窗口，避免无谓伤停。';
+  if(rank===2)return'保第二：直接竞争对手比赛优先保平争胜，控制丢球。';
+  return'抢第三 / 争出线：每场至少争取积分，必要时提高进攻风险承受。';
+}
+function getCoachPressureLine(groupInfo,teamName){
+  if(!groupInfo.ranked.length)return'未知：等待官方小组和真实积分。';
+  const top=groupInfo.ranked[0];
+  const current=groupInfo.ranked.find(r=>r.name===teamName);
+  const gap=(top?.overall||0)-(current?.overall||0);
+  if(gap<=2)return'低到中：具备争第一条件，但不能低估同档对手。';
+  if(gap<=7)return'中：出线主动权存在，关键在直接对话。';
+  return'高：需要从强队身上拿分，同时确保对弱队不丢分。';
+}
+function getCoachPlayedLines(teamName){
+  const cache=getApiMatchesCachePayload();
+  if(!cache||!Array.isArray(cache.matches)||!cache.matches.length)return['- 暂无真实已赛数据'];
+  const rows=cache.matches.map(m=>normalizeMatch(normalizeLiveApiMatch(m),'live_api')).filter(m=>m&&getCoachOpponent(teamName,m)&&isFinishedCoachMatch(m));
+  if(!rows.length)return['- 暂无真实已赛数据'];
+  return rows.slice(0,6).map(m=>`- ${formatScheduleDate(m)}：${cnName(m.home)} vs ${cnName(m.away)}，比分 ${m.score||'待确认'}，来源：真实缓存`);
+}
+function getCoachUpcomingLines(teamName){
+  const rows=getCoachRelatedMatches(teamName).filter(m=>!isFinishedCoachMatch(m));
+  const fallback=PREDICTIONS.filter(p=>p.home===teamName||p.away===teamName).map(p=>({home:p.home,away:p.away,date:p.date,venue:p.venue,stage:p.stage,status:'SCHEDULED',dataType:'Model Demo'}));
+  const sourceRows=(rows.length?rows:fallback).slice(0,6);
+  if(!sourceRows.length)return['- 暂无未赛对手数据'];
+  return sourceRows.map(m=>{
+    const opponent=getCoachOpponent(teamName,m);
+    const opp=isPlaceholderTeam(opponent)?{overall:'待定'}:getTeam(opponent);
+    return`- ${formatScheduleDate(m)} vs ${cnName(opponent||'TBD')}：对手实力 ${opp.overall||'待定'}，风险等级 ${getCoachRiskLevel(teamName,opponent)}，推荐关注点：${getCoachFocusPoint(teamName,opponent)}`;
+  });
+}
+function getCoachPlayerStatusLines(teamName){
+  const entries=getTeamInjuryEntries(teamName);
+  if(!entries.length)return['- 暂无真实球员状态数据，当前使用示例/模拟数据。'];
+  const out=entries.filter(e=>['out','injured'].includes(e.status));
+  const suspended=entries.filter(e=>e.status==='suspended');
+  const doubtful=entries.filter(e=>['doubt','doubtful'].includes(e.status));
+  const fit=entries.filter(e=>e.status==='fit');
+  const lines=[
+    `- 伤病：${out.length?out.map(e=>e.label).join('; '):'暂无确定缺席示例记录'}`,
+    `- 停赛：${suspended.length?suspended.map(e=>e.label).join('; '):'暂无停赛示例记录'}`,
+    `- 恢复情况：${fit.length?fit.map(e=>e.label).join('; '):'暂无真实恢复数据，需赛前核对名单'}`,
+    `- 负面消息：暂无真实负面消息源，当前仅保留示例/模拟风险提示`
+  ];
+  if(doubtful.length)lines.splice(1,0,`- 存疑：${doubtful.map(e=>e.label).join('; ')}`);
+  return lines;
+}
+function getCoachExternalFactorLines(teamName){
+  const upcoming=getCoachRelatedMatches(teamName).filter(m=>!isFinishedCoachMatch(m)).slice(0,3);
+  if(!upcoming.length)return['- 场地：暂无明确未赛场地，按中立场准备。','- 天气/海拔/旅行：暂无真实天气和旅行数据。','- 赛程密度：等待真实赛程缓存或官方赛程确认。','- 士气风险：由近期状态和伤停情况估算。'];
+  const venues=upcoming.map(m=>getVenueFactorLine(m.venue||m.city||'')).filter(Boolean);
+  return[
+    `- 场地：${venues.length?venues.join('；'):'暂无命中场地数据库，按中立场处理。'}`,
+    '- 天气/海拔/旅行：当前无真实天气接入，需赛前人工核对。',
+    `- 赛程密度：未来 ${upcoming.length} 场相关比赛已纳入观察，重点管理轮换。`,
+    `- 士气风险：近期状态分 ${getFormPoints(teamName)}，结合伤停和首场结果动态调整。`
+  ];
+}
+function getCoachPathLines(teamName,groupInfo){
+  const ko=PREDICTIONS.filter(p=>(p.home===teamName||p.away===teamName)&&p.stage==='ko');
+  const groupTop=groupInfo.ranked.slice(0,2).map(r=>cnName(r.name)).join('、')||'待定';
+  const likelyOpp=ko.map(p=>cnName(getCoachOpponent(teamName,p))).filter(Boolean);
+  return[
+    `- 可能出线路径：小组 ${groupInfo.group} 争取前两名；当前模拟前排队伍：${groupTop}。`,
+    `- 可能淘汰赛对手：${likelyOpp.length?likelyOpp.join('、'):'暂无明确模拟淘汰赛对手'}。`,
+    `- 高风险路径：以第二/第三身份出线，过早遇到高综合评分球队。`,
+    `- 更优路径：争取小组第一，同时在末轮前锁定积分，降低轮换和伤停压力。`
+  ];
+}
+function getCoachFinalJudgement(teamName,groupInfo){
+  const t=getTeam(teamName);
+  const injuryScore=getTeamInjuryScore(teamName);
+  const formScore=getFormPoints(teamName);
+  const confidence=t.overall>=88&&formScore>=10&&injuryScore<3?'高':t.overall>=78&&formScore>=7?'中':'低';
+  const biggestRisk=injuryScore>=3?'关键球员可用性':(groupInfo.rank>2?'小组直接竞争压力':'赛程和临场波动');
+  const tendency=groupInfo.rank===1?'主动争第一，同时保护核心球员体能。':groupInfo.rank===2?'保第二并寻找争第一窗口。':'优先抢积分，必要时提高进攻投入。';
+  return{confidence,biggestRisk,tendency,uncertainty:'当前缺少官方实时阵容、训练状态和赛前天气，需赛前复核。'};
+}
+function generateCoachReportText(teamName,context){
+  teamName=teamName||getCoachDefaultTeam();
+  const t=getTeam(teamName),cn=cnName(teamName);
+  const data=getCoachReportDataLayer();
+  const groupInfo=getCoachTeamGroupInfo(teamName);
+  const strategy=getCoachStrategyLine(groupInfo,teamName);
+  const pressure=getCoachPressureLine(groupInfo,teamName);
+  const final=getCoachFinalJudgement(teamName,groupInfo);
+  const form=getRecentForm(teamName).join(' ');
+  const contextLine=context&&context.opponent?`本场上下文：${cn} vs ${cnName(context.opponent)}，用于本场教练组分析。`:'';
+  return[
+    `# ${cn} 教练组报告`,
+    '',
+    '## 生成时间',
+    new Date().toISOString(),
+    '',
+    '## 数据类型',
+    dataTypeLabel(data.dataType),
+    `数据来源：${data.source}`,
+    data.note,
+    contextLine,
+    '',
+    '## 风险提示',
+    '本报告用于教练组视角的赛事分析、学习和情景推演；不承诺预测准确，不构成投注建议。',
+    '',
+    '## 1. 球队现状',
+    `- 综合实力：${t.overall} / 100（进攻 ${t.attack}，中场 ${t.midfield}，防守 ${t.defense}）`,
+    `- 近期状态：${form || '暂无'}，状态分 ${getFormPoints(teamName)}`,
+    `- 核心球员：${t.key_player}`,
+    `- 主要风险：${getInjuryImpactLine(teamName)}`,
+    '',
+    '## 2. 小组形势',
+    `- 所在小组：${groupInfo.group}`,
+    `- 当前排名 / Mock 排名 / 暂无真实排名：${groupInfo.rank?`Mock 排名 #${groupInfo.rank}`:'暂无真实排名'}`,
+    `- 出线压力：${pressure}`,
+    `- 争第一 / 保第二 / 抢第三 的策略判断：${strategy}`,
+    '',
+    '## 3. 已赛比赛',
+    ...getCoachPlayedLines(teamName),
+    '',
+    '## 4. 未赛对手',
+    ...getCoachUpcomingLines(teamName),
+    '',
+    '## 5. 球员状态',
+    ...getCoachPlayerStatusLines(teamName),
+    '',
+    '## 6. 战术与外部因素',
+    ...getCoachExternalFactorLines(teamName),
+    '',
+    '## 7. 出线与淘汰赛路径',
+    ...getCoachPathLines(teamName,groupInfo),
+    '',
+    '## 8. 最终判断',
+    `- 教练组倾向：${final.tendency}`,
+    `- 信心等级：${final.confidence}`,
+    `- 最大风险：${final.biggestRisk}`,
+    `- 不确定性说明：${final.uncertainty}`,
+    '',
+    'Footer:',
+    '本工具仅用于赛事分析、学习和情景推演。',
+    '模拟预测、示例赔率和模型输出不构成投注建议。'
+  ].filter(Boolean).join('\n');
+}
 function generateAuditSummaryText(){
   const s=getAuditSummary();
   const buckets=getCalibrationBuckets();
@@ -2930,6 +3276,12 @@ function previewTeamReport(){lastTeamReportText=getSelectedTeamReportText();cons
 function copyTeamReport(){const text=lastTeamReportText||getSelectedTeamReportText();copyTextToClipboard(text,'球队报告已复制');}
 function downloadTeamReport(){const text=lastTeamReportText||getSelectedTeamReportText();downloadTextFile('wc2026-team-report.txt',text);showToast('球队报告已下载','success');}
 function printTeamReport(){const text=lastTeamReportText||getSelectedTeamReportText();printReportText(text);}
+function getSelectedCoachReportText(){return generateCoachReportText(document.getElementById('exportCoachTeamSelect')?.value||getCoachDefaultTeam());}
+function previewCoachExportReport(){lastCoachReportText=getSelectedCoachReportText();const el=document.getElementById('coachReportPreview');if(el)el.textContent=lastCoachReportText;}
+function copyCoachExportReport(){const text=lastCoachReportText||getSelectedCoachReportText();copyTextToClipboard(text,'教练组报告已复制');}
+function downloadCoachExportReport(){const name=document.getElementById('exportCoachTeamSelect')?.value||getCoachDefaultTeam();downloadTextFile('wc2026-coach-report-'+name+'.txt',lastCoachReportText||getSelectedCoachReportText());showToast('教练组报告已下载','success');}
+function printCoachExportReport(){const text=lastCoachReportText||getSelectedCoachReportText();printReportText(text);}
+function saveCoachExportSnapshot(){const name=document.getElementById('exportCoachTeamSelect')?.value||getCoachDefaultTeam();saveSnapshot('coach_report',`${cnName(name)} 教练组报告`,lastCoachReportText||generateCoachReportText(name),getCoachReportDataLayer().dataType,{team:name,source:'export_center'});}
 function copyCurrentMatchReport(){copyTextToClipboard(generateMatchReportText(getCurrentMatchReportSource()),'比赛报告已复制');}
 function saveCurrentMatchSnapshot(){const src=getCurrentMatchReportSource();const p=src.prediction, m=src.match;saveSnapshot('match_report',`${cnName(p?.home||m?.home||'TBD')} vs ${cnName(p?.away||m?.away||'TBD')} 比赛报告`,generateMatchReportText(src),p?'Model Demo / Mixed':'Official / Mock',src);}
 function exportCurrentMatchCard(){showSection('export',document.querySelector(`#desktopNav button[onclick*="'export'"]`));setShareCardType('match_insight');generateShareCard();}
@@ -2937,15 +3289,510 @@ function copyCurrentTeamReport(){copyTextToClipboard(generateTeamReportText(wind
 function saveCurrentTeamSnapshot(){const name=window.currentTeamProfileName||getEffectiveTeams()[0].name;saveSnapshot('team_report',`${cnName(name)} 球队报告`,generateTeamReportText(name),'Estimated / Sample / Model Demo',{team:name});}
 function exportCurrentTeamCard(){showSection('export',document.querySelector(`#desktopNav button[onclick*="'export'"]`));setShareCardType('team_profile');generateShareCard();}
 function exportDailyBriefingCard(){showSection('export',document.querySelector(`#desktopNav button[onclick*="'export'"]`));setShareCardType('daily_briefing');generateShareCard();}
+function populateCoachTeamSelects(selected){
+  const teams=getEffectiveTeams();
+  ['coachReportTeamSelect','exportCoachTeamSelect'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    el.innerHTML=teams.map(t=>`<option value="${escapeHTML(t.name)}">${t.flag} ${escapeHTML(cnName(t.name))} / ${escapeHTML(t.name)}</option>`).join('');
+    if(selected)el.value=selected;
+  });
+}
+function getCurrentCoachReportText(){
+  const team=window.currentCoachReportTeam||getCoachDefaultTeam();
+  return generateCoachReportText(team,window.currentCoachReportContext||null);
+}
+function refreshCoachReportModal(teamName){
+  window.currentCoachReportTeam=teamName||getCoachDefaultTeam();
+  populateCoachTeamSelects(window.currentCoachReportTeam);
+  const title=document.getElementById('coachReportTitle');
+  if(title)title.textContent=`${cnName(window.currentCoachReportTeam)} 教练组报告`;
+  const ctx=document.getElementById('coachReportContext');
+  if(ctx){
+    const context=window.currentCoachReportContext;
+    ctx.textContent=context&&context.opponent?`本场教练组分析：${cnName(window.currentCoachReportTeam)} vs ${cnName(context.opponent)}。`:'以国家队教练组视角整合球队状态、小组形势、球员风险、未赛对手和出线路径。';
+  }
+  const el=document.getElementById('coachReportContent');
+  if(el)el.textContent=getCurrentCoachReportText();
+}
+function openCoachReportModal(teamName,context){
+  window.currentCoachReportTeam=teamName||getCoachDefaultTeam();
+  window.currentCoachReportContext=context||null;
+  refreshCoachReportModal(window.currentCoachReportTeam);
+  document.getElementById('coachReportModal')?.classList.add('open');
+}
+function openCoachReportForCurrentMatch(){
+  const src=getCurrentMatchReportSource();
+  const p=src.prediction||null,m=src.match||null;
+  const home=p?.home||m?.home||getCoachDefaultTeam();
+  const away=p?.away||m?.away||null;
+  openCoachReportModal(home,{kind:'match',prediction:p,match:m,opponent:away});
+}
+function copyCoachReportModal(){copyTextToClipboard(getCurrentCoachReportText(),'教练组报告已复制');}
+function saveCoachReportModalSnapshot(){const team=window.currentCoachReportTeam||getCoachDefaultTeam();saveSnapshot('coach_report',`${cnName(team)} 教练组报告`,getCurrentCoachReportText(),getCoachReportDataLayer().dataType,{team,context:window.currentCoachReportContext||null});}
+function downloadCoachReportModal(){const team=window.currentCoachReportTeam||getCoachDefaultTeam();downloadTextFile('wc2026-coach-report-'+team+'.txt',getCurrentCoachReportText());showToast('教练组报告已下载','success');}
+function getOpenAIModel(){
+  return safeStorageGet('wc2026_openai_model')||'gpt-5.4-mini';
+}
+function getOpenAIOutputStyle(){
+  return safeStorageGet('wc2026_openai_output_style')||'standard';
+}
+function getOpenAIKey(){
+  return safeStorageGet('wc2026_openai_api_key')||'';
+}
+function removeStorageKey(key){
+  try{localStorage.removeItem(key);}catch(e){console.warn('localStorage remove failed for '+key,e);}
+}
+function getOpenAIKeyInputValue(){
+  return (document.getElementById('openaiApiKeyInput')?.value||'').trim();
+}
+function setOpenAIStatus(message,type){
+  const el=document.getElementById('openaiSettingsStatus');
+  if(!el)return;
+  el.textContent=message;
+  el.style.color=type==='error'?'var(--red)':type==='success'?'var(--green)':'var(--muted)';
+}
+function populateOpenAISettingsPanel(){
+  const keyInput=document.getElementById('openaiApiKeyInput');
+  const storedKey=getOpenAIKey();
+  if(keyInput){
+    keyInput.value=storedKey;
+    keyInput.placeholder=storedKey?'已保存 OpenAI API key，可重新粘贴覆盖':'粘贴你自己的 OpenAI API key';
+  }
+  const model=document.getElementById('openaiModelSelect');
+  if(model)model.value=getOpenAIModel();
+  const style=document.getElementById('openaiOutputStyleSelect');
+  if(style)style.value=getOpenAIOutputStyle();
+  setOpenAIStatus(storedKey?'已在本机浏览器保存 OpenAI API Key。页面不会自动调用 OpenAI。':'未保存 OpenAI API Key。你仍可复制 Prompt 到 ChatGPT 手动使用。',storedKey?'success':'info');
+}
+function saveOpenAISettings(){
+  const key=getOpenAIKeyInputValue();
+  const model=document.getElementById('openaiModelSelect')?.value||'gpt-5.4-mini';
+  const style=document.getElementById('openaiOutputStyleSelect')?.value||'standard';
+  if(key)safeStorageSet('wc2026_openai_api_key',key);
+  safeStorageSet('wc2026_openai_model',model);
+  safeStorageSet('wc2026_openai_output_style',style);
+  populateOpenAISettingsPanel();
+  showToast(key?'OpenAI 设置已保存到本机':'模型和输出风格已保存；API Key 未填写','success');
+}
+function clearOpenAIKey(){
+  if(!confirm('确定清除本机保存的 OpenAI API key？'))return;
+  removeStorageKey('wc2026_openai_api_key');
+  const input=document.getElementById('openaiApiKeyInput');
+  if(input)input.value='';
+  populateOpenAISettingsPanel();
+  showToast('OpenAI API key 已清除','success');
+}
+function getOpenAIStyleInstruction(){
+  const style=document.getElementById('openaiOutputStyleSelect')?.value||getOpenAIOutputStyle();
+  if(style==='brief')return'输出风格：简短结论。请控制在 300-500 字，突出结论、走势判断和关键风险。';
+  if(style==='detailed')return'输出风格：深度教练组报告。请展开备战视角、关键理由、风险、不确定性和后续需要关注的数据。';
+  return'输出风格：标准分析。请保持结构完整，信息密度适中。';
+}
+function extractOpenAIOutputText(data){
+  if(!data)return'';
+  if(typeof data.output_text==='string')return data.output_text;
+  if(Array.isArray(data.output)){
+    const parts=[];
+    data.output.forEach(item=>{
+      if(typeof item?.content==='string')parts.push(item.content);
+      if(Array.isArray(item?.content)){
+        item.content.forEach(c=>{
+          if(typeof c?.text==='string')parts.push(c.text);
+          else if(typeof c?.content==='string')parts.push(c.content);
+        });
+      }
+    });
+    if(parts.length)return parts.join('\n');
+  }
+  if(Array.isArray(data.choices)&&data.choices[0]?.message?.content)return data.choices[0].message.content;
+  return '';
+}
+function formatOpenAIError(error){
+  const msg=error?.message||String(error||'未知错误');
+  if(/Failed to fetch|NetworkError|Load failed/i.test(msg))return'OpenAI 请求失败：网络连接或浏览器跨域限制导致请求未完成。请检查网络，或复制 Prompt 到 ChatGPT 手动使用。';
+  if(/^OpenAI|^请先/.test(msg))return msg;
+  return'OpenAI 请求失败：'+msg;
+}
+async function callOpenAIAnalysis(prompt){
+  const key=getOpenAIKeyInputValue()||getOpenAIKey();
+  if(!key){
+    throw new Error('请先填写自己的 OpenAI API Key，或复制 Prompt 到 ChatGPT 手动使用。');
+  }
+  const model=document.getElementById('openaiModelSelect')?.value||getOpenAIModel();
+  const finalPrompt=prompt+'\n\n'+getOpenAIStyleInstruction();
+  const res=await fetch('https://api.openai.com/v1/responses',{
+    method:'POST',
+    headers:{'Authorization':'Bearer '+key,'Content-Type':'application/json'},
+    body:JSON.stringify({model:model,input:finalPrompt})
+  });
+  const raw=await res.text();
+  let data=null;
+  try{data=raw?JSON.parse(raw):null;}catch(e){}
+  if(!res.ok){
+    const msg=data?.error?.message||raw||res.statusText||'未知错误';
+    throw new Error('OpenAI 请求失败（'+res.status+'）：'+msg);
+  }
+  const text=extractOpenAIOutputText(data);
+  if(!text)throw new Error('OpenAI 返回成功，但没有解析到文本结果。');
+  return{text,model,data};
+}
+async function testOpenAIConnection(){
+  saveOpenAISettings();
+  const btn=document.getElementById('openaiTestBtn');
+  const old=btn?btn.textContent:'';
+  if(btn){btn.disabled=true;btn.textContent='测试中...';}
+  try{
+    await callOpenAIAnalysis('请只用中文回复：OpenAI 连接成功。本次测试不需要赛事分析。');
+    setOpenAIStatus('OpenAI 连接测试成功。后续只有点击“使用 OpenAI 分析”才会消耗额度。','success');
+    showToast('OpenAI 连接成功','success');
+  }catch(e){
+    const msg=formatOpenAIError(e);
+    setOpenAIStatus(msg,'error');
+    showToast(msg,'error');
+  }finally{
+    if(btn){btn.disabled=false;btn.textContent=old||'测试 OpenAI 连接';}
+  }
+}
+async function runOpenAIAnalysis(){
+  let prompt=document.getElementById('aiPromptOutput')?.value||'';
+  if(!prompt.trim()){
+    generateAIAnalysisPromptFromUI();
+    prompt=document.getElementById('aiPromptOutput')?.value||'';
+  }
+  if(!prompt.trim()){showToast('请先生成 Prompt','error');return;}
+  const btn=document.getElementById('openaiGenerateBtn');
+  const old=btn?btn.textContent:'';
+  if(btn){btn.disabled=true;btn.textContent='OpenAI 生成中...';}
+  try{
+    saveOpenAISettings();
+    const result=await callOpenAIAnalysis(prompt);
+    const out=document.getElementById('aiResultInput');
+    if(out)out.value=result.text;
+    if(currentAIPromptMeta)currentAIPromptMeta.model=result.model;
+    setOpenAIStatus('OpenAI 分析已生成。结果只保存在当前页面，除非你手动保存到我的 AI 分析记录。','success');
+    showToast('OpenAI 分析已生成','success');
+  }catch(e){
+    const msg=formatOpenAIError(e);
+    setOpenAIStatus(msg,'error');
+    showToast(msg,'error');
+  }finally{
+    if(btn){btn.disabled=false;btn.textContent=old||'使用 OpenAI 分析';}
+  }
+}
+function getAITypeLabel(type){
+  return{daily:'今日情报',match:'单场比赛',team:'球队分析',coach:'教练组报告'}[type]||'AI分析';
+}
+function getAIMatchSourceFromTarget(target){
+  if(target&&typeof target==='object'&&(target.prediction!==undefined||target.match!==undefined))return target;
+  if(target&&typeof target==='object'&&target.home&&target.away)return{kind:'prediction',prediction:target,index:PREDICTIONS.indexOf(target)};
+  return getMatchReportSourceFromValue(target||document.getElementById('aiMatchSelect')?.value||'pred:0');
+}
+function getAITeamName(target){
+  return typeof target==='string'&&target?target:(document.getElementById('aiTeamSelect')?.value||getCoachDefaultTeam());
+}
+function summarizeAIMatchSource(src){
+  const p=src?.prediction||null,m=src?.match||null;
+  const home=p?.home||m?.home||'TBD',away=p?.away||m?.away||'TBD';
+  const date=p?.date||formatScheduleDate(m);
+  const venue=p?.venue||m?.venue||m?.city||'Neutral / Unknown';
+  const status=m?getScheduleStatusLabel(m):(p?'Model Demo prediction':'—');
+  return{home,away,date,venue,status,stage:p?(p.stage==='ko'?'淘汰赛':'小组赛'):(m?getScheduleStageLabel(m):'—'),prediction:p,match:m};
+}
+function buildAIContext(type,target){
+  const layer=getCoachReportDataLayer();
+  const cache=getApiMatchesCacheStatus();
+  const ctx={type,dataSource:layer.source,dataType:layer.dataType,sourceNote:layer.note,apiCache:cache,activeMatches:[],predictions:[],selectedMatch:null,selectedTeam:null,teamStats:null,injuries:[],oddsSample:null,venue:null,lastApiCacheTime:cache.updatedAt};
+  ctx.activeMatches=getActiveMatches().slice(0,12).map(m=>({
+    match:`${cnName(m.home)} / ${m.home} vs ${cnName(m.away)} / ${m.away}`,
+    date:formatScheduleDate(m),
+    status:getScheduleStatusLabel(m),
+    stage:getScheduleStageLabel(m),
+    source:m.source||'schedule layer',
+    dataType:dataTypeLabel(m.dataType||'schedule')
+  }));
+  ctx.predictions=PREDICTIONS.slice(0,12).map(p=>({
+    match:`${cnName(p.home)} / ${p.home} vs ${cnName(p.away)} / ${p.away}`,
+    pick:getModelPick(p).display,
+    confidence:zhConfidence(getConfidenceLevel(p).label),
+    score:p.score,
+    probs:`主胜 ${p.homeProb}% / 平 ${p.drawProb}% / 客胜 ${p.awayProb}%`,
+    tags:zhTags(getDecisionTags(p))
+  }));
+  if(type==='match'){
+    const src=getAIMatchSourceFromTarget(target);
+    const summary=summarizeAIMatchSource(src);
+    ctx.selectedMatch=summary;
+    ctx.venue=summary.venue;
+  }
+  let teamName=null;
+  if(type==='team'||type==='coach')teamName=getAITeamName(target);
+  if(teamName&&!isPlaceholderTeam(teamName)){
+    const t=getTeam(teamName);
+    ctx.selectedTeam=teamName;
+    ctx.teamStats={name:teamName,cn:cnName(teamName),fifaRank:t.rank,overall:t.overall,attack:t.attack,midfield:t.midfield,defense:t.defense,elo:t.elo,keyPlayer:t.key_player,worldCupTitles:t.wc_titles,form:getRecentForm(teamName).join(' '),formScore:getFormPoints(teamName)};
+    ctx.injuries=getTeamInjuryEntries(teamName).slice(0,6).map(e=>e.label);
+    ctx.oddsSample=getEffectiveOdds().find(o=>o.team===teamName)||null;
+  }
+  if(ctx.selectedMatch){
+    const home=ctx.selectedMatch.home,away=ctx.selectedMatch.away;
+    ctx.injuries=[home,away].filter(n=>n&&!isPlaceholderTeam(n)).map(n=>`${cnName(n)}：${getInjuryImpactLine(n)}`);
+    ctx.venue=ctx.selectedMatch.venue;
+  }
+  return ctx;
+}
+function formatAIContextBlock(ctx){
+  const lines=[
+    '【数据来源说明】',
+    `- 当前数据来源：${ctx.dataSource}（${dataTypeLabel(ctx.dataType)}）`,
+    `- 来源备注：${ctx.sourceNote||'—'}`,
+    `- API 缓存：${ctx.apiCache.hasCache?'有真实缓存':'暂无真实缓存'}；上次刷新：${ctx.apiCache.updatedAt||'—'}；缓存比赛数：${ctx.apiCache.count||0}`,
+    '- 标签解释：Demo=模拟预测；Mock=模拟数据；Sample=示例数据；Estimated=估算数据；真实缓存=用户手动刷新后保存在本机的数据。',
+    '- 请不要把 Demo / Mock / Sample 当作真实赛果、真实赔率或官方伤病。'
+  ];
+  if(ctx.selectedMatch){
+    const p=ctx.selectedMatch.prediction;
+    lines.push(
+      '',
+      '【选中比赛】',
+      `- 比赛：${cnName(ctx.selectedMatch.home)} / ${ctx.selectedMatch.home} vs ${cnName(ctx.selectedMatch.away)} / ${ctx.selectedMatch.away}`,
+      `- 时间/阶段/状态：${ctx.selectedMatch.date} · ${ctx.selectedMatch.stage} · ${ctx.selectedMatch.status}`,
+      `- 场馆：${ctx.selectedMatch.venue}`
+    );
+    if(p)lines.push(`- 模拟预测：${getModelPick(p).display}；信心 ${zhConfidence(getConfidenceLevel(p).label)}；比分 ${p.score}；概率 ${p.homeProb}/${p.drawProb}/${p.awayProb}`);
+    else lines.push('- 模拟预测：暂无模型预测，请只基于赛程信息做谨慎分析。');
+  }
+  if(ctx.teamStats){
+    const t=ctx.teamStats;
+    lines.push(
+      '',
+      '【选中球队】',
+      `- 球队：${t.cn} / ${t.name}`,
+      `- FIFA Rank：${t.fifaRank}；ELO：${t.elo}`,
+      `- 综合/进攻/中场/防守：${t.overall}/${t.attack}/${t.midfield}/${t.defense}`,
+      `- 关键球员：${t.keyPlayer}；世界杯冠军次数：${t.worldCupTitles}`,
+      `- 近期状态：${t.form}；Form Score：${t.formScore}`,
+      `- 伤病摘要：${ctx.injuries.length?ctx.injuries.join('；'):'暂无示例伤病影响'}`,
+      `- 示例赔率：${ctx.oddsSample?`Sample Odds ${ctx.oddsSample.bet365}/${ctx.oddsSample.draftkings}/${ctx.oddsSample.fanduel}/${ctx.oddsSample.betmgm}`:'暂无示例赔率'}`
+    );
+  }
+  if(ctx.venue)lines.push('',`【场地因素】${getVenueFactorLine(ctx.venue)}`);
+  lines.push(
+    '',
+    '【可用赛程摘要】',
+    ...(ctx.activeMatches.length?ctx.activeMatches.slice(0,8).map(m=>`- ${m.match}；${m.date}；${m.stage}；${m.status}；${m.dataType}`):['- 暂无可用赛程']),
+    '',
+    '【可用模拟预测摘要】',
+    ...(ctx.predictions.length?ctx.predictions.slice(0,8).map(p=>`- ${p.match}；倾向 ${p.pick}；${p.confidence}；比分 ${p.score}；${p.probs}；${p.tags}`):['- 暂无模拟预测'])
+  );
+  return lines.join('\n');
+}
+function buildAIPrompt(role,task,ctx,extra){
+  return[
+    '角色设定：你是 2026 世界杯赛事分析顾问和教练组分析助手。',
+    `补充角色：${role}`,
+    '',
+    '请你基于这些数据替用户分析。不要编造当前数据中没有的事实，不要假装你知道页面没有提供的实时伤病、官方阵容、真实赔率或赛果。',
+    '必须明确区分真实缓存数据、静态数据、模拟数据、示例数据、Demo / Mock / Sample / Estimated 标签。',
+    '输出中文优先，可以保留必要英文指标名。',
+    '不要给投注建议，不要承诺预测准确率。',
+    '',
+    '【分析任务】',
+    task,
+    '',
+    formatAIContextBlock(ctx),
+    extra?'\n【补充页面报告】\n'+extra:'',
+    '',
+    '【请按以下结构输出】',
+    '1. 30秒结论',
+    '2. 胜负倾向或走势判断',
+    '3. 核心理由',
+    '4. 关键风险',
+    '5. 最大不确定性',
+    '6. 普通球迷能看懂的总结',
+    '7. 后续需要关注的数据',
+    '末尾必须写：本分析仅用于赛事分析、学习和情景推演，不构成投注建议。'
+  ].filter(Boolean).join('\n');
+}
+function generateDailyAIPrompt(){
+  const ctx=buildAIContext('daily',null);
+  return buildAIPrompt('你是世界杯赛事分析顾问，擅长把多场比赛压缩成中文今日简报。','请生成一份今日情报分析，重点说明今日重点、冷门观察、价值信号、高风险比赛、伤病提醒和数据来源。',ctx,generateDailyBriefingText());
+}
+function generateMatchAIPrompt(matchOrPrediction){
+  const ctx=buildAIContext('match',matchOrPrediction);
+  const src=getAIMatchSourceFromTarget(matchOrPrediction);
+  return buildAIPrompt('你是世界杯赛事分析顾问，擅长单场比赛赛前分析。','请分析这场比赛的倾向、关键因素、风险、可解释结论和普通球迷能看懂的总结。',ctx,generateMatchReportText(src));
+}
+function generateTeamAIPrompt(teamName){
+  teamName=getAITeamName(teamName);
+  const ctx=buildAIContext('team',teamName);
+  return buildAIPrompt('你是世界杯球队分析顾问，擅长用中文解释球队强弱、状态和风险。',`请分析 ${cnName(teamName)} / ${teamName} 的球队状态、优势、隐患、相关比赛和数据来源。`,ctx,generateTeamReportText(teamName));
+}
+function generateCoachAIPrompt(teamName){
+  teamName=getAITeamName(teamName);
+  const ctx=buildAIContext('coach',teamName);
+  return buildAIPrompt('你是国家队教练组分析顾问，擅长从备战、出线和淘汰赛路径角度分析。',`请为 ${cnName(teamName)} / ${teamName} 生成教练组报告，覆盖球队现状、小组形势、已赛/未赛、球员状态、战术外部因素、出线路径和最终判断。`,ctx,generateCoachReportText(teamName));
+}
+function generateAIAnalysisPrompt(type,target){
+  if(type==='match')return generateMatchAIPrompt(target);
+  if(type==='team')return generateTeamAIPrompt(target);
+  if(type==='coach')return generateCoachAIPrompt(target);
+  return generateDailyAIPrompt();
+}
+function getAIPromptTitle(type,target){
+  if(type==='match'){
+    const s=summarizeAIMatchSource(getAIMatchSourceFromTarget(target));
+    return `${cnName(s.home)} vs ${cnName(s.away)} AI单场分析`;
+  }
+  if(type==='team'||type==='coach'){
+    const name=getAITeamName(target);
+    return `${cnName(name)} ${getAITypeLabel(type)}`;
+  }
+  return '今日情报 AI Prompt';
+}
+function renderAIAnalysisControls(){
+  const el=document.getElementById('aiTargetControls');
+  if(!el)return;
+  const type=document.getElementById('aiAnalysisType')?.value||'daily';
+  const matchOptions=getExportMatchOptions().map(o=>`<option value="${escapeHTML(o.value)}">${escapeHTML(o.label)}</option>`).join('');
+  const teamOptions=getEffectiveTeams().map(t=>`<option value="${escapeHTML(t.name)}">${t.flag} ${escapeHTML(cnName(t.name))} / ${escapeHTML(t.name)}</option>`).join('');
+  if(type==='match'){
+    el.innerHTML=`<div class="export-form-row"><label>选择比赛</label><select id="aiMatchSelect">${matchOptions}</select></div>`;
+  }else if(type==='team'||type==='coach'){
+    el.innerHTML=`<div class="export-form-row"><label>选择球队</label><select id="aiTeamSelect">${teamOptions}</select></div>`;
+  }else{
+    el.innerHTML='<div class="ai-helper-text">今日情报会自动汇总当前页面的重点比赛、冷门观察、价值信号、伤病提醒和数据来源。</div>';
+  }
+  updateAIDataSourceSummary();
+}
+function renderAIAnalysisSection(){
+  if(!document.getElementById('aiAnalysisType'))return;
+  populateOpenAISettingsPanel();
+  renderAIAnalysisControls();
+}
+function getAITargetFromUI(type){
+  if(type==='match')return document.getElementById('aiMatchSelect')?.value||'pred:0';
+  if(type==='team'||type==='coach')return document.getElementById('aiTeamSelect')?.value||getCoachDefaultTeam();
+  return null;
+}
+function updateAIDataSourceSummary(){
+  const el=document.getElementById('aiDataSourceSummary');
+  if(!el)return;
+  const type=document.getElementById('aiAnalysisType')?.value||'daily';
+  const target=getAITargetFromUI(type);
+  const ctx=buildAIContext(type,target);
+  el.textContent=`数据来源：${ctx.dataSource} · ${dataTypeLabel(ctx.dataType)} · API缓存 ${ctx.apiCache.hasCache?'有':'无'} · 上次刷新 ${ctx.apiCache.updatedAt||'—'}`;
+}
+function generateAIAnalysisPromptFromUI(overrideTarget){
+  const type=document.getElementById('aiAnalysisType')?.value||'daily';
+  const target=overrideTarget||getAITargetFromUI(type);
+  const prompt=generateAIAnalysisPrompt(type,target);
+  const output=document.getElementById('aiPromptOutput');
+  if(output)output.value=prompt;
+  const ctx=buildAIContext(type,target);
+  currentAIPromptMeta={type,title:getAIPromptTitle(type,target),prompt,dataSource:ctx.dataSource,dataType:ctx.dataType,target};
+  updateAIDataSourceSummary();
+  showToast('AI 分析提示词已生成','success');
+}
+function copyAIPrompt(){
+  const text=document.getElementById('aiPromptOutput')?.value||'';
+  if(!text){showToast('暂无 Prompt 可复制','error');return;}
+  copyTextToClipboard(text,'AI Prompt 已复制');
+}
+function clearAIPrompt(){
+  const out=document.getElementById('aiPromptOutput');
+  if(out)out.value='';
+  currentAIPromptMeta=null;
+  showToast('AI Prompt 已清空','success');
+}
+function saveAIAnalysisSnapshots(){
+  aiAnalysisSnapshots.sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));
+  safeStorageSet('wc2026_private_ai_reports',JSON.stringify(aiAnalysisSnapshots));
+  if(document.getElementById('sec-export')?.classList.contains('active'))renderAIAnalysisSnapshots();
+}
+function buildAISnapshotText(s){
+  return[
+    '2026 世界杯 AI 分析助手',
+    '类型: '+getAITypeLabel(s.type),
+    '标题: '+s.title,
+    '生成时间: '+s.createdAt,
+    '模型: '+(s.model||'未记录 / 手动粘贴'),
+    '数据来源: '+(s.dataSource||'—'),
+    '',
+    '【Prompt】',
+    s.prompt||'',
+    '',
+    '【AI 输出】',
+    s.result||'',
+    '',
+    '风险提示：本工具仅用于赛事分析、学习和情景推演。模拟预测、示例赔率和模型输出不构成投注建议。'
+  ].join('\n');
+}
+function saveAIAnalysisSnapshot(){
+  const prompt=document.getElementById('aiPromptOutput')?.value||'';
+  const result=document.getElementById('aiResultInput')?.value||'';
+  if(!result.trim()){showToast('请先粘贴 AI 输出结果','error');return;}
+  const type=currentAIPromptMeta?.type||document.getElementById('aiAnalysisType')?.value||'daily';
+  const snap={id:'ai_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8),type,title:currentAIPromptMeta?.title||getAIPromptTitle(type,getAITargetFromUI(type)),prompt,result,model:currentAIPromptMeta?.model||document.getElementById('openaiModelSelect')?.value||getOpenAIModel(),createdAt:new Date().toISOString(),dataSource:currentAIPromptMeta?.dataSource||getCoachReportDataLayer().source};
+  aiAnalysisSnapshots.push(snap);
+  saveAIAnalysisSnapshots();
+  showToast('AI 分析记录已保存','success');
+}
+function downloadAIResultText(){
+  const prompt=document.getElementById('aiPromptOutput')?.value||'';
+  const result=document.getElementById('aiResultInput')?.value||'';
+  if(!result.trim()){showToast('暂无 AI 输出可导出','error');return;}
+  const type=currentAIPromptMeta?.type||document.getElementById('aiAnalysisType')?.value||'daily';
+  const text=buildAISnapshotText({type,title:currentAIPromptMeta?.title||getAITypeLabel(type),prompt,result,model:currentAIPromptMeta?.model||document.getElementById('openaiModelSelect')?.value||getOpenAIModel(),createdAt:new Date().toISOString(),dataSource:currentAIPromptMeta?.dataSource||getCoachReportDataLayer().source});
+  downloadTextFile('wc2026-ai-analysis-result.txt',text);
+  showToast('AI 分析结果已导出','success');
+}
+function copyAIResult(){
+  const result=document.getElementById('aiResultInput')?.value||'';
+  if(!result.trim()){showToast('暂无 AI 输出可复制','error');return;}
+  copyTextToClipboard(result,'AI 输出已复制');
+}
+function getAISnapshot(id){return aiAnalysisSnapshots.find(s=>s.id===id);}
+function copyAISnapshot(id){const s=getAISnapshot(id);if(s)copyTextToClipboard(buildAISnapshotText(s),'AI 分析记录已复制');}
+function downloadAISnapshot(id){const s=getAISnapshot(id);if(!s)return;downloadTextFile('wc2026-ai-analysis-'+(s.type||'report')+'.txt',buildAISnapshotText(s));showToast('AI 分析记录已下载','success');}
+function deleteAISnapshot(id){if(!confirm('确定删除这个 AI 分析记录？'))return;aiAnalysisSnapshots=aiAnalysisSnapshots.filter(s=>s.id!==id);saveAIAnalysisSnapshots();showToast('AI 分析记录已删除','success');}
+function renderAIAnalysisSnapshots(){
+  const el=document.getElementById('aiSnapshotManager');
+  if(!el)return;
+  const rows=aiAnalysisSnapshots.slice().sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));
+  if(!rows.length){el.innerHTML='<div class="audit-empty">暂无我的 AI 分析记录。</div>';return;}
+  el.innerHTML=rows.map(s=>`<div class="ai-snapshot-card"><div class="ai-snapshot-title">${escapeHTML(s.title||getAITypeLabel(s.type))}</div><div class="ai-snapshot-meta">${escapeHTML(getAITypeLabel(s.type))} · ${escapeHTML(s.createdAt||'')} · 模型：${escapeHTML(s.model||'未记录')} · 数据来源：${escapeHTML(s.dataSource||'—')}</div><div class="snapshot-actions"><button class="detail-btn" onclick="copyAISnapshot('${s.id}')">复制</button><button class="detail-btn" onclick="downloadAISnapshot('${s.id}')">下载 TXT</button><button class="detail-btn" onclick="deleteAISnapshot('${s.id}')">删除</button></div></div>`).join('');
+}
+function openAIAnalysis(type,target,autoGenerate){
+  closeModal('matchInsightModal');
+  closeModal('teamDetailModal');
+  closeModal('coachReportModal');
+  showSection('ai-analysis',document.querySelector('[data-section="ai-analysis"]'));
+  const typeEl=document.getElementById('aiAnalysisType');
+  if(typeEl)typeEl.value=type||'daily';
+  renderAIAnalysisControls();
+  if(type==='match'&&typeof target==='string'){
+    const sel=document.getElementById('aiMatchSelect');if(sel)sel.value=target;
+  }else if((type==='team'||type==='coach')&&typeof target==='string'){
+    const sel=document.getElementById('aiTeamSelect');if(sel)sel.value=target;
+  }
+  if(autoGenerate)generateAIAnalysisPromptFromUI(target&&typeof target==='object'?target:undefined);
+}
+function openAIAnalysisFromDaily(){openAIAnalysis('daily',null,true);}
+function openAIAnalysisFromCurrentMatch(){openAIAnalysis('match',getCurrentMatchReportSource(),true);}
+function openAIAnalysisFromTeam(name){openAIAnalysis('team',name||window.currentTeamProfileName||getCoachDefaultTeam(),true);}
 function setShareCardType(type){const el=document.getElementById('shareCardType');if(el)el.value=type;}
 function renderExportCenter(){
   const matchSelect=document.getElementById('exportMatchSelect');
   if(matchSelect)matchSelect.innerHTML=getExportMatchOptions().map(o=>`<option value="${escapeHTML(o.value)}">${escapeHTML(o.label)}</option>`).join('');
   const teamSelect=document.getElementById('exportTeamSelect');
   if(teamSelect)teamSelect.innerHTML=getEffectiveTeams().map(t=>`<option value="${escapeHTML(t.name)}">${t.flag} ${escapeHTML(cnName(t.name))} / ${escapeHTML(t.name)}</option>`).join('');
+  populateCoachTeamSelects(window.currentCoachReportTeam||getCoachDefaultTeam());
   previewMatchReport();
   previewTeamReport();
+  previewCoachExportReport();
   renderSnapshotManager();
+  renderAIAnalysisSnapshots();
   if(!currentShareCardDataUrl)generateShareCard();
 }
 function drawWrappedText(ctx,text,x,y,maxWidth,lineHeight,maxLines){
@@ -2977,6 +3824,11 @@ function getShareCardPayload(type){
   if(type==='team_profile'){
     const name=window.currentTeamProfileName||document.getElementById('exportTeamSelect')?.value||getEffectiveTeams()[0].name,t=getTeam(name);
     return{title:`${cnName(name)} / ${name}`,subtitle:'球队资料 · 估算数据',dataType:'Estimated / Sample',metrics:[`综合：${t.overall}`,`ELO：${t.elo}`,`状态分：${getFormPoints(name)}`,`关键球员：${t.key_player}`,`伤病：${getInjuryImpactLine(name).slice(0,90)}`]};
+  }
+  if(type==='coach_report'){
+    const name=window.currentCoachReportTeam||document.getElementById('exportCoachTeamSelect')?.value||getCoachDefaultTeam();
+    const t=getTeam(name),group=getCoachTeamGroupInfo(name),final=getCoachFinalJudgement(name,group),data=getCoachReportDataLayer();
+    return{title:`${cnName(name)} 教练组报告`,subtitle:'球队状态 · 小组形势 · 出线路径',dataType:data.dataType,metrics:[`数据来源：${data.source}`,`综合实力：${t.overall}`,`状态分：${getFormPoints(name)}`,`小组：${group.group} · ${group.rank?`Mock #${group.rank}`:'暂无真实排名'}`,`教练组倾向：${final.tendency}`,`最大风险：${final.biggestRisk}`]};
   }
   if(type==='audit_summary'){
     const s=getAuditSummary();
@@ -3028,7 +3880,7 @@ function generateShareCard(){
   ctx.fillText('生成时间：'+new Date().toLocaleString(),60,h-52);
   ctx.fillText('风险提示：模拟预测和示例赔率不构成投注建议',60,h-24);
   currentShareCardDataUrl=canvas.toDataURL('image/png');
-  showToast('分享图片已生成','success');
+  showToast('本地图片已生成','success');
 }
 function downloadShareCardPNG(){
   const canvas=document.getElementById('shareCardCanvas');
@@ -3048,7 +3900,7 @@ function renderSnapshotManager(){
   el.innerHTML=`<div style="overflow-x:auto"><table class="snapshot-table"><thead><tr><th>类型</th><th>标题</th><th>创建时间</th><th>数据类型</th><th>操作</th></tr></thead><tbody>${rows.map(s=>`<tr><td>${escapeHTML(s.type)}</td><td>${escapeHTML(s.title)}</td><td>${escapeHTML(s.createdAt)}</td><td>${escapeHTML(dataTypeLabel(s.dataType))}</td><td><div class="snapshot-actions"><button class="detail-btn" onclick="viewSnapshot('${s.id}')">查看</button><button class="detail-btn" onclick="copySnapshot('${s.id}')">复制</button><button class="detail-btn" onclick="deleteSnapshot('${s.id}')">删除</button><button class="detail-btn" onclick="exportSnapshotJSON('${s.id}')">导出 JSON</button></div></td></tr>`).join('')}</tbody></table></div>`;
 }
 function getSnapshot(id){return exportSnapshots.find(s=>s.id===id);}
-function viewSnapshot(id){const s=getSnapshot(id);if(!s)return;const target=s.type==='team_report'?document.getElementById('teamReportPreview'):document.getElementById('matchReportPreview');if(target)target.textContent=s.content;showToast('快照已载入预览','info');}
+function viewSnapshot(id){const s=getSnapshot(id);if(!s)return;const target=s.type==='coach_report'?document.getElementById('coachReportPreview'):s.type==='team_report'?document.getElementById('teamReportPreview'):document.getElementById('matchReportPreview');if(target)target.textContent=s.content;showToast('快照已载入预览','info');}
 function copySnapshot(id){const s=getSnapshot(id);if(s)copyTextToClipboard(s.content,'快照已复制');}
 function deleteSnapshot(id){if(!confirm('确定删除这个快照？'))return;exportSnapshots=exportSnapshots.filter(s=>s.id!==id);saveExportSnapshots();showToast('快照已删除','success');}
 function exportSnapshotJSON(id){const s=getSnapshot(id);if(!s)return;downloadTextFile('wc2026-snapshot.json',JSON.stringify(s,null,2));showToast('快照 JSON 已导出','success');}
@@ -3147,12 +3999,14 @@ function renderCommandCenter(){
     ['📡','实时赛程','查看赛程、比分状态和小组信息。','live'],
     ['🗂️','数据管理','查看数据来源、完整性检查和自定义导入。','data'],
     ['📈','模型审计','记录预测结果，复盘命中率和校准情况。','audit'],
-    ['📤','导出中心','生成报告、快照和分享图片。','export'],
+    ['📤','导出中心','生成报告、我的分析记录和本地图片。','export'],
+    ['🤖','AI分析助手','自动整理比赛、球队、赛程、伤病、数据来源，让 OpenAI 生成中文分析结论。','ai-analysis'],
+    ['🧑‍🏫','教练组报告','以国家队教练组视角，整合球队状态、小组形势、球员风险、未赛对手和出线路径。','coach'],
     ['⚙️','设置','调整语言、主题、数据偏好和本地数据。','settings']
   ];
   grid.innerHTML=items.map(([icon,title,desc,target])=>`<div class="command-item"><div class="command-icon">${icon}</div><div><div class="command-title">${escapeHTML(title)}</div><div class="command-desc">${escapeHTML(desc)}</div></div><button class="command-go" onclick="goCommand('${target}')">进入</button></div>`).join('');
 }
-function goCommand(target){if(target==='settings')openSettingsModal();else showSection(target,document.querySelector(`[data-section="${target}"]`));}
+function goCommand(target){if(target==='settings')openSettingsModal();else if(target==='coach')openCoachReportModal(getCoachDefaultTeam());else showSection(target,document.querySelector(`[data-section="${target}"]`));}
 function applySettings(){
   currentTheme=wc2026Settings.theme||'dark';
   document.documentElement.setAttribute('data-theme',currentTheme);
@@ -3196,7 +4050,7 @@ function clearAllLocalStorage(){
   if(!confirm('确定清空所有 WC 2026 本地数据？'))return;
   if(!confirm('这会删除设置、收藏、预测记录、快照和自定义数据。继续？'))return;
   Object.keys(localStorage).filter(k=>k.startsWith('wc2026_')).forEach(k=>localStorage.removeItem(k));
-  watchlist=[];predictionLedger=[];exportSnapshots=[];customDatasetMeta={};wc2026Settings={languageMode:'zh',theme:'dark',dataPreference:'prefer_live',apiRefreshMode:'save_api',riskLabels:'show',defaultExportTheme:'dark'};
+  watchlist=[];predictionLedger=[];exportSnapshots=[];aiAnalysisSnapshots=[];customDatasetMeta={};wc2026Settings={languageMode:'zh',theme:'dark',dataPreference:'prefer_live',apiRefreshMode:'save_api',riskLabels:'show',defaultExportTheme:'dark'};
   applySettings();refreshCustomRegistryStatus();renderOverview();renderDataManager();showToast('全部本地数据已清空','success');
 }
 function openOnboarding(force){
@@ -3224,7 +4078,7 @@ function showSection(id,btn){
   if(!section){showToast('Section unavailable: '+id,'error');return;}
   section.classList.add('active');
   setNavActive(id);
-  const fns={overview:renderOverview,teams:renderTeams,schedule:renderSchedule,predictions:renderPredictions,intelligence:renderIntelligence,audit:renderAudit,export:renderExportCenter,data:renderDataManager,players:renderPlayers,odds:renderOdds,bracket:renderBracket,tools:renderTools,model:typeof renderModel==='function'?renderModel:function(){}};
+  const fns={overview:renderOverview,teams:renderTeams,schedule:renderSchedule,predictions:renderPredictions,intelligence:renderIntelligence,'ai-analysis':renderAIAnalysisSection,audit:renderAudit,export:renderExportCenter,data:renderDataManager,players:renderPlayers,odds:renderOdds,bracket:renderBracket,tools:renderTools,model:typeof renderModel==='function'?renderModel:function(){}};
   if(fns[id])fns[id]();
   renderRegistryMetaBadges();
   if(id==='live'&&typeof initLiveSchedule==='function')initLiveSchedule();
@@ -3475,7 +4329,7 @@ function buildMatchInsightHTML(p){
         <div class="insight-metric"><div class="val" style="color:${analysis.risk==='High'?'var(--red)':analysis.risk==='Medium'?'var(--yellow)':'var(--green)'}">${zhRisk(analysis.risk)}</div><div class="lbl">风险等级</div></div>
         <div class="insight-metric"><div class="val">${dataTypeLabel(dataType)}</div><div class="lbl">数据类型</div></div>
       </div>
-      <div style="display:flex;justify-content:flex-end;gap:6px;flex-wrap:wrap">${logButton}<button class="detail-btn" onclick="event.stopPropagation();copyCurrentMatchReport()">复制报告</button><button class="detail-btn" onclick="event.stopPropagation();saveCurrentMatchSnapshot()">保存快照</button><button class="detail-btn" onclick="event.stopPropagation();exportCurrentMatchCard()">导出图片</button></div>
+      <div style="display:flex;justify-content:flex-end;gap:6px;flex-wrap:wrap">${logButton}<button class="detail-btn" onclick="event.stopPropagation();openAIAnalysisFromCurrentMatch()">AI分析这场比赛</button><button class="detail-btn" onclick="event.stopPropagation();openCoachReportForCurrentMatch()">生成本场教练组分析</button><button class="detail-btn" onclick="event.stopPropagation();copyCurrentMatchReport()">复制报告</button><button class="detail-btn" onclick="event.stopPropagation();saveCurrentMatchSnapshot()">保存快照</button><button class="detail-btn" onclick="event.stopPropagation();exportCurrentMatchCard()">导出图片</button></div>
     </div>
     <div class="card" style="margin-bottom:12px">
       <div class="card-title">判断标签</div>
@@ -3527,7 +4381,7 @@ function buildScheduleOnlyInsightHTML(match){
         <div class="insight-metric"><div class="val" style="color:var(--muted)">未知</div><div class="lbl">风险等级</div></div>
         <div class="insight-metric"><div class="val">${dataTypeLabel(match.dataType||'official_partial')}</div><div class="lbl">数据类型</div></div>
       </div>
-      <div style="display:flex;justify-content:flex-end;gap:6px;flex-wrap:wrap"><button class="log-btn" disabled>暂无预测可记录</button><button class="detail-btn" onclick="event.stopPropagation();copyCurrentMatchReport()">复制报告</button><button class="detail-btn" onclick="event.stopPropagation();saveCurrentMatchSnapshot()">保存快照</button><button class="detail-btn" onclick="event.stopPropagation();exportCurrentMatchCard()">导出图片</button></div>
+      <div style="display:flex;justify-content:flex-end;gap:6px;flex-wrap:wrap"><button class="log-btn" disabled>暂无预测可记录</button><button class="detail-btn" onclick="event.stopPropagation();openAIAnalysisFromCurrentMatch()">AI分析这场比赛</button><button class="detail-btn" onclick="event.stopPropagation();openCoachReportForCurrentMatch()">生成本场教练组分析</button><button class="detail-btn" onclick="event.stopPropagation();copyCurrentMatchReport()">复制报告</button><button class="detail-btn" onclick="event.stopPropagation();saveCurrentMatchSnapshot()">保存快照</button><button class="detail-btn" onclick="event.stopPropagation();exportCurrentMatchCard()">导出图片</button></div>
     </div>
     <div class="card" style="margin-bottom:12px">
       <div class="card-title">已知球队资料</div>
@@ -3724,9 +4578,9 @@ function renderCustomDatasetStatus(){
 function renderBuildInfo(){
   const el=document.getElementById('buildInfoPanel');
   if(!el)return;
-  const keys=['wc2026_seen_onboarding','wc2026_settings','wc2026_watchlist','wc2026_prediction_ledger','wc2026_export_snapshots','wc2026_real_api_provider','wc2026_real_api_key_football_data','wc2026_real_api_key_api_football','wc2026_real_matches_cache','wc2026_real_matches_cache_updated_at','wc2026_real_matches_cache_source','wc2026_custom_teams','wc2026_custom_matches','wc2026_custom_groups','wc2026_custom_odds','wc2026_custom_injuries','wc2026_custom_meta'];
+  const keys=['wc2026_seen_onboarding','wc2026_settings','wc2026_watchlist','wc2026_prediction_ledger','wc2026_export_snapshots','wc2026_private_ai_reports','wc2026_openai_api_key','wc2026_openai_model','wc2026_openai_output_style','wc2026_real_api_provider','wc2026_real_api_key_football_data','wc2026_real_api_key_api_football','wc2026_real_matches_cache','wc2026_real_matches_cache_updated_at','wc2026_real_matches_cache_source','wc2026_custom_teams','wc2026_custom_matches','wc2026_custom_groups','wc2026_custom_odds','wc2026_custom_injuries','wc2026_custom_meta'];
   el.innerHTML=[
-    ['版本','v19.2'],
+    ['版本','v20'],
     ['单 HTML 模式','true'],
     ['最近验证','2026-06-11'],
     ['使用的 LocalStorage keys',keys.join(', ')],
@@ -4292,7 +5146,7 @@ function showTeamModal(name){
     <div class="team-profile-section"><div class="profile-section-title">赔率快照 · 示例数据（Sample）</div>${getTeamOddsSnapshot(name)}</div>
   </div>
   <div class="team-profile-section"><div class="profile-section-title">相关比赛详情 · 模拟预测（Model Demo）</div>${getTeamInsightRows(name)}</div>
-  <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="calc-btn" onclick="toggleStar('${name}');showToast('关注列表已更新','success')">${watchlist.includes(name)?'★ 取消关注':'☆ 关注'}</button><button class="detail-btn" onclick="event.stopPropagation();copyCurrentTeamReport()">复制球队报告</button><button class="detail-btn" onclick="event.stopPropagation();saveCurrentTeamSnapshot()">保存快照</button><button class="detail-btn" onclick="event.stopPropagation();exportCurrentTeamCard()">导出图片</button></div>`;
+  <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="calc-btn" onclick="toggleStar('${name}');showToast('关注列表已更新','success')">${watchlist.includes(name)?'★ 取消关注':'☆ 关注'}</button><button class="detail-btn" onclick="event.stopPropagation();openAIAnalysisFromTeam('${name}')">AI分析这支球队</button><button class="detail-btn" onclick="event.stopPropagation();openCoachReportModal('${name}')">生成教练组报告</button><button class="detail-btn" onclick="event.stopPropagation();copyCurrentTeamReport()">复制球队报告</button><button class="detail-btn" onclick="event.stopPropagation();saveCurrentTeamSnapshot()">保存快照</button><button class="detail-btn" onclick="event.stopPropagation();exportCurrentTeamCard()">导出图片</button></div>`;
   document.getElementById('teamDetailModal').classList.add('open');
   setTimeout(()=>renderTeamStrengthRadar(name),0);
 }
@@ -4300,9 +5154,11 @@ function closeModal(id){document.getElementById(id)?.classList.remove('open');if
 document.addEventListener('click',e=>{
   const teamModal=document.getElementById('teamDetailModal');
   const matchModal=document.getElementById('matchInsightModal');
+  const coachModal=document.getElementById('coachReportModal');
   const resultModal=document.getElementById('setResultModal');
   if(e.target===teamModal)closeModal('teamDetailModal');
   if(e.target===matchModal)closeModal('matchInsightModal');
+  if(e.target===coachModal)closeModal('coachReportModal');
   if(e.target===resultModal)closeModal('setResultModal');
 });
 

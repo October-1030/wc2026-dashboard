@@ -1,47 +1,63 @@
-# WC2026 世界杯智能分析 Dashboard
+# WC2026 私人 AI 分析台 v20
 
-这是一个 2026 世界杯赛事分析 Demo 网页。
+这是一个单 HTML 的 2026 世界杯私人分析工具。
 
-## 在线用途
+## 定位
 
-- 今日情报
-- 比赛详情
-- 球队资料
-- 导出中心
-- 私人真实赛程 / 比分数据模式
+- 私人使用
+- 本机保存 API Key
+- 手动刷新真实赛程 / 比分
+- 由 AI 分析比赛、球队、风险和结论
+- 不接后端服务
+- 不接数据库
+- 不写死任何 API Key
 
-## 数据说明
+## 本地使用
 
-默认显示 Demo / Mock / Sample 数据。
-页面不自带任何 API key。
-每个用户可以输入自己的免费 API key。
+推荐本地运行：
 
-## API key 安全说明
+```bat
+run-local.bat
+```
 
-API key 只保存在用户自己的浏览器 localStorage。
-不会上传到 GitHub。
-不会共享给其他用户。
-不会写进 index.html。
+然后打开：
 
-## 支持的数据源
+```text
+http://127.0.0.1:8088
+```
 
+也可以直接打开 `index.html`。
+
+## API Key 安全说明
+
+OpenAI API Key、football-data.org Key、API-FOOTBALL Key 都只保存在当前浏览器的 `localStorage`。
+
+- 不会写进 `index.html`
+- 不会上传到 GitHub
+- 不会自动请求外部 API
+- 清除浏览器数据会删除 Key
+
+## 手动请求原则
+
+页面打开时不会自动请求：
+
+- OpenAI
 - football-data.org
 - API-FOOTBALL
 
-## 使用方式
+只有手动点击对应按钮才会请求：
 
-1. 打开网页。
-2. 进入“真实赛程 / 比分数据”面板。
-3. 选择数据源。
-4. 输入自己的 API key。
-5. 点击“刷新真实赛程”。
-6. 页面会把结果缓存到自己的浏览器。
+- 使用 OpenAI 分析
+- 测试 OpenAI 连接
+- 刷新真实赛程 / 比分
+- 测试赛程 API 连接
+
+## 数据说明
+
+页面默认包含 Demo / Mock / Sample 数据。
+如果本机存在真实赛程缓存或手动导入数据，会优先用于 AI Prompt 和分析上下文。
 
 ## 风险提示
 
 本工具仅用于赛事分析、学习和情景推演。
 模拟预测、示例赔率和模型输出不构成投注建议。
-
-## 当前 Netlify 版本
-
-https://storied-parfait-88d08d.netlify.app/
