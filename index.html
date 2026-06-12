@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<!-- v20: private AI analyst mode -->
+﻿<!DOCTYPE html>
+<!-- v20: private DeepSeek V4 Pro AI analyst mode -->
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2026世界杯 — 私人AI分析台 v20</title>
+<title>2026世界杯 — DeepSeek私人AI分析台 v20</title>
 <link rel="icon" href="data:,">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
@@ -165,7 +165,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
 .group-analysis-title{font-weight:900;color:var(--accent);font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
 .group-analysis-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px}
 .group-analysis-grid span{color:var(--muted)}
-.group-risk-high{color:var(--red);font-weight:800}.group-risk-medium{color:var(--yellow);font-weight:800}.group-risk-low{color:var(--green);font-weight:800}
+.group_risk_high{color:var(--red);font-weight:800}.group_risk_medium{color:var(--yellow);font-weight:800}.group_risk_low{color:var(--green);font-weight:800}
 .compact-table-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--border);border-radius:var(--radius)}
 .compact-schedule-table{width:100%;min-width:880px;border-collapse:collapse;font-size:.74rem}
 .compact-schedule-table th{padding:8px 10px;text-align:left;color:var(--muted);font-weight:800;border-bottom:1px solid var(--border);background:var(--surface);white-space:nowrap}
@@ -421,7 +421,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
 .insight-explain-list{display:grid;gap:8px;margin-top:12px}
 .insight-explain-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 10px;font-size:.74rem;line-height:1.5}
 .insight-explain-item strong{display:block;color:var(--text);font-size:.72rem;margin-bottom:2px}
-.risk-note{margin-top:12px;border:1px solid rgba(249,115,22,.35);background:rgba(249,115,22,.1);color:#fb923c;border-radius:8px;padding:9px 10px;font-size:.72rem;font-weight:700}
+.risk_note{margin-top:12px;border:1px solid rgba(249,115,22,.35);background:rgba(249,115,22,.1);color:#fb923c;border-radius:8px;padding:9px 10px;font-size:.72rem;font-weight:700}
 .verdict-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px}
 .scorecard-table{width:100%;border-collapse:collapse;font-size:.72rem}
 .scorecard-table th{padding:7px 8px;color:var(--muted);text-align:left;border-bottom:1px solid var(--border);background:var(--card)}
@@ -482,8 +482,8 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
 .settings-field select{background:var(--input-bg);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:8px 10px}
 .settings-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .settings-danger{border-top:1px solid var(--border);padding-top:12px;margin-top:12px}
-.risk-secondary-hidden .risk-secondary{display:none!important}
-.risk-secondary-compact .risk-secondary{max-height:20px;overflow:hidden;opacity:.75}
+.risk_secondary_hidden .risk_secondary{display:none!important}
+.risk_secondary_compact .risk_secondary{max-height:20px;overflow:hidden;opacity:.75}
 .onboarding-steps{display:grid;gap:9px;margin:12px 0}
 .onboarding-step{background:var(--card2);border:1px solid rgba(42,53,80,.75);border-radius:8px;padding:10px;font-size:.78rem;line-height:1.45}
 .onboarding-risk{font-size:.74rem;color:var(--yellow);line-height:1.45;margin:8px 0 12px}
@@ -605,6 +605,18 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
 .bt-compare .metric{text-align:left;color:var(--muted);font-size:.72rem}
 
 /* ── LIVE SCHEDULE ── */
+.live-control-panel{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px}
+.live-control-section{background:var(--card);border:1px solid rgba(42,53,80,.72);border-radius:10px;padding:12px;margin-top:12px}
+.live-control-title{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:900;color:var(--text);margin-bottom:8px}
+.live-control-title span{font-size:.68rem;color:var(--muted);font-weight:700}
+.real-status-message{font-size:.74rem;line-height:1.55;border:1px solid rgba(100,116,139,.28);background:rgba(100,116,139,.1);color:var(--muted);border-radius:8px;padding:8px 10px;margin:8px 0 2px;overflow-wrap:anywhere}
+.real-status-message.info{border-color:rgba(59,130,246,.32);background:rgba(59,130,246,.1);color:#93c5fd}
+.real-status-message.success{border-color:rgba(34,197,94,.34);background:rgba(34,197,94,.1);color:#86efac}
+.real-status-message.error{border-color:rgba(239,68,68,.38);background:rgba(239,68,68,.1);color:#fca5a5}
+.real-status-message.loading{border-color:rgba(0,212,255,.34);background:rgba(0,212,255,.09);color:var(--accent)}
+.api-key-row button:disabled,.api-proxy-row button:disabled,.detail-btn:disabled,.btn-refresh:disabled{opacity:.55;cursor:not-allowed;filter:saturate(.6)}
+.live-action-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.live-action-row .detail-btn{padding:7px 12px}
 .api-key-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:16px}
 .api-key-box h3{font-size:.85rem;color:var(--accent);margin:0 0 6px}
 .api-key-box p{font-size:.72rem;color:var(--muted);margin:0 0 10px;line-height:1.5}
@@ -613,6 +625,13 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
 .api-key-row button{padding:7px 14px;border-radius:6px;border:none;cursor:pointer;font-size:.78rem;font-weight:700}
 .btn-load-api{background:var(--accent);color:#000}
 .btn-clear-api{background:var(--surface);color:var(--muted);border:1px solid var(--border)!important}
+.api-proxy-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px;background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.18);border-radius:8px;padding:8px 10px}
+.api-proxy-row label{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text);font-weight:700;white-space:nowrap}
+.api-proxy-row input[type=checkbox]{width:auto;min-width:0;flex:0 0 auto;accent-color:var(--accent)}
+.api-proxy-row input[type=text]{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);color:var(--text);padding:7px 10px;border-radius:6px;font-size:.76rem}
+.api-proxy-row button{padding:7px 12px;border-radius:6px;cursor:pointer;font-size:.74rem;font-weight:700}
+.proxy-status{font-size:.68rem;color:var(--muted);margin-top:6px;line-height:1.5}
+@media(max-width:640px){.api-proxy-row label{white-space:normal}.api-proxy-row input[type=text]{min-width:100%}}
 .real-data-panel{background:linear-gradient(135deg,rgba(0,212,255,.08),rgba(34,197,94,.06));border:1px solid rgba(0,212,255,.24);border-radius:10px;padding:14px 16px;margin-bottom:12px}
 .real-data-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px}
 .real-data-title{font-size:.88rem;font-weight:900;color:var(--text)}
@@ -798,7 +817,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
         <div class="nav-menu"><button data-section="overview" onclick="showSection('overview',this)">🏠 总览</button></div>
       </div>
       <div class="nav-group" data-nav-group="analysis">
-        <button type="button">分析 ▾</button>
+        <button type="button" data-section="predictions" onclick="showSection('predictions',this)">分析 ▾</button>
         <div class="nav-menu">
           <button data-section="predictions" onclick="showSection('predictions',this)">🎯 预测</button>
           <button data-section="intelligence" onclick="showSection('intelligence',this)">🧠 情报</button>
@@ -808,7 +827,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
         </div>
       </div>
       <div class="nav-group" data-nav-group="data">
-        <button type="button">数据 ▾</button>
+        <button type="button" data-section="data" onclick="showSection('data',this)">数据 ▾</button>
         <div class="nav-menu">
           <button data-section="live" onclick="showSection('live',this)">📡 实时赛程</button>
           <button data-section="data" onclick="showSection('data',this)">🗂️ 数据管理</button>
@@ -816,13 +835,13 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
           <button data-section="players" onclick="showSection('players',this)">⭐ 球员</button>
         </div>
       </div>
-      <div class="nav-group" data-nav-group="tools">
-        <button type="button">工具 ▾</button>
+      <button class="nav-quick-live" data-section="live" onclick="showSection('live',this)">📡 实时</button>      <div class="nav-group" data-nav-group="tools">
+        <button type="button" data-section="tools" onclick="showSection('tools',this)">工具 ▾</button>
         <div class="nav-menu">
           <button data-section="tools" onclick="showSection('tools',this)">🔧 工具</button>
           <button data-section="audit" onclick="showSection('audit',this)">📈 审计</button>
           <button data-section="export" onclick="showSection('export',this)">📤 导出</button>
-          <button data-section="ai-analysis" onclick="showSection('ai-analysis',this)">🤖 AI助手</button>
+          <button data-section="ai-analysis" onclick="showSection('ai-analysis',this)">🤖 DeepSeek</button>
           <button data-section="model" onclick="showSection('model',this)">🤖 AI模型</button>
         </div>
       </div>
@@ -839,12 +858,12 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
   <button data-section="intelligence" onclick="showSection('intelligence',this)">情报</button>
   <button data-section="teams" onclick="showSection('teams',this)">球队</button>
   <button data-section="schedule" onclick="showSection('schedule',this)">赛程</button>
+  <button data-section="live" onclick="showSection('live',this)">实时</button>
   <button data-section="data" onclick="showSection('data',this)">数据</button>
   <button data-section="tools" onclick="showSection('tools',this)">工具</button>
   <button data-section="audit" onclick="showSection('audit',this)">审计</button>
   <button data-section="export" onclick="showSection('export',this)">导出</button>
   <button data-section="ai-analysis" onclick="showSection('ai-analysis',this)">AI</button>
-  <button data-section="live" onclick="showSection('live',this)">实时</button>
   <button data-section="odds" onclick="showSection('odds',this)">赔率</button>
   <button data-section="players" onclick="showSection('players',this)">球员</button>
   <button data-section="bracket" onclick="showSection('bracket',this)">对阵</button>
@@ -857,25 +876,29 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
   <div class="hero">
     <div class="hero-left">
       <div class="hero-title-row">
-        <h1>2026世界杯 私人AI分析台</h1>
-        <span class="version-badge">v20 · 私人AI分析 · 本机密钥</span>
+        <h1>2026世界杯 DeepSeek私人AI分析台</h1>
+        <span class="version-badge">v20 · DeepSeek-V4-Pro · 私人分析</span>
       </div>
-      <p>本机保存 API Key，手动刷新真实赛程，让 AI 帮你分析比赛、球队和风险。</p>
-      <div class="risk-note risk-secondary" style="margin-top:10px">这是私人分析工具。API Key 只保存在你的浏览器，不会写入网页文件。</div>
+      <p>本机保存 DeepSeek API Key，手动刷新真实赛程，让 DeepSeek-V4-Pro 帮你分析比赛、球队和风险。</p>
+      <div class="risk_note risk_secondary" style="margin-top:10px">这是私人分析工具。API Key 只保存在你的浏览器，不会写入网页文件。</div>
+      <div class="hero-actions" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+        <button class="calc-btn" onclick="showSection('live',document.querySelector('[data-section=&quot;live&quot;]'))">📡 打开实时赛程 / 粘贴 API Key</button>
+        <button class="detail-btn" onclick="showSection('odds',document.querySelector('[data-section=&quot;odds&quot;]'))">💰 查看赔率面板</button>
+      </div>
     </div>
     <div class="countdown" id="countdown"></div>
   </div>
   <div class="data-status-strip" id="dataStatusStrip"></div>
   <div class="command-center-card">
     <div class="command-center-header">
-      <div class="command-center-title">私人 AI 快速分析</div>
+      <div class="command-center-title">DeepSeek 私人快速分析</div>
       <span class="data-status-badge live">本机密钥 · 手动调用</span>
     </div>
     <div class="command-grid">
-      <div class="command-item"><div class="command-icon">📰</div><div><div class="command-title">AI分析今日情报</div><div class="command-desc">汇总重点比赛、风险、伤病和数据来源，由 AI 给出结论。</div></div><button class="command-go" onclick="openAIAnalysis('daily',null,true)">进入</button></div>
-      <div class="command-item"><div class="command-icon">⚽</div><div><div class="command-title">AI分析一场比赛</div><div class="command-desc">选择一场比赛，让 AI 解释胜负倾向、核心理由和不确定性。</div></div><button class="command-go" onclick="openAIAnalysis('match','pred:0',true)">进入</button></div>
-      <div class="command-item"><div class="command-icon">🛡️</div><div><div class="command-title">AI分析一支球队</div><div class="command-desc">选择球队，让 AI 分析实力、状态、伤病和相关比赛。</div></div><button class="command-go" onclick="openAIAnalysis('team',getCoachDefaultTeam(),true)">进入</button></div>
-      <div class="command-item"><div class="command-icon">🧑‍🏫</div><div><div class="command-title">AI生成教练组报告</div><div class="command-desc">以备战视角整理小组形势、未赛对手和路径风险。</div></div><button class="command-go" onclick="openAIAnalysis('coach',getCoachDefaultTeam(),true)">进入</button></div>
+      <div class="command-item"><div class="command-icon">📰</div><div><div class="command-title">DeepSeek分析今日情报</div><div class="command-desc">汇总重点比赛、风险、伤病和数据来源，由 DeepSeek 给出结论。</div></div><button class="command-go" onclick="deepSeekAnalysis('daily',null,true)">进入</button></div>
+      <div class="command-item"><div class="command-icon">⚽</div><div><div class="command-title">DeepSeek分析一场比赛</div><div class="command-desc">选择一场比赛，让 DeepSeek 解释胜负倾向、核心理由和不确定性。</div></div><button class="command-go" onclick="deepSeekAnalysis('match','pred:0',true)">进入</button></div>
+      <div class="command-item"><div class="command-icon">🛡️</div><div><div class="command-title">DeepSeek分析一支球队</div><div class="command-desc">选择球队，让 DeepSeek 分析实力、状态、伤病和相关比赛。</div></div><button class="command-go" onclick="deepSeekAnalysis('team',getCoachDefaultTeam(),true)">进入</button></div>
+      <div class="command-item"><div class="command-icon">🧑‍🏫</div><div><div class="command-title">DeepSeek生成教练组报告</div><div class="command-desc">以备战视角整理小组形势、未赛对手和路径风险。</div></div><button class="command-go" onclick="deepSeekAnalysis('coach',getCoachDefaultTeam(),true)">进入</button></div>
     </div>
   </div>
   <div class="command-center-card">
@@ -893,7 +916,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
         <button class="mini-action-btn" onclick="copyDailyBriefing()">复制情报</button>
         <button class="mini-action-btn" onclick="saveDailyBriefingSnapshot()">保存快照</button>
         <button class="mini-action-btn" onclick="exportDailyBriefingCard()">本地图片</button>
-        <button class="mini-action-btn" onclick="openAIAnalysisFromDaily()">AI分析今日情报</button>
+        <button class="mini-action-btn" onclick="deepSeekAnalysisFromDaily()">DeepSeek分析今日情报</button>
       </div>
     </div>
     <div class="daily-brief-grid" id="dailyBriefGrid"></div>
@@ -1003,30 +1026,34 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
 
 <!-- AI ANALYSIS ASSISTANT -->
 <div id="sec-ai-analysis" class="section">
-  <div class="section-title">🤖 AI 分析工作台 <span class="badge">私人本机模式</span></div>
-  <div class="ai-free-note">
-    默认不会自动调用 AI，也不会消耗 API。你可以复制 Prompt 到 ChatGPT 手动使用；
-    也可以填写自己的 OpenAI API Key，只有点击“使用 OpenAI 分析”时才会请求 OpenAI Responses API。
-    API Key 只保存在当前浏览器 localStorage，不会上传到服务器，不会写入 HTML。清除浏览器数据会删除 Key。
-  </div>
+  <div class="section-title">🤖 DeepSeek AI 分析工作台 <span class="badge">私人本机模式</span></div>
+  <div class="ai-free-note">当前支持两种模式：1. 私人 API 模式：填写自己的 DeepSeek API Key 后在网页内生成分析。2. 免费 Prompt 模式：复制提示词到 DeepSeek 网页版或其他 AI 工具手动使用。页面打开不会自动调用 DeepSeek，也不会自动请求赛程 API。</div>
   <div class="card export-panel">
-    <div class="card-title">OpenAI 私人分析设置</div>
+    <div class="card-title">DeepSeek 私人分析设置</div>
     <div class="ai-settings-grid">
       <div class="export-form-row">
-        <label>OpenAI API Key</label>
-        <input id="openaiApiKeyInput" type="password" autocomplete="off" placeholder="粘贴你自己的 OpenAI API key">
+        <label>DeepSeek API Key</label>
+        <input id="deepseekApiKeyInput" type="password" autocomplete="off" placeholder="粘贴你自己的 DeepSeek API Key">
       </div>
       <div class="export-form-row">
-        <label>模型选择</label>
-        <select id="openaiModelSelect">
-          <option value="gpt-5.5">gpt-5.5</option>
-          <option value="gpt-5.4-mini">gpt-5.4-mini</option>
-          <option value="gpt-5.4-nano">gpt-5.4-nano</option>
+        <label>API Endpoint</label>
+        <input id="deepseekEndpointInput" type="text" autocomplete="off" placeholder="https://api.deepseek.com/chat/completions">
+      </div>
+      <div class="export-form-row">
+        <label>快捷模型</label>
+        <select id="deepseekQuickModelSelect" onchange="applyDeepSeekQuickModel()">
+          <option value="deepseek-v4-pro">deepseek-v4-pro</option>
+          <option value="deepseek-v4-flash">deepseek-v4-flash</option>
+          <option value="custom">自定义</option>
         </select>
       </div>
       <div class="export-form-row">
+        <label>模型 ID</label>
+        <input id="deepseekModelInput" type="text" autocomplete="off" placeholder="deepseek-v4-pro">
+      </div>
+      <div class="export-form-row">
         <label>输出风格</label>
-        <select id="openaiOutputStyleSelect">
+        <select id="deepseekOutputStyleSelect">
           <option value="brief">简短结论</option>
           <option value="standard">标准分析</option>
           <option value="detailed">深度教练组报告</option>
@@ -1034,15 +1061,15 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
       </div>
     </div>
     <div class="export-actions">
-      <button class="detail-btn" onclick="saveOpenAISettings()">保存 Key 到本机</button>
-      <button class="detail-btn" onclick="clearOpenAIKey()">清除 Key</button>
-      <button class="detail-btn" onclick="testOpenAIConnection()" id="openaiTestBtn">测试 OpenAI 连接</button>
+      <button class="detail-btn" onclick="saveDeepSeekSettings()">保存到本机</button>
+      <button class="detail-btn" onclick="clearDeepSeekKey()">清除 Key</button>
+      <button class="detail-btn" onclick="testDeepSeekConnection()" id="deepseekTestBtn">测试 DeepSeek 连接</button>
     </div>
-    <div class="ai-status-line" id="openaiSettingsStatus">API Key 只保存在当前浏览器 localStorage，不会上传到服务器，不会写入 HTML。清除浏览器数据会删除 Key。</div>
+    <div class="ai-status-line" id="deepseekSettingsStatus">API Key 只保存在当前浏览器 localStorage，不会上传到服务器，不会写入 HTML。清除浏览器数据会删除 Key。如果接口因浏览器跨域限制失败，请复制 Prompt 到 DeepSeek 或其他 AI 工具手动使用。</div>
   </div>
   <div class="ai-workspace">
     <div class="card export-panel ai-control-panel">
-      <div class="card-title">生成 AI 分析提示词</div>
+      <div class="card-title">生成 DeepSeek 分析提示词</div>
       <div class="export-form-row">
         <label>分析类型</label>
         <select id="aiAnalysisType" onchange="renderAIAnalysisControls()">
@@ -1054,23 +1081,23 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
       </div>
       <div class="ai-target-controls" id="aiTargetControls"></div>
       <div class="ai-status-line" id="aiDataSourceSummary">数据来源：等待生成 Prompt</div>
-      <button class="calc-btn" onclick="generateAIAnalysisPromptFromUI()">生成 AI 分析提示词</button>
-      <div class="ai-helper-text">页面负责整理上下文，AI 负责分析。所有数据来源和 Demo / Mock / Sample 标签会写入 Prompt。</div>
+      <button class="calc-btn" onclick="generateAIAnalysisPromptFromUI()">生成 DeepSeek 分析提示词</button>
+      <div class="ai-helper-text">页面负责整理上下文，DeepSeek 负责分析。所有数据来源和 Demo / Mock / Sample 标签会写入 Prompt。</div>
     </div>
     <div class="card export-panel">
       <div class="card-title">Prompt 输出区</div>
-      <textarea id="aiPromptOutput" class="ai-textarea" placeholder="点击“生成 AI 分析提示词”后，这里会出现可编辑的中文 Prompt。"></textarea>
+      <textarea id="aiPromptOutput" class="ai-textarea" placeholder="点击“生成 DeepSeek 分析提示词”后，这里会出现可编辑的中文 Prompt。"></textarea>
       <div class="export-actions" style="margin-top:10px">
         <button class="detail-btn" onclick="generateAIAnalysisPromptFromUI()">生成 Prompt</button>
         <button class="detail-btn" onclick="copyAIPrompt()">一键复制</button>
-        <button class="calc-btn" onclick="runOpenAIAnalysis()" id="openaiGenerateBtn">使用 OpenAI 分析</button>
+        <button class="calc-btn" onclick="runDeepSeekAnalysis()" id="deepseekGenerateBtn">使用 DeepSeek 分析</button>
         <button class="detail-btn" onclick="clearAIPrompt()">一键清空</button>
       </div>
     </div>
   </div>
   <div class="card export-panel">
-    <div class="card-title">AI 分析结果</div>
-    <textarea id="aiResultInput" class="ai-textarea ai-result-textarea" placeholder="OpenAI 生成的中文分析会显示在这里；也可以把手动使用 ChatGPT 得到的结果粘贴回来保存。"></textarea>
+    <div class="card-title">DeepSeek 分析结果</div>
+    <textarea id="aiResultInput" class="ai-textarea ai-result-textarea" placeholder="DeepSeek 生成的中文分析会显示在这里；也可以把免费 Prompt 模式下手动得到的结果粘贴回来保存。"></textarea>
     <div class="export-actions" style="margin-top:10px">
       <button class="detail-btn" onclick="saveAIAnalysisSnapshot()">保存分析结果</button>
       <button class="detail-btn" onclick="downloadAIResultText()">导出 TXT</button>
@@ -1218,7 +1245,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
   </div>
 
   <div class="card export-panel">
-    <div class="card-title">我的 AI 分析记录 <span style="font-size:.68rem;color:var(--muted)">Private AI Reports</span></div>
+    <div class="card-title">我的 DeepSeek 分析记录 <span style="font-size:.68rem;color:var(--muted)">Private AI Reports</span></div>
     <div id="aiSnapshotManager"></div>
   </div>
 </div>
@@ -1273,7 +1300,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
 
 <!-- ODDS -->
 <div id="sec-odds" class="section">
-  <div class="section-title">💰 Sample Odds Board <span class="badge">Sample</span> <span class="registry-meta" data-registry-key="odds"></span></div>
+  <div class="section-title">💰 赔率面板 <span class="badge">真实缓存 / Sample 回退</span> <span class="registry-meta" data-registry-key="odds"></span></div>
   <div class="section-tabs">
     <button class="section-tab active" onclick="showSubSection('odds','winner',this)">冠军赔率</button>
     <button class="section-tab" onclick="showSubSection('odds','movement',this)">赔率变动</button>
@@ -1295,7 +1322,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
   <div id="odds-matchOdds" class="sub-section">
     <div class="odds-table-wrap"><table class="odds-table" id="matchOddsTable"></table></div>
   </div>
-  <div class="disclaimer"><strong>⚠️ 免责声明:</strong> 示例赔率仅用于分析展示。本工具仅用于赛事分析、学习和情景推演，不构成投注建议。</div>
+  <div class="disclaimer"><strong>⚠️ 免责声明:</strong> football-data.org 返回赔率时仅作为数据展示；否则使用 Sample 示例赔率。本工具仅用于赛事分析、学习和情景推演，不构成投注建议。</div>
 </div>
 
 <!-- BRACKET -->
@@ -1576,49 +1603,57 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
 <!-- LIVE SCHEDULE -->
 <div id="sec-live" class="section" data-v="5">
   <div class="section-title">&#x1F4E1; 实时赛程 <span class="badge" id="liveSourceBadge" style="font-size:.6rem;padding:2px 8px;border-radius:8px"></span> <span class="registry-meta" data-registry-key="liveSchedule"></span></div>
-  <div class="api-key-box" id="apiKeyBox">
-    <h3>&#x1F511; 私人 API Key / 真实赛程比分</h3>
-    <p>页面打开不会自动请求外部 API。只有我在本机点击“测试连接”或“刷新真实赛程”时才会请求接口并缓存到本机浏览器。<br>
-    仅接真实赛程/比分：football-data.org World Cup matches 或 API-FOOTBALL fixtures；不接真实赔率。</p>
-    <div class="api-key-row">
-      <select id="realApiProvider" onchange="changeRealApiProvider(this.value)">
-        <option value="football_data">football-data.org</option>
-        <option value="api_football">API-FOOTBALL</option>
-      </select>
-      <input type="password" id="apiKeyInput" placeholder="粘贴当前数据源的 API Key..." autocomplete="off">
-      <button class="btn-load-api" onclick="saveRealApiKey()">保存 Key</button>
-      <button class="btn-clear-api" onclick="clearRealApiKey()">清除 Key</button>
-      <button class="btn-clear-api" onclick="testRealApiConnection()">测试连接</button>
-      <button class="btn-load-api" onclick="refreshRealSchedule()">刷新真实赛程</button>
-    </div>
-    <div id="apiKeyStatus" style="font-size:.7rem;margin-top:6px;color:var(--muted)"></div>
-  </div>
-  <div class="real-data-panel" id="realDataPanel">
+  <div class="live-control-panel" id="realDataPanel" data-testid="real-data-panel">
     <div class="real-data-head">
-      <div class="real-data-title">真实数据面板 <span>Private Live Schedule / Score</span></div>
+      <div class="real-data-title">真实赛程 / 比分数据 <span>Private Live Schedule / Score</span></div>
       <span class="real-data-chip mock" id="realDataModeChip">未请求 API</span>
     </div>
-    <div class="real-data-note">优先读取本机 API 缓存；没有缓存时使用静态/Demo 回退。只有手动点击刷新才会消耗免费 API 次数。页面赔率仍为 Sample 示例，不接真实赔率实盘。</div>
-    <div class="real-data-grid" id="realDataStatusGrid"></div>
-  </div>
-  <div class="card" style="margin-bottom:12px">
-    <div class="card-title">真实赛程/比分缓存状态</div>
-    <div id="apiCacheStatus" style="font-size:.74rem;color:var(--muted);line-height:1.7">正在读取本机缓存...</div>
-    <div class="export-actions" style="margin-top:10px">
-      <button class="detail-btn" onclick="refreshRealSchedule()">手动刷新真实赛程/比分</button>
-      <button class="detail-btn" onclick="clearApiMatchesCache()">清除真实数据缓存</button>
+    <div class="real-data-note">页面打开和进入本页都不会自动请求外部 API。只有点击“测试连接”或“刷新真实赛程/比分”才会消耗免费额度；刷新成功后结果缓存到本机浏览器。football-data.org 若无 odds 字段，赔率面板继续使用 Sample 示例。</div>
+    <div id="realStatusMessage" class="real-status-message info" data-testid="real-status-message">正在读取本机缓存；暂无操作。</div>
+
+    <div class="live-control-section">
+      <div class="live-control-title">A. API 设置 <span>保存 Key 不会请求 API</span></div>
+      <div class="api-key-row">
+        <select id="realApiProvider" data-testid="real-provider-select" onchange="changeRealApiProvider(this.value)">
+          <option value="football_data">football-data.org</option>
+          <option value="api_football">API-FOOTBALL</option>
+        </select>
+        <input type="password" id="apiKeyInput" data-testid="real-api-key-input" placeholder="粘贴当前数据源的 API Key..." autocomplete="off">
+        <button class="btn-load-api" id="realSaveKeyBtn" data-testid="real-save-key" onclick="saveRealApiKey()">保存 Key</button>
+        <button class="btn-clear-api" id="realClearKeyBtn" data-testid="real-clear-key" onclick="clearRealApiKey()">清除 Key</button>
+        <button class="btn-clear-api" id="realTestConnectionBtn" data-testid="real-test-connection" onclick="testRealApiConnection()">测试连接</button>
+      </div>
+      <div class="api-proxy-row">
+        <label><input type="checkbox" id="localProxyToggle" onchange="setLocalProxyMode(this.checked)"> 本机代理模式（推荐：解决 football-data 跨域）</label>
+        <input type="text" id="localProxyUrlInput" value="http://127.0.0.1:8787" placeholder="本机代理地址：http://127.0.0.1:8787" onblur="saveLocalProxySettings()">
+        <button class="btn-clear-api" onclick="saveLocalProxySettings()">保存代理设置</button>
+        <button class="btn-clear-api" onclick="testLocalProxyHealth()">检测代理</button>
+      </div>
+      <div id="localProxyStatus" class="proxy-status">本机代理只用于 football-data.org。先运行 run-local-proxy.bat，再手动刷新；页面不会自动请求 API。</div>
+      <div id="apiKeyStatus" style="font-size:.7rem;margin-top:6px;color:var(--muted)"></div>
     </div>
-    <div class="risk-note risk-secondary" style="margin-top:10px">免费 API 次数有限，建议每天手动刷新 1–3 次。不要把真实 API Key 写进 HTML；只保存在本机浏览器。</div>
-  </div>
-  <div class="live-status-bar">
+
+    <div class="live-control-section">
+      <div class="live-control-title">B. 手动刷新 <span>唯一真实赛程刷新入口</span></div>
+      <div class="live-action-row">
+        <button class="btn-refresh" id="refreshBtn" data-testid="real-refresh-matches" onclick="refreshRealSchedule()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+          <span id="refreshBtnText">刷新真实赛程/比分</span>
+        </button>
+        <button class="detail-btn" id="realClearCacheBtn" data-testid="real-clear-cache" onclick="clearApiMatchesCache()">清除真实缓存</button>
+      </div>
+      <div class="risk_note risk_secondary" style="margin-top:10px">免费 API 次数有限，建议每天手动刷新 1–3 次。不要把真实 API Key 写进 HTML；只保存在本机浏览器。</div>
+    </div>
+
+    <div class="live-control-section">
+      <div class="live-control-title">C. 当前状态 <span>缓存、来源和回退状态</span></div>
+      <div id="apiCacheStatus" style="font-size:.74rem;color:var(--muted);line-height:1.7">正在读取本机缓存...</div>
+      <div class="real-data-grid" id="realDataStatusGrid"></div>
+    </div>
+  </div>  <div class="live-status-bar">
     <div id="liveSourceInfo" class="status-text"></div>
-    <button class="btn-refresh" id="refreshBtn" onclick="refreshRealSchedule()">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
-      手动刷新真实赛程/比分
-    </button>
     <div class="last-updated" id="liveLastUpdated"></div>
-  </div>
-  <div class="live-stats-row" id="liveStatsRow"></div>
+  </div>  <div class="live-stats-row" id="liveStatsRow"></div>
   <div class="live-filters" id="liveFilters">
     <button class="live-filter-btn active" onclick="filterLive('ALL',this)">全部</button>
     <button class="live-filter-btn" onclick="filterLive('GROUP_STAGE',this)">小组赛</button>
@@ -1723,7 +1758,7 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
       <div class="settings-field"><label>风险标签</label><select id="settingRiskLabels"><option value="show">显示</option><option value="compact">精简</option><option value="hide">隐藏</option></select></div>
       <div class="settings-field"><label>默认导出主题</label><select id="settingExportTheme"><option value="dark">深色</option><option value="light">浅色</option></select></div>
     </div>
-    <div class="risk-note risk-secondary" style="margin:6px 0 12px">省 API 模式下，页面打开不会自动请求外部 API。只有你点击刷新真实赛程/比分时才会消耗免费额度；本版本不接真实赔率。</div>
+    <div class="risk_note risk_secondary" style="margin:6px 0 12px">省 API 模式下，页面打开不会自动请求外部 API。只有你点击刷新真实赛程/比分时才会消耗免费额度；本版本不接真实赔率。</div>
     <div class="settings-actions">
       <button class="detail-btn" onclick="saveSettings()">保存设置</button>
       <button class="detail-btn" onclick="openOnboarding(true)">重新打开使用说明</button>
@@ -1747,9 +1782,9 @@ main{max-width:1400px;margin:0 auto;padding:20px 16px}
       <div class="onboarding-step"><b>Step 1</b><br>这是一个 2026 世界杯赛事分析 Dashboard。<br>它会清楚标注哪些是真实数据、模拟数据、示例数据。</div>
       <div class="onboarding-step"><b>Step 2</b><br>先看「今日情报」和「比赛详情」。<br>它们会告诉你重点比赛、风险点、预测倾向和数据来源。</div>
       <div class="onboarding-step"><b>Step 3</b><br>用「审计」记录你的判断。<br>比赛结束后可以回填比分，复盘模型是否靠谱。</div>
-      <div class="onboarding-step"><b>Step 4</b><br>用「导出」生成文字报告和本地图片。<br>适合保存我的 AI 分析记录和本地备份。</div>
+      <div class="onboarding-step"><b>Step 4</b><br>用「导出」生成文字报告和本地图片。<br>适合保存我的 DeepSeek 分析记录和本地备份。</div>
     </div>
-    <div class="onboarding-risk risk-secondary">风险提示：当前预测和赔率大多是 Demo / Sample，不代表真实结果，也不构成投注建议。</div>
+    <div class="onboarding-risk risk_secondary">风险提示：当前预测和赔率大多是 Demo / Sample，不代表真实结果，也不构成投注建议。</div>
     <div class="settings-actions">
       <button class="calc-btn" onclick="closeOnboarding(false)">开始使用</button>
       <button class="detail-btn" onclick="closeOnboarding(false)">跳过</button>
@@ -3331,157 +3366,198 @@ function openCoachReportForCurrentMatch(){
 function copyCoachReportModal(){copyTextToClipboard(getCurrentCoachReportText(),'教练组报告已复制');}
 function saveCoachReportModalSnapshot(){const team=window.currentCoachReportTeam||getCoachDefaultTeam();saveSnapshot('coach_report',`${cnName(team)} 教练组报告`,getCurrentCoachReportText(),getCoachReportDataLayer().dataType,{team,context:window.currentCoachReportContext||null});}
 function downloadCoachReportModal(){const team=window.currentCoachReportTeam||getCoachDefaultTeam();downloadTextFile('wc2026-coach-report-'+team+'.txt',getCurrentCoachReportText());showToast('教练组报告已下载','success');}
-function getOpenAIModel(){
-  return safeStorageGet('wc2026_openai_model')||'gpt-5.4-mini';
+const DEEPSEEK_DEFAULT_ENDPOINT='https://api.deepseek.com/chat/completions';
+const DEEPSEEK_DEFAULT_MODEL='deepseek-v4-pro';
+function getDeepSeekEndpoint(){
+  return safeStorageGet('wc2026_deepseek_endpoint')||DEEPSEEK_DEFAULT_ENDPOINT;
 }
-function getOpenAIOutputStyle(){
-  return safeStorageGet('wc2026_openai_output_style')||'standard';
+function getDeepSeekModel(){
+  return safeStorageGet('wc2026_deepseek_model')||DEEPSEEK_DEFAULT_MODEL;
 }
-function getOpenAIKey(){
-  return safeStorageGet('wc2026_openai_api_key')||'';
+function getDeepSeekOutputStyle(){
+  return safeStorageGet('wc2026_deepseek_output_style')||'standard';
+}
+function getDeepSeekKey(){
+  return safeStorageGet('wc2026_deepseek_api_key')||'';
 }
 function removeStorageKey(key){
   try{localStorage.removeItem(key);}catch(e){console.warn('localStorage remove failed for '+key,e);}
 }
-function getOpenAIKeyInputValue(){
-  return (document.getElementById('openaiApiKeyInput')?.value||'').trim();
+function getDeepSeekKeyInputValue(){
+  return (document.getElementById('deepseekApiKeyInput')?.value||'').trim();
 }
-function setOpenAIStatus(message,type){
-  const el=document.getElementById('openaiSettingsStatus');
+function getDeepSeekEndpointInputValue(){
+  return (document.getElementById('deepseekEndpointInput')?.value||'').trim();
+}
+function getDeepSeekModelInputValue(){
+  return (document.getElementById('deepseekModelInput')?.value||'').trim();
+}
+function getSelectedAIProvider(){return 'deepseek';}
+function getAIProviderLabel(){return 'DeepSeek';}
+function getSelectedAIModel(){return getDeepSeekModelInputValue()||getDeepSeekModel()||DEEPSEEK_DEFAULT_MODEL;}
+function getSelectedAIKey(){return getDeepSeekKeyInputValue()||getDeepSeekKey();}
+function setDeepSeekStatus(message,type){
+  const el=document.getElementById('deepseekSettingsStatus');
   if(!el)return;
   el.textContent=message;
   el.style.color=type==='error'?'var(--red)':type==='success'?'var(--green)':'var(--muted)';
 }
-function populateOpenAISettingsPanel(){
-  const keyInput=document.getElementById('openaiApiKeyInput');
-  const storedKey=getOpenAIKey();
+function applyDeepSeekQuickModel(){
+  const quick=document.getElementById('deepseekQuickModelSelect')?.value||DEEPSEEK_DEFAULT_MODEL;
+  const modelInput=document.getElementById('deepseekModelInput');
+  if(modelInput&&quick!=='custom')modelInput.value=quick;
+}
+function syncDeepSeekQuickModel(model){
+  const quick=document.getElementById('deepseekQuickModelSelect');
+  if(!quick)return;
+  if(model==='deepseek-v4-pro'||model==='deepseek-v4-flash')quick.value=model;
+  else quick.value='custom';
+}
+function populateDeepSeekSettingsPanel(){
+  const keyInput=document.getElementById('deepseekApiKeyInput');
+  const storedKey=getDeepSeekKey();
   if(keyInput){
     keyInput.value=storedKey;
-    keyInput.placeholder=storedKey?'已保存 OpenAI API key，可重新粘贴覆盖':'粘贴你自己的 OpenAI API key';
+    keyInput.placeholder=storedKey?'已保存 DeepSeek API Key，可重新粘贴覆盖':'粘贴你自己的 DeepSeek API Key';
   }
-  const model=document.getElementById('openaiModelSelect');
-  if(model)model.value=getOpenAIModel();
-  const style=document.getElementById('openaiOutputStyleSelect');
-  if(style)style.value=getOpenAIOutputStyle();
-  setOpenAIStatus(storedKey?'已在本机浏览器保存 OpenAI API Key。页面不会自动调用 OpenAI。':'未保存 OpenAI API Key。你仍可复制 Prompt 到 ChatGPT 手动使用。',storedKey?'success':'info');
+  const endpointInput=document.getElementById('deepseekEndpointInput');
+  if(endpointInput)endpointInput.value=getDeepSeekEndpoint();
+  const modelInput=document.getElementById('deepseekModelInput');
+  const model=getDeepSeekModel();
+  if(modelInput)modelInput.value=model;
+  syncDeepSeekQuickModel(model);
+  const style=document.getElementById('deepseekOutputStyleSelect');
+  if(style)style.value=getDeepSeekOutputStyle();
+  const btn=document.getElementById('deepseekGenerateBtn');
+  if(btn)btn.textContent='使用 DeepSeek 分析';
+  const testBtn=document.getElementById('deepseekTestBtn');
+  if(testBtn)testBtn.textContent='测试 DeepSeek 连接';
+  setDeepSeekStatus(storedKey?'已在本机浏览器保存 DeepSeek API Key。页面不会自动调用 DeepSeek。':'未保存 DeepSeek API Key。你仍可复制 Prompt 到 DeepSeek 网页版或其他 AI 工具手动使用。',storedKey?'success':'info');
 }
-function saveOpenAISettings(){
-  const key=getOpenAIKeyInputValue();
-  const model=document.getElementById('openaiModelSelect')?.value||'gpt-5.4-mini';
-  const style=document.getElementById('openaiOutputStyleSelect')?.value||'standard';
-  if(key)safeStorageSet('wc2026_openai_api_key',key);
-  safeStorageSet('wc2026_openai_model',model);
-  safeStorageSet('wc2026_openai_output_style',style);
-  populateOpenAISettingsPanel();
-  showToast(key?'OpenAI 设置已保存到本机':'模型和输出风格已保存；API Key 未填写','success');
+function saveDeepSeekSettings(){
+  const key=getDeepSeekKeyInputValue();
+  const endpoint=getDeepSeekEndpointInputValue()||DEEPSEEK_DEFAULT_ENDPOINT;
+  const model=getDeepSeekModelInputValue()||DEEPSEEK_DEFAULT_MODEL;
+  const style=document.getElementById('deepseekOutputStyleSelect')?.value||'standard';
+  if(key)safeStorageSet('wc2026_deepseek_api_key',key);
+  safeStorageSet('wc2026_deepseek_endpoint',endpoint);
+  safeStorageSet('wc2026_deepseek_model',model);
+  safeStorageSet('wc2026_deepseek_output_style',style);
+  populateDeepSeekSettingsPanel();
+  showToast(key?'DeepSeek 设置已保存到本机':'Endpoint、模型和输出风格已保存；API Key 未填写','success');
 }
-function clearOpenAIKey(){
-  if(!confirm('确定清除本机保存的 OpenAI API key？'))return;
-  removeStorageKey('wc2026_openai_api_key');
-  const input=document.getElementById('openaiApiKeyInput');
+function clearDeepSeekKey(){
+  if(!confirm('确定清除本机保存的 DeepSeek API Key？'))return;
+  removeStorageKey('wc2026_deepseek_api_key');
+  const input=document.getElementById('deepseekApiKeyInput');
   if(input)input.value='';
-  populateOpenAISettingsPanel();
-  showToast('OpenAI API key 已清除','success');
+  populateDeepSeekSettingsPanel();
+  showToast('DeepSeek API Key 已清除','success');
 }
-function getOpenAIStyleInstruction(){
-  const style=document.getElementById('openaiOutputStyleSelect')?.value||getOpenAIOutputStyle();
+function getDeepSeekStyleInstruction(){
+  const style=document.getElementById('deepseekOutputStyleSelect')?.value||getDeepSeekOutputStyle();
   if(style==='brief')return'输出风格：简短结论。请控制在 300-500 字，突出结论、走势判断和关键风险。';
   if(style==='detailed')return'输出风格：深度教练组报告。请展开备战视角、关键理由、风险、不确定性和后续需要关注的数据。';
   return'输出风格：标准分析。请保持结构完整，信息密度适中。';
 }
-function extractOpenAIOutputText(data){
+function extractDeepSeekOutputText(data){
   if(!data)return'';
+  if(Array.isArray(data.choices)&&data.choices[0]?.message?.content)return data.choices[0].message.content;
   if(typeof data.output_text==='string')return data.output_text;
   if(Array.isArray(data.output)){
     const parts=[];
     data.output.forEach(item=>{
       if(typeof item?.content==='string')parts.push(item.content);
       if(Array.isArray(item?.content)){
-        item.content.forEach(c=>{
-          if(typeof c?.text==='string')parts.push(c.text);
-          else if(typeof c?.content==='string')parts.push(c.content);
-        });
+        item.content.forEach(c=>{if(typeof c?.text==='string')parts.push(c.text);else if(typeof c?.content==='string')parts.push(c.content);});
       }
     });
     if(parts.length)return parts.join('\n');
   }
-  if(Array.isArray(data.choices)&&data.choices[0]?.message?.content)return data.choices[0].message.content;
   return '';
 }
-function formatOpenAIError(error){
+function formatDeepSeekError(error){
   const msg=error?.message||String(error||'未知错误');
-  if(/Failed to fetch|NetworkError|Load failed/i.test(msg))return'OpenAI 请求失败：网络连接或浏览器跨域限制导致请求未完成。请检查网络，或复制 Prompt 到 ChatGPT 手动使用。';
-  if(/^OpenAI|^请先/.test(msg))return msg;
-  return'OpenAI 请求失败：'+msg;
+  if(/Failed to fetch|NetworkError|Load failed|CORS/i.test(msg))return'DeepSeek 请求失败：网络连接、浏览器跨域限制或接口限制导致请求未完成。请复制 Prompt 到 DeepSeek 网页版或其他 AI 工具手动使用。';
+  if(/^DeepSeek|^请先/.test(msg))return msg;
+  return'DeepSeek 请求失败：'+msg;
 }
-async function callOpenAIAnalysis(prompt){
-  const key=getOpenAIKeyInputValue()||getOpenAIKey();
+async function callDeepSeekAnalysis(prompt){
+  const key=getSelectedAIKey();
   if(!key){
-    throw new Error('请先填写自己的 OpenAI API Key，或复制 Prompt 到 ChatGPT 手动使用。');
+    throw new Error('请先填写自己的 DeepSeek API Key，或复制 Prompt 手动使用。');
   }
-  const model=document.getElementById('openaiModelSelect')?.value||getOpenAIModel();
-  const finalPrompt=prompt+'\n\n'+getOpenAIStyleInstruction();
-  const res=await fetch('https://api.openai.com/v1/responses',{
+  const endpoint=getDeepSeekEndpointInputValue()||getDeepSeekEndpoint();
+  const model=getSelectedAIModel();
+  const finalPrompt=prompt+'\n\n'+getDeepSeekStyleInstruction();
+  const res=await fetch(endpoint,{
     method:'POST',
     headers:{'Authorization':'Bearer '+key,'Content-Type':'application/json'},
-    body:JSON.stringify({model:model,input:finalPrompt})
+    body:JSON.stringify({
+      model:model,
+      messages:[
+        {role:'system',content:'你是2026世界杯赛事分析顾问，输出中文，区分真实数据和模拟数据，不提供投注建议。'},
+        {role:'user',content:finalPrompt}
+      ],
+      temperature:0.3
+    })
   });
   const raw=await res.text();
   let data=null;
   try{data=raw?JSON.parse(raw):null;}catch(e){}
   if(!res.ok){
-    const msg=data?.error?.message||raw||res.statusText||'未知错误';
-    throw new Error('OpenAI 请求失败（'+res.status+'）：'+msg);
+    const msg=data?.error?.message||raw.slice(0,240)||res.statusText||'未知错误';
+    throw new Error('DeepSeek 请求失败（'+res.status+'）：'+msg);
   }
-  const text=extractOpenAIOutputText(data);
-  if(!text)throw new Error('OpenAI 返回成功，但没有解析到文本结果。');
-  return{text,model,data};
+  const text=extractDeepSeekOutputText(data);
+  if(!text)throw new Error('DeepSeek 返回成功，但没有解析到 choices[0].message.content。返回摘要：'+raw.slice(0,240));
+  return{text,model:'DeepSeek / '+model,provider:'deepseek',data};
 }
-async function testOpenAIConnection(){
-  saveOpenAISettings();
-  const btn=document.getElementById('openaiTestBtn');
+async function callAIAnalysis(prompt){return callDeepSeekAnalysis(prompt);}
+async function testDeepSeekConnection(){
+  saveDeepSeekSettings();
+  const btn=document.getElementById('deepseekTestBtn');
   const old=btn?btn.textContent:'';
   if(btn){btn.disabled=true;btn.textContent='测试中...';}
   try{
-    await callOpenAIAnalysis('请只用中文回复：OpenAI 连接成功。本次测试不需要赛事分析。');
-    setOpenAIStatus('OpenAI 连接测试成功。后续只有点击“使用 OpenAI 分析”才会消耗额度。','success');
-    showToast('OpenAI 连接成功','success');
+    await callDeepSeekAnalysis('请只用中文回复：DeepSeek 连接成功。本次测试不需要赛事分析。');
+    setDeepSeekStatus('DeepSeek 连接测试成功。后续只有点击“使用 DeepSeek 分析”才会消耗额度。','success');
+    showToast('DeepSeek 连接成功','success');
   }catch(e){
-    const msg=formatOpenAIError(e);
-    setOpenAIStatus(msg,'error');
+    const msg=formatDeepSeekError(e);
+    setDeepSeekStatus(msg,'error');
     showToast(msg,'error');
   }finally{
-    if(btn){btn.disabled=false;btn.textContent=old||'测试 OpenAI 连接';}
+    if(btn){btn.disabled=false;btn.textContent=old||'测试 DeepSeek 连接';}
   }
 }
-async function runOpenAIAnalysis(){
+async function runDeepSeekAnalysis(){
   let prompt=document.getElementById('aiPromptOutput')?.value||'';
   if(!prompt.trim()){
     generateAIAnalysisPromptFromUI();
     prompt=document.getElementById('aiPromptOutput')?.value||'';
   }
   if(!prompt.trim()){showToast('请先生成 Prompt','error');return;}
-  const btn=document.getElementById('openaiGenerateBtn');
+  const btn=document.getElementById('deepseekGenerateBtn');
   const old=btn?btn.textContent:'';
-  if(btn){btn.disabled=true;btn.textContent='OpenAI 生成中...';}
+  if(btn){btn.disabled=true;btn.textContent='DeepSeek 生成中...';}
   try{
-    saveOpenAISettings();
-    const result=await callOpenAIAnalysis(prompt);
+    saveDeepSeekSettings();
+    const result=await callDeepSeekAnalysis(prompt);
     const out=document.getElementById('aiResultInput');
     if(out)out.value=result.text;
     if(currentAIPromptMeta)currentAIPromptMeta.model=result.model;
-    setOpenAIStatus('OpenAI 分析已生成。结果只保存在当前页面，除非你手动保存到我的 AI 分析记录。','success');
-    showToast('OpenAI 分析已生成','success');
+    setDeepSeekStatus('DeepSeek 分析已生成。结果只保存在当前页面，除非你手动保存到我的 DeepSeek 分析记录。','success');
+    showToast('DeepSeek 分析已生成','success');
   }catch(e){
-    const msg=formatOpenAIError(e);
-    setOpenAIStatus(msg,'error');
+    const msg=formatDeepSeekError(e);
+    setDeepSeekStatus(msg,'error');
     showToast(msg,'error');
   }finally{
-    if(btn){btn.disabled=false;btn.textContent=old||'使用 OpenAI 分析';}
+    if(btn){btn.disabled=false;btn.textContent=old||'使用 DeepSeek 分析';}
   }
-}
-function getAITypeLabel(type){
-  return{daily:'今日情报',match:'单场比赛',team:'球队分析',coach:'教练组报告'}[type]||'AI分析';
+}function getAITypeLabel(type){
+  return{daily:'今日情报',match:'单场比赛',team:'球队分析',coach:'教练组报告'}[type]||'DeepSeek分析';
 }
 function getAIMatchSourceFromTarget(target){
   if(target&&typeof target==='object'&&(target.prediction!==undefined||target.match!==undefined))return target;
@@ -3589,7 +3665,7 @@ function formatAIContextBlock(ctx){
 }
 function buildAIPrompt(role,task,ctx,extra){
   return[
-    '角色设定：你是 2026 世界杯赛事分析顾问和教练组分析助手。',
+    '角色设定：你是 DeepSeek-V4-Pro，正在扮演 2026 世界杯赛事分析顾问和教练组分析助手。',
     `补充角色：${role}`,
     '',
     '请你基于这些数据替用户分析。不要编造当前数据中没有的事实，不要假装你知道页面没有提供的实时伤病、官方阵容、真实赔率或赛果。',
@@ -3633,6 +3709,12 @@ function generateCoachAIPrompt(teamName){
   const ctx=buildAIContext('coach',teamName);
   return buildAIPrompt('你是国家队教练组分析顾问，擅长从备战、出线和淘汰赛路径角度分析。',`请为 ${cnName(teamName)} / ${teamName} 生成教练组报告，覆盖球队现状、小组形势、已赛/未赛、球员状态、战术外部因素、出线路径和最终判断。`,ctx,generateCoachReportText(teamName));
 }
+function generateDeepSeekAnalysisPrompt(type,target){
+  if(type==='match')return generateMatchAIPrompt(target);
+  if(type==='team')return generateTeamAIPrompt(target);
+  if(type==='coach')return generateCoachAIPrompt(target);
+  return generateDailyAIPrompt();
+}
 function generateAIAnalysisPrompt(type,target){
   if(type==='match')return generateMatchAIPrompt(target);
   if(type==='team')return generateTeamAIPrompt(target);
@@ -3642,13 +3724,13 @@ function generateAIAnalysisPrompt(type,target){
 function getAIPromptTitle(type,target){
   if(type==='match'){
     const s=summarizeAIMatchSource(getAIMatchSourceFromTarget(target));
-    return `${cnName(s.home)} vs ${cnName(s.away)} AI单场分析`;
+    return `${cnName(s.home)} vs ${cnName(s.away)} DeepSeek单场分析`;
   }
   if(type==='team'||type==='coach'){
     const name=getAITeamName(target);
     return `${cnName(name)} ${getAITypeLabel(type)}`;
   }
-  return '今日情报 AI Prompt';
+  return '今日情报 DeepSeek Prompt';
 }
 function renderAIAnalysisControls(){
   const el=document.getElementById('aiTargetControls');
@@ -3667,7 +3749,7 @@ function renderAIAnalysisControls(){
 }
 function renderAIAnalysisSection(){
   if(!document.getElementById('aiAnalysisType'))return;
-  populateOpenAISettingsPanel();
+  populateDeepSeekSettingsPanel();
   renderAIAnalysisControls();
 }
 function getAITargetFromUI(type){
@@ -3690,20 +3772,20 @@ function generateAIAnalysisPromptFromUI(overrideTarget){
   const output=document.getElementById('aiPromptOutput');
   if(output)output.value=prompt;
   const ctx=buildAIContext(type,target);
-  currentAIPromptMeta={type,title:getAIPromptTitle(type,target),prompt,dataSource:ctx.dataSource,dataType:ctx.dataType,target};
+  currentAIPromptMeta={type,title:getAIPromptTitle(type,target),prompt,dataSource:ctx.dataSource,dataType:ctx.dataType,target,model:'DeepSeek / '+getSelectedAIModel()};
   updateAIDataSourceSummary();
-  showToast('AI 分析提示词已生成','success');
+  showToast('DeepSeek 分析提示词已生成','success');
 }
 function copyAIPrompt(){
   const text=document.getElementById('aiPromptOutput')?.value||'';
   if(!text){showToast('暂无 Prompt 可复制','error');return;}
-  copyTextToClipboard(text,'AI Prompt 已复制');
+  copyTextToClipboard(text,'DeepSeek Prompt 已复制');
 }
 function clearAIPrompt(){
   const out=document.getElementById('aiPromptOutput');
   if(out)out.value='';
   currentAIPromptMeta=null;
-  showToast('AI Prompt 已清空','success');
+  showToast('DeepSeek Prompt 已清空','success');
 }
 function saveAIAnalysisSnapshots(){
   aiAnalysisSnapshots.sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));
@@ -3712,7 +3794,7 @@ function saveAIAnalysisSnapshots(){
 }
 function buildAISnapshotText(s){
   return[
-    '2026 世界杯 AI 分析助手',
+    '2026 世界杯 DeepSeek 分析助手',
     '类型: '+getAITypeLabel(s.type),
     '标题: '+s.title,
     '生成时间: '+s.createdAt,
@@ -3722,7 +3804,7 @@ function buildAISnapshotText(s){
     '【Prompt】',
     s.prompt||'',
     '',
-    '【AI 输出】',
+    '【DeepSeek 输出】',
     s.result||'',
     '',
     '风险提示：本工具仅用于赛事分析、学习和情景推演。模拟预测、示例赔率和模型输出不构成投注建议。'
@@ -3733,37 +3815,37 @@ function saveAIAnalysisSnapshot(){
   const result=document.getElementById('aiResultInput')?.value||'';
   if(!result.trim()){showToast('请先粘贴 AI 输出结果','error');return;}
   const type=currentAIPromptMeta?.type||document.getElementById('aiAnalysisType')?.value||'daily';
-  const snap={id:'ai_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8),type,title:currentAIPromptMeta?.title||getAIPromptTitle(type,getAITargetFromUI(type)),prompt,result,model:currentAIPromptMeta?.model||document.getElementById('openaiModelSelect')?.value||getOpenAIModel(),createdAt:new Date().toISOString(),dataSource:currentAIPromptMeta?.dataSource||getCoachReportDataLayer().source};
+  const snap={id:'ai_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8),type,title:currentAIPromptMeta?.title||getAIPromptTitle(type,getAITargetFromUI(type)),prompt,result,model:currentAIPromptMeta?.model||'DeepSeek / '+getSelectedAIModel(),createdAt:new Date().toISOString(),dataSource:currentAIPromptMeta?.dataSource||getCoachReportDataLayer().source};
   aiAnalysisSnapshots.push(snap);
   saveAIAnalysisSnapshots();
-  showToast('AI 分析记录已保存','success');
+  showToast('DeepSeek 分析记录已保存','success');
 }
 function downloadAIResultText(){
   const prompt=document.getElementById('aiPromptOutput')?.value||'';
   const result=document.getElementById('aiResultInput')?.value||'';
   if(!result.trim()){showToast('暂无 AI 输出可导出','error');return;}
   const type=currentAIPromptMeta?.type||document.getElementById('aiAnalysisType')?.value||'daily';
-  const text=buildAISnapshotText({type,title:currentAIPromptMeta?.title||getAITypeLabel(type),prompt,result,model:currentAIPromptMeta?.model||document.getElementById('openaiModelSelect')?.value||getOpenAIModel(),createdAt:new Date().toISOString(),dataSource:currentAIPromptMeta?.dataSource||getCoachReportDataLayer().source});
+  const text=buildAISnapshotText({type,title:currentAIPromptMeta?.title||getAITypeLabel(type),prompt,result,model:currentAIPromptMeta?.model||'DeepSeek / '+getSelectedAIModel(),createdAt:new Date().toISOString(),dataSource:currentAIPromptMeta?.dataSource||getCoachReportDataLayer().source});
   downloadTextFile('wc2026-ai-analysis-result.txt',text);
-  showToast('AI 分析结果已导出','success');
+  showToast('DeepSeek 分析结果已导出','success');
 }
 function copyAIResult(){
   const result=document.getElementById('aiResultInput')?.value||'';
   if(!result.trim()){showToast('暂无 AI 输出可复制','error');return;}
-  copyTextToClipboard(result,'AI 输出已复制');
+  copyTextToClipboard(result,'DeepSeek 输出已复制');
 }
 function getAISnapshot(id){return aiAnalysisSnapshots.find(s=>s.id===id);}
-function copyAISnapshot(id){const s=getAISnapshot(id);if(s)copyTextToClipboard(buildAISnapshotText(s),'AI 分析记录已复制');}
-function downloadAISnapshot(id){const s=getAISnapshot(id);if(!s)return;downloadTextFile('wc2026-ai-analysis-'+(s.type||'report')+'.txt',buildAISnapshotText(s));showToast('AI 分析记录已下载','success');}
-function deleteAISnapshot(id){if(!confirm('确定删除这个 AI 分析记录？'))return;aiAnalysisSnapshots=aiAnalysisSnapshots.filter(s=>s.id!==id);saveAIAnalysisSnapshots();showToast('AI 分析记录已删除','success');}
+function copyAISnapshot(id){const s=getAISnapshot(id);if(s)copyTextToClipboard(buildAISnapshotText(s),'DeepSeek 分析记录已复制');}
+function downloadAISnapshot(id){const s=getAISnapshot(id);if(!s)return;downloadTextFile('wc2026-ai-analysis-'+(s.type||'report')+'.txt',buildAISnapshotText(s));showToast('DeepSeek 分析记录已下载','success');}
+function deleteAISnapshot(id){if(!confirm('确定删除这个 DeepSeek 分析记录？'))return;aiAnalysisSnapshots=aiAnalysisSnapshots.filter(s=>s.id!==id);saveAIAnalysisSnapshots();showToast('DeepSeek 分析记录已删除','success');}
 function renderAIAnalysisSnapshots(){
   const el=document.getElementById('aiSnapshotManager');
   if(!el)return;
   const rows=aiAnalysisSnapshots.slice().sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));
-  if(!rows.length){el.innerHTML='<div class="audit-empty">暂无我的 AI 分析记录。</div>';return;}
+  if(!rows.length){el.innerHTML='<div class="audit-empty">暂无我的 DeepSeek 分析记录。</div>';return;}
   el.innerHTML=rows.map(s=>`<div class="ai-snapshot-card"><div class="ai-snapshot-title">${escapeHTML(s.title||getAITypeLabel(s.type))}</div><div class="ai-snapshot-meta">${escapeHTML(getAITypeLabel(s.type))} · ${escapeHTML(s.createdAt||'')} · 模型：${escapeHTML(s.model||'未记录')} · 数据来源：${escapeHTML(s.dataSource||'—')}</div><div class="snapshot-actions"><button class="detail-btn" onclick="copyAISnapshot('${s.id}')">复制</button><button class="detail-btn" onclick="downloadAISnapshot('${s.id}')">下载 TXT</button><button class="detail-btn" onclick="deleteAISnapshot('${s.id}')">删除</button></div></div>`).join('');
 }
-function openAIAnalysis(type,target,autoGenerate){
+function deepSeekAnalysis(type,target,autoGenerate){
   closeModal('matchInsightModal');
   closeModal('teamDetailModal');
   closeModal('coachReportModal');
@@ -3778,9 +3860,9 @@ function openAIAnalysis(type,target,autoGenerate){
   }
   if(autoGenerate)generateAIAnalysisPromptFromUI(target&&typeof target==='object'?target:undefined);
 }
-function openAIAnalysisFromDaily(){openAIAnalysis('daily',null,true);}
-function openAIAnalysisFromCurrentMatch(){openAIAnalysis('match',getCurrentMatchReportSource(),true);}
-function openAIAnalysisFromTeam(name){openAIAnalysis('team',name||window.currentTeamProfileName||getCoachDefaultTeam(),true);}
+function deepSeekAnalysisFromDaily(){deepSeekAnalysis('daily',null,true);}
+function deepSeekAnalysisFromCurrentMatch(){deepSeekAnalysis('match',getCurrentMatchReportSource(),true);}
+function deepSeekAnalysisFromTeam(name){deepSeekAnalysis('team',name||window.currentTeamProfileName||getCoachDefaultTeam(),true);}
 function setShareCardType(type){const el=document.getElementById('shareCardType');if(el)el.value=type;}
 function renderExportCenter(){
   const matchSelect=document.getElementById('exportMatchSelect');
@@ -4000,7 +4082,7 @@ function renderCommandCenter(){
     ['🗂️','数据管理','查看数据来源、完整性检查和自定义导入。','data'],
     ['📈','模型审计','记录预测结果，复盘命中率和校准情况。','audit'],
     ['📤','导出中心','生成报告、我的分析记录和本地图片。','export'],
-    ['🤖','AI分析助手','自动整理比赛、球队、赛程、伤病、数据来源，让 OpenAI 生成中文分析结论。','ai-analysis'],
+    ['🤖','DeepSeek分析助手','自动整理比赛、球队、赛程、伤病、数据来源，让 DeepSeek-V4-Pro 生成中文分析结论。','ai-analysis'],
     ['🧑‍🏫','教练组报告','以国家队教练组视角，整合球队状态、小组形势、球员风险、未赛对手和出线路径。','coach'],
     ['⚙️','设置','调整语言、主题、数据偏好和本地数据。','settings']
   ];
@@ -4012,8 +4094,8 @@ function applySettings(){
   document.documentElement.setAttribute('data-theme',currentTheme);
   const themeBtn=document.getElementById('themeBtn');
   if(themeBtn)themeBtn.textContent=currentTheme==='dark'?'☀️':'🌙';
-  document.body.classList.toggle('risk-secondary-hidden',wc2026Settings.riskLabels==='hide');
-  document.body.classList.toggle('risk-secondary-compact',wc2026Settings.riskLabels==='compact');
+  document.body.classList.toggle('risk_secondary_hidden',wc2026Settings.riskLabels==='hide');
+  document.body.classList.toggle('risk_secondary_compact',wc2026Settings.riskLabels==='compact');
   const shareTheme=document.getElementById('shareCardTheme');
   if(shareTheme)shareTheme.value=wc2026Settings.defaultExportTheme||'dark';
 }
@@ -4196,7 +4278,7 @@ function renderGroupAnalysis(groupKey,teams){
   const darkHorse=candidates[0]||second||favorite;
   const gap=favorite&&second?favorite.overall-second.overall:99;
   const risk=favorite&&second?(gap<5?'High':gap<10?'Medium':'Low'):'Pending';
-  const riskCls=risk==='High'?'group-risk-high':risk==='Medium'?'group-risk-medium':'group-risk-low';
+  const riskCls=risk==='High'?'group_risk_high':risk==='Medium'?'group_risk_medium':'group_risk_low';
   const injured=knownTeams.filter(name=>hasTeamInjuryRisk(name));
   const warning=injured.length?injured.map(name=>getTeam(name).flag+' '+cnName(name)).join(', '):'暂无示例伤病预警';
   const riskText=risk==='Pending'?'等待官方抽签':zhRisk(risk);
@@ -4329,7 +4411,7 @@ function buildMatchInsightHTML(p){
         <div class="insight-metric"><div class="val" style="color:${analysis.risk==='High'?'var(--red)':analysis.risk==='Medium'?'var(--yellow)':'var(--green)'}">${zhRisk(analysis.risk)}</div><div class="lbl">风险等级</div></div>
         <div class="insight-metric"><div class="val">${dataTypeLabel(dataType)}</div><div class="lbl">数据类型</div></div>
       </div>
-      <div style="display:flex;justify-content:flex-end;gap:6px;flex-wrap:wrap">${logButton}<button class="detail-btn" onclick="event.stopPropagation();openAIAnalysisFromCurrentMatch()">AI分析这场比赛</button><button class="detail-btn" onclick="event.stopPropagation();openCoachReportForCurrentMatch()">生成本场教练组分析</button><button class="detail-btn" onclick="event.stopPropagation();copyCurrentMatchReport()">复制报告</button><button class="detail-btn" onclick="event.stopPropagation();saveCurrentMatchSnapshot()">保存快照</button><button class="detail-btn" onclick="event.stopPropagation();exportCurrentMatchCard()">导出图片</button></div>
+      <div style="display:flex;justify-content:flex-end;gap:6px;flex-wrap:wrap">${logButton}<button class="detail-btn" onclick="event.stopPropagation();deepSeekAnalysisFromCurrentMatch()">DeepSeek分析这场比赛</button><button class="detail-btn" onclick="event.stopPropagation();openCoachReportForCurrentMatch()">生成本场教练组分析</button><button class="detail-btn" onclick="event.stopPropagation();copyCurrentMatchReport()">复制报告</button><button class="detail-btn" onclick="event.stopPropagation();saveCurrentMatchSnapshot()">保存快照</button><button class="detail-btn" onclick="event.stopPropagation();exportCurrentMatchCard()">导出图片</button></div>
     </div>
     <div class="card" style="margin-bottom:12px">
       <div class="card-title">判断标签</div>
@@ -4359,7 +4441,7 @@ function buildMatchInsightHTML(p){
       <div class="insight-explain-item"><strong>4. 场地因素（Venue factor）</strong>${escapeHTML(venueLine)}</div>
       <div class="insight-explain-item"><strong>5. 市场偏差（Market edge）</strong>${cnName(p.home)} 模拟概率 ${p.homeProb}% - 隐含概率 ${impliedHome.toFixed(1)}% = ${marketEdge>=0?'+':''}${marketEdge.toFixed(1)} pts。</div>
     </div>
-    <div class="risk-note risk-secondary">仅用于赛事分析、学习和情景推演。模拟模型输出不构成投注建议。For sports analysis, education, and scenario tracking only.</div>`;
+    <div class="risk_note risk_secondary">仅用于赛事分析、学习和情景推演。模拟模型输出不构成投注建议。For sports analysis, education, and scenario tracking only.</div>`;
 }
 function renderScheduleTeamProfile(name){
   if(isPlaceholderTeam(name))return`<div class="insight-metric"><div class="val" style="font-size:.8rem;color:var(--muted)">${escapeHTML(name||'TBD')}</div><div class="lbl">官方占位</div></div>`;
@@ -4381,7 +4463,7 @@ function buildScheduleOnlyInsightHTML(match){
         <div class="insight-metric"><div class="val" style="color:var(--muted)">未知</div><div class="lbl">风险等级</div></div>
         <div class="insight-metric"><div class="val">${dataTypeLabel(match.dataType||'official_partial')}</div><div class="lbl">数据类型</div></div>
       </div>
-      <div style="display:flex;justify-content:flex-end;gap:6px;flex-wrap:wrap"><button class="log-btn" disabled>暂无预测可记录</button><button class="detail-btn" onclick="event.stopPropagation();openAIAnalysisFromCurrentMatch()">AI分析这场比赛</button><button class="detail-btn" onclick="event.stopPropagation();openCoachReportForCurrentMatch()">生成本场教练组分析</button><button class="detail-btn" onclick="event.stopPropagation();copyCurrentMatchReport()">复制报告</button><button class="detail-btn" onclick="event.stopPropagation();saveCurrentMatchSnapshot()">保存快照</button><button class="detail-btn" onclick="event.stopPropagation();exportCurrentMatchCard()">导出图片</button></div>
+      <div style="display:flex;justify-content:flex-end;gap:6px;flex-wrap:wrap"><button class="log-btn" disabled>暂无预测可记录</button><button class="detail-btn" onclick="event.stopPropagation();deepSeekAnalysisFromCurrentMatch()">DeepSeek分析这场比赛</button><button class="detail-btn" onclick="event.stopPropagation();openCoachReportForCurrentMatch()">生成本场教练组分析</button><button class="detail-btn" onclick="event.stopPropagation();copyCurrentMatchReport()">复制报告</button><button class="detail-btn" onclick="event.stopPropagation();saveCurrentMatchSnapshot()">保存快照</button><button class="detail-btn" onclick="event.stopPropagation();exportCurrentMatchCard()">导出图片</button></div>
     </div>
     <div class="card" style="margin-bottom:12px">
       <div class="card-title">已知球队资料</div>
@@ -4394,7 +4476,7 @@ function buildScheduleOnlyInsightHTML(match){
       <div class="insight-explain-item"><strong>模型状态（Model status）</strong>暂无模型预测。本行不会生成倾向、信心等级、比分或市场偏差。</div>
     </div>
     <div class="decision-tags"><span class="decision-tag demo">官方/手动数据</span><span class="decision-tag demo">模拟数据</span></div>
-    <div class="risk-note risk-secondary">仅用于赛事分析、学习和情景推演。模拟模型输出不构成投注建议。For sports analysis, education, and scenario tracking only.</div>`;
+    <div class="risk_note risk_secondary">仅用于赛事分析、学习和情景推演。模拟模型输出不构成投注建议。For sports analysis, education, and scenario tracking only.</div>`;
 }
 function cleanupModalCharts(){
   if(charts.teamRadar){charts.teamRadar.destroy();charts.teamRadar=null;}
@@ -4460,6 +4542,35 @@ function filterIntelligence(filter,btn){
   renderIntelligence(filter);
 }
 
+function isValidDecimalOdd(v){
+  var n=Number(v);
+  return Number.isFinite(n)&&n>1;
+}
+function getRealOddsRows(){
+  var cache=getApiMatchesCachePayload();
+  if(!cache||!Array.isArray(cache.matches))return[];
+  return cache.matches.map(function(m){
+    var n=normalizeLiveApiMatch(m);
+    if(!n||!n.odds)return null;
+    var home=Number(n.odds.homeWin),draw=Number(n.odds.draw),away=Number(n.odds.awayWin);
+    if(!isValidDecimalOdd(home)||!isValidDecimalOdd(draw)||!isValidDecimalOdd(away))return null;
+    return{matchId:n.id,home:n.homeTeam&&n.homeTeam.name||'TBD',away:n.awayTeam&&n.awayTeam.name||'TBD',homeOdds:home,drawOdds:draw,awayOdds:away,date:n.utcDate||'',status:n.status||'',source:cache.source||'football-data.org',updatedAt:cache.updatedAt||''};
+  }).filter(Boolean);
+}
+function getRealOddsStatus(){
+  var rows=getRealOddsRows();
+  var cache=getApiMatchesCachePayload();
+  return{count:rows.length,source:cache&&cache.source?cache.source:'football-data.org',updatedAt:cache&&cache.updatedAt?cache.updatedAt:'—'};
+}
+function getMatchOddsRows(){
+  var real=getRealOddsRows();
+  if(real.length)return real.map(function(r){return Object.assign({dataType:'真实缓存赔率',isReal:true},r);});
+  return PREDICTIONS.map(function(p){return{home:p.home,away:p.away,homeOdds:p.homeOdds,drawOdds:p.drawOdds,awayOdds:p.awayOdds,date:p.date,status:'Demo',source:'Sample Odds Board',updatedAt:'—',dataType:'示例赔率（Sample）',isReal:false};});
+}
+function updateOddsRegistryFromCache(){
+  var status=getRealOddsStatus();
+  updateDataRegistry('odds',{type:status.count?'real_cache':'sample',source:status.count?'football-data.org odds from matches cache':'Sample odds board',updatedAt:status.updatedAt,confidence:status.count?'medium':'low',fallback:!status.count,recordCount:status.count||ODDS_DATA.length,validationStatus:status.count?'manual API refresh cache':'sample fallback'});
+}
 // ── DATA MANAGER ──
 function validateDataIntegrity(){
   const warnings=[];
@@ -4578,7 +4689,7 @@ function renderCustomDatasetStatus(){
 function renderBuildInfo(){
   const el=document.getElementById('buildInfoPanel');
   if(!el)return;
-  const keys=['wc2026_seen_onboarding','wc2026_settings','wc2026_watchlist','wc2026_prediction_ledger','wc2026_export_snapshots','wc2026_private_ai_reports','wc2026_openai_api_key','wc2026_openai_model','wc2026_openai_output_style','wc2026_real_api_provider','wc2026_real_api_key_football_data','wc2026_real_api_key_api_football','wc2026_real_matches_cache','wc2026_real_matches_cache_updated_at','wc2026_real_matches_cache_source','wc2026_custom_teams','wc2026_custom_matches','wc2026_custom_groups','wc2026_custom_odds','wc2026_custom_injuries','wc2026_custom_meta'];
+  const keys=['wc2026_seen_onboarding','wc2026_settings','wc2026_watchlist','wc2026_prediction_ledger','wc2026_export_snapshots','wc2026_private_ai_reports','wc2026_deepseek_api_key','wc2026_deepseek_endpoint','wc2026_deepseek_model','wc2026_deepseek_output_style','wc2026_real_api_provider','wc2026_real_api_key_football_data','wc2026_real_api_key_api_football','wc2026_real_matches_cache','wc2026_real_matches_cache_updated_at','wc2026_real_matches_cache_source','wc2026_custom_teams','wc2026_custom_matches','wc2026_custom_groups','wc2026_custom_odds','wc2026_custom_injuries','wc2026_custom_meta'];
   el.innerHTML=[
     ['版本','v20'],
     ['单 HTML 模式','true'],
@@ -4689,7 +4800,8 @@ function renderOdds(){
   const top6=oddsRows.slice(0,6);
   if(typeof Chart!=='undefined')charts.oddsMove=new Chart(document.getElementById('oddsMovementChart'),{type:'line',data:{labels:['开盘','Week 1','Week 2','Week 3','当前'],datasets:top6.map((o,i)=>({label:(o.flag||getTeam(o.team).flag)+' '+o.team,data:[o.open||o.bet365||0,(o.open||o.bet365||0)*0.95,(o.open||o.bet365||0)*0.9,(o.bet365||0)*1.05,o.bet365||0],borderColor:['#00d4ff','#ffd700','#ff6b35','#22c55e','#a855f7','#ef4444'][i],backgroundColor:'transparent',tension:.4,pointRadius:3}))},options:{responsive:true,plugins:{legend:{labels:{color:'#64748b',font:{size:10}}}},scales:{y:{grid:{color:'rgba(128,128,128,.1)'},ticks:{color:'#64748b'}},x:{grid:{display:false},ticks:{color:'#64748b'}}}}});
   document.getElementById('driftAnalysis').innerHTML=top6.map(o=>{const open=o.open||o.bet365||0,cur=o.bet365||0;const drift=open?((cur-open)/open*100).toFixed(1):'0.0';return`<div>• <strong style="color:var(--text)">${o.flag||getTeam(o.team).flag} ${escapeHTML(o.team)}</strong>: ${open}x → ${cur}x (${drift>0?'+':''}${drift}%) — ${drift<0?'📉 Shortened (more favored)':'📈 Drifted (less favored)'}</div>`;}).join('');
-  document.getElementById('matchOddsTable').innerHTML=`<thead><tr><th>比赛</th><th>主胜</th><th>平局</th><th>客胜</th><th>Date</th></tr></thead><tbody>${PREDICTIONS.map(p=>{const ht=getTeam(p.home),at=getTeam(p.away);return`<tr><td>${ht.flag} ${biName(p.home)} vs ${at.flag} ${biName(p.away)}</td><td>${p.homeOdds}</td><td>${p.drawOdds}</td><td>${p.awayOdds}</td><td style="color:var(--muted)">${p.date}</td></tr>`;}).join('')}</tbody>`;
+  const matchOddsRows=getMatchOddsRows();
+  document.getElementById('matchOddsTable').innerHTML=`<thead><tr><th>比赛</th><th>主胜</th><th>平局</th><th>客胜</th><th>Date</th><th>数据类型</th></tr></thead><tbody>${matchOddsRows.map(r=>{const ht=getTeam(r.home),at=getTeam(r.away);return`<tr><td>${ht.flag} ${biName(r.home)} vs ${at.flag} ${biName(r.away)}</td><td>${r.homeOdds}</td><td>${r.drawOdds}</td><td>${r.awayOdds}</td><td style="color:var(--muted)">${r.date||'—'}</td><td>${r.isReal?'<span class="data-status-badge live">真实缓存</span>':'<span class="data-status-badge sample">Sample</span>'}</td></tr>`;}).join('')}</tbody>`;
 }
 
 // ── BRACKET ──
@@ -5146,7 +5258,7 @@ function showTeamModal(name){
     <div class="team-profile-section"><div class="profile-section-title">赔率快照 · 示例数据（Sample）</div>${getTeamOddsSnapshot(name)}</div>
   </div>
   <div class="team-profile-section"><div class="profile-section-title">相关比赛详情 · 模拟预测（Model Demo）</div>${getTeamInsightRows(name)}</div>
-  <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="calc-btn" onclick="toggleStar('${name}');showToast('关注列表已更新','success')">${watchlist.includes(name)?'★ 取消关注':'☆ 关注'}</button><button class="detail-btn" onclick="event.stopPropagation();openAIAnalysisFromTeam('${name}')">AI分析这支球队</button><button class="detail-btn" onclick="event.stopPropagation();openCoachReportModal('${name}')">生成教练组报告</button><button class="detail-btn" onclick="event.stopPropagation();copyCurrentTeamReport()">复制球队报告</button><button class="detail-btn" onclick="event.stopPropagation();saveCurrentTeamSnapshot()">保存快照</button><button class="detail-btn" onclick="event.stopPropagation();exportCurrentTeamCard()">导出图片</button></div>`;
+  <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="calc-btn" onclick="toggleStar('${name}');showToast('关注列表已更新','success')">${watchlist.includes(name)?'★ 取消关注':'☆ 关注'}</button><button class="detail-btn" onclick="event.stopPropagation();deepSeekAnalysisFromTeam('${name}')">DeepSeek分析这支球队</button><button class="detail-btn" onclick="event.stopPropagation();openCoachReportModal('${name}')">生成教练组报告</button><button class="detail-btn" onclick="event.stopPropagation();copyCurrentTeamReport()">复制球队报告</button><button class="detail-btn" onclick="event.stopPropagation();saveCurrentTeamSnapshot()">保存快照</button><button class="detail-btn" onclick="event.stopPropagation();exportCurrentTeamCard()">导出图片</button></div>`;
   document.getElementById('teamDetailModal').classList.add('open');
   setTimeout(()=>renderTeamStrengthRadar(name),0);
 }
@@ -5175,6 +5287,9 @@ var liveMatches=[], liveFilter='ALL', liveAutoRefreshTimer=null, liveIsRealData=
 var REAL_API_PROVIDER_KEY='wc2026_real_api_provider';
 var REAL_API_KEY_FOOTBALL_DATA='wc2026_real_api_key_football_data';
 var REAL_API_KEY_API_FOOTBALL='wc2026_real_api_key_api_football';
+var REAL_API_USE_LOCAL_PROXY_KEY='wc2026_real_api_use_local_proxy';
+var REAL_API_PROXY_URL_KEY='wc2026_real_api_proxy_url';
+var REAL_API_PROXY_DEFAULT_URL='http://127.0.0.1:8787';
 var API_MATCHES_CACHE_KEY='wc2026_real_matches_cache';
 var API_MATCHES_CACHE_UPDATED_AT_KEY='wc2026_real_matches_cache_updated_at';
 var API_SOURCE_KEY='wc2026_real_matches_cache_source';
@@ -5232,7 +5347,80 @@ function getRealApiProvider(){return safeStorageGet(REAL_API_PROVIDER_KEY)==='ap
 function getRealApiProviderLabel(provider){return provider==='api_football'?'API-FOOTBALL':'football-data.org';}
 function getRealApiKeyStorageKey(provider){return provider==='api_football'?REAL_API_KEY_API_FOOTBALL:REAL_API_KEY_FOOTBALL_DATA;}
 function getRealApiKey(provider){return safeStorageGet(getRealApiKeyStorageKey(provider||getRealApiProvider()))||'';}
-function setRealApiProvider(provider){
+function isLocalHostUrl(url){
+  try{
+    var u=new URL(url);
+    return (u.protocol==='http:'||u.protocol==='https:')&&['127.0.0.1','localhost','::1'].includes(u.hostname);
+  }catch(e){return false;}
+}
+function getLocalProxyUrl(){
+  var raw=(safeStorageGet(REAL_API_PROXY_URL_KEY)||REAL_API_PROXY_DEFAULT_URL).trim().replace(/\/+$/,'');
+  return raw||REAL_API_PROXY_DEFAULT_URL;
+}
+function isLocalProxyEnabled(){
+  var raw=safeStorageGet(REAL_API_USE_LOCAL_PROXY_KEY);
+  return raw===null?true:raw==='true';
+}
+function getRealApiSourceLabel(provider){
+  provider=provider||getRealApiProvider();
+  if(provider==='football_data'&&isLocalProxyEnabled())return 'football-data.org（本机代理）';
+  return getRealApiProviderLabel(provider)+(provider==='football_data'?'（浏览器直连）':'');
+}
+function updateLocalProxyUI(){
+  var provider=getRealApiProvider();
+  var enabled=isLocalProxyEnabled();
+  var toggle=document.getElementById('localProxyToggle');
+  var input=document.getElementById('localProxyUrlInput');
+  var status=document.getElementById('localProxyStatus');
+  if(toggle)toggle.checked=enabled;
+  if(input)input.value=getLocalProxyUrl();
+  if(status){
+    if(provider!=='football_data'){
+      status.textContent='当前选择 API-FOOTBALL。本机代理主要用于 football-data.org；页面仍不会自动请求 API。';
+    }else if(enabled){
+      status.textContent='football-data 将通过本机代理 '+getLocalProxyUrl()+' 请求，避免浏览器 CORS。请先运行 run-local-proxy.bat。';
+    }else{
+      status.textContent='本机代理已关闭，football-data 将尝试浏览器直连；如出现 Failed to fetch，请重新开启代理。';
+    }
+  }
+}
+function setLocalProxyMode(enabled){
+  safeStorageSet(REAL_API_USE_LOCAL_PROXY_KEY,enabled?'true':'false');
+  updateLocalProxyUI();
+  updateApiCacheStatusUI();
+  showToast(enabled?'已开启本机代理模式':'已关闭本机代理模式','success');
+}
+function saveLocalProxySettings(){
+  var input=document.getElementById('localProxyUrlInput');
+  var url=(input&&input.value?input.value:REAL_API_PROXY_DEFAULT_URL).trim().replace(/\/+$/,'');
+  if(!url)url=REAL_API_PROXY_DEFAULT_URL;
+  if(!isLocalHostUrl(url)){
+    showToast('代理地址只能是 localhost / 127.0.0.1，避免把 Key 发到外部地址','error');
+    if(input)input.value=getLocalProxyUrl();
+    return false;
+  }
+  safeStorageSet(REAL_API_PROXY_URL_KEY,url);
+  updateLocalProxyUI();
+  updateApiCacheStatusUI();
+  showToast('本机代理设置已保存','success');
+  return true;
+}
+async function testLocalProxyHealth(){
+  if(!saveLocalProxySettings())return;
+  var status=document.getElementById('localProxyStatus');
+  var url=getLocalProxyUrl();
+  if(status)status.textContent='正在检测本机代理 '+url+' ...';
+  try{
+    var res=await fetch(url+'/health',{method:'GET'});
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    var data=await res.json().catch(function(){return{};});
+    if(status)status.textContent='本机代理可用：'+url+'。'+(data.message||'可以手动刷新 football-data。');
+    showToast('本机代理可用','success');
+  }catch(e){
+    if(status)status.textContent='本机代理不可用：请运行 D:\\projects\\wc2026\\run-local-proxy.bat 后再检测。错误：'+String(e.message||e).slice(0,120);
+    showToast('本机代理不可用','error');
+  }
+}function setRealApiProvider(provider){
   provider=provider==='api_football'?'api_football':'football_data';
   safeStorageSet(REAL_API_PROVIDER_KEY,provider);
   return provider;
@@ -5246,19 +5434,25 @@ function changeRealApiProvider(provider){
   }
   var status=document.getElementById('apiKeyStatus');
   if(status)status.textContent='已切换到 '+getRealApiProviderLabel(provider)+'。页面仍不会自动请求 API。';
+  setRealStatusMessage('已切换到 '+getRealApiProviderLabel(provider)+'；保存 Key 不会触发请求。','info');
+  updateLocalProxyUI();
   updateApiCacheStatusUI();
-}
-function saveRealApiKey(){
+  renderRealDataPanel();
+}function saveRealApiKey(){
   var provider=getRealApiProvider();
   var input=document.getElementById('apiKeyInput');
   var key=(input&&input.value?input.value:'').trim();
-  if(!key){showToast('请输入 API key','error');return;}
+  if(!key){setRealStatusMessage('请输入 API Key 后再保存。','error');showToast('请输入 API key','error');return;}
   safeStorageSet(getRealApiKeyStorageKey(provider),key);
+  if(input)input.value=key;
+  var msg=getRealApiProviderLabel(provider)+' Key 已保存到本机浏览器；没有请求外部 API。';
   var status=document.getElementById('apiKeyStatus');
-  if(status)status.textContent=getRealApiProviderLabel(provider)+' Key 已保存在本机浏览器。页面不会自动请求 API。';
+  if(status)status.textContent=msg;
+  setRealStatusMessage(msg,'success');
+  updateApiCacheStatusUI();
+  renderRealDataPanel();
   showToast('API Key 已保存到本机浏览器','success');
-}
-function normalizeLiveApiMatch(m){
+}function normalizeLiveApiMatch(m){
   if(!m)return null;
   if(m.homeTeam&&m.awayTeam)return{
     id:m.id||m.utcDate||Math.random(),
@@ -5269,7 +5463,8 @@ function normalizeLiveApiMatch(m){
     matchday:m.matchday||null,
     homeTeam:{name:m.homeTeam.name||m.homeTeam,crest:m.homeTeam.crest||getFlag(m.homeTeam.name||m.homeTeam)},
     awayTeam:{name:m.awayTeam.name||m.awayTeam,crest:m.awayTeam.crest||getFlag(m.awayTeam.name||m.awayTeam)},
-    score:m.score||{fullTime:{home:null,away:null}}
+    score:m.score||{fullTime:{home:null,away:null}},
+    odds:m.odds||null
   };
   if(m.home&&m.away)return{
     id:m.id||m.date||Math.random(),
@@ -5280,7 +5475,8 @@ function normalizeLiveApiMatch(m){
     matchday:m.matchday||null,
     homeTeam:{name:m.home,crest:getFlag(m.home)},
     awayTeam:{name:m.away,crest:getFlag(m.away)},
-    score:{fullTime:{home:null,away:null}}
+    score:{fullTime:{home:null,away:null}},
+    odds:m.odds||null
   };
   return null;
 }
@@ -5339,7 +5535,23 @@ function saveApiMatchesCache(source,matches){
   safeStorageSet(API_SOURCE_KEY,payload.source);
   return payload;
 }
+async function fetchFootballDataViaLocalProxy(token){
+  var url=getLocalProxyUrl();
+  if(!isLocalHostUrl(url))throw new Error('本机代理地址必须是 localhost 或 127.0.0.1');
+  var res=await fetch(url+'/football-data/matches',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({apiKey:token})
+  });
+  if(!res.ok){
+    var err=await res.json().catch(function(){return{message:res.statusText};});
+    throw new Error('本机代理 '+res.status+': '+(err.message||err.error||res.statusText));
+  }
+  var data=await res.json();
+  return(data.matches||[]).map(normalizeLiveApiMatch).filter(Boolean);
+}
 async function fetchFootballDataWorldCupMatches(token){
+  if(isLocalProxyEnabled())return fetchFootballDataViaLocalProxy(token);
   var res=await fetch('https://api.football-data.org/v4/competitions/WC/matches',{headers:{'X-Auth-Token':token}});
   if(!res.ok){
     var err=await res.json().catch(function(){return{message:res.statusText};});
@@ -5357,7 +5569,38 @@ async function fetchApiFootballFixtures(token){
   var data=await res.json();
   return(data.response||[]).map(normalizeApiFootballFixture).filter(Boolean);
 }
-function renderRealDataPanel(){
+function setRealStatusMessage(message,type){
+  var el=document.getElementById('realStatusMessage');
+  if(el){
+    el.textContent=message||'';
+    el.className='real-status-message '+(type||'info');
+  }
+}
+function setRealButtonBusy(buttonId,busy,busyText){
+  var btn=document.getElementById(buttonId);
+  if(!btn)return;
+  if(busy){
+    btn.dataset.normalText=btn.textContent.trim();
+    btn.disabled=true;
+    if(busyText)btn.textContent=busyText;
+  }else{
+    btn.disabled=false;
+    if(btn.dataset.normalText){btn.textContent=btn.dataset.normalText;delete btn.dataset.normalText;}
+  }
+}
+function setRefreshBusy(busy){
+  var btn=document.getElementById('refreshBtn');
+  var txt=document.getElementById('refreshBtnText');
+  if(btn){btn.disabled=busy;btn.classList.toggle('spinning',!!busy);}
+  if(txt)txt.textContent=busy?'正在刷新...':'刷新真实赛程/比分';
+}
+function getLiveFallbackLabel(){
+  return (typeof OFFICIAL_MATCHES!=='undefined'&&Array.isArray(OFFICIAL_MATCHES)&&OFFICIAL_MATCHES.length)?'静态JSON / 手动层':'Demo / Mock 回退';
+}
+function getRealOddsText(){
+  var odds=getRealOddsStatus();
+  return odds.count?('已缓存 '+odds.count+' 场 1X2 赔率'):'暂无真实赔率；赔率面板使用 Sample 示例';
+}function renderRealDataPanel(){
   var grid=document.getElementById('realDataStatusGrid');
   var chip=document.getElementById('realDataModeChip');
   if(!grid&&!chip)return;
@@ -5367,47 +5610,45 @@ function renderRealDataPanel(){
   var isReal=kind==='api'||kind==='cache';
   var isCache=kind==='cache';
   var matchCount=(typeof liveMatches!=='undefined'&&Array.isArray(liveMatches)&&liveMatches.length)?liveMatches.length:cache.count;
-  var source=kind==='api'?getRealApiProviderLabel(provider)+' 实时接口':kind==='cache'?'本机 localStorage API 缓存':kind==='static'?'静态赛程 JSON / 手动层':'内置 Demo / Mock 回退';
+  var source=kind==='api'?getRealApiSourceLabel(provider)+' 实时刷新':kind==='cache'?'真实缓存数据':kind==='static'?'静态JSON / 手动层':'Demo / Mock 回退';
   var lastRefresh=cache.updatedAt||'—';
-  var realLabel=isReal?'是：真实赛程/比分':'否：当前为静态/Demo 回退';
-  var cacheLabel=kind==='api'?'刚手动刷新，已写入本机缓存':isCache?'是：正在读取本机缓存':'否';
+  var keyStatus=(getRealApiKey(provider)||(document.getElementById('apiKeyInput')?.value||'').trim())?'已保存到本机浏览器':'未保存';
+  var cacheLabel=kind==='api'?'刚手动刷新，已写入本机缓存':isCache?'正在读取本机缓存':'暂无真实缓存，当前使用 '+getLiveFallbackLabel();
   if(chip){
-    chip.textContent=kind==='api'?'实时接口':kind==='cache'?'API 缓存':kind==='static'?'静态回退':'Mock 回退';
+    chip.textContent=kind==='api'?'实时刷新':kind==='cache'?'真实缓存':kind==='static'?'静态回退':'Demo 回退';
     chip.className='real-data-chip '+(isReal?(isCache?'cache':'real'):'mock');
   }
   if(grid){
     var rows=[
-      ['数据源选择',getRealApiProviderLabel(provider)],
-      ['API Key',getRealApiKey(provider)?'已保存在本机浏览器':'未保存'],
-      ['数据来源',source],
-      ['上次刷新时间',lastRefresh],
-      ['是否真实数据',realLabel],
-      ['是否缓存数据',cacheLabel],
-      ['比赛数量',String(matchCount||0)],
-      ['真实赔率', '未接入；赔率面板仍为 Sample 示例']
+      {label:'当前显示数据来源',value:source,testId:'real-current-source'},
+      {label:'当前 API 数据源',value:getRealApiSourceLabel(provider)},
+      {label:'Key 是否已保存',value:keyStatus,testId:'real-key-status'},
+      {label:'缓存状态',value:cacheLabel,testId:'real-cache-status'},
+      {label:'上次刷新时间',value:lastRefresh,testId:'real-last-updated'},
+      {label:'缓存比赛数量',value:String(cache.count||0),testId:'real-match-count'},
+      {label:'当前显示比赛数量',value:String(matchCount||0)},
+      {label:'真实赔率状态',value:getRealOddsText()}
     ];
-    grid.innerHTML=rows.map(function(row){return'<div class="real-data-cell"><div class="label">'+escapeHTML(row[0])+'</div><div class="value">'+escapeHTML(row[1])+'</div></div>';}).join('');
+    grid.innerHTML=rows.map(function(row){var attr=row.testId?' data-testid="'+escapeHTML(row.testId)+'"':'';return'<div class="real-data-cell"'+attr+'><div class="label">'+escapeHTML(row.label)+'</div><div class="value">'+escapeHTML(row.value)+'</div></div>';}).join('');
   }
-}
-function updateApiCacheStatusUI(){
+}function updateApiCacheStatusUI(){
   var el=document.getElementById('apiCacheStatus');
   if(!el){renderRealDataPanel();return;}
   var cache=getApiMatchesCacheStatus();
   var provider=getRealApiProvider();
-  var source=cache.hasCache?'API缓存':'暂无真实缓存';
-  var fallback=(typeof OFFICIAL_MATCHES!=='undefined'&&OFFICIAL_MATCHES.length)?'静态JSON':'内置 Demo/Mock';
+  var fallback=getLiveFallbackLabel();
   el.innerHTML=[
-    '当前数据来源（赛程/比分）：<strong style="color:var(--text)">'+(cache.hasCache?'真实缓存数据':'暂无真实缓存，当前使用'+fallback)+'</strong>',
-    '当前 API 数据源：'+escapeHTML(getRealApiProviderLabel(provider)),
-    '上次 API 刷新时间：'+escapeHTML(cache.updatedAt),
+    '当前显示数据来源：<strong style="color:var(--text)">'+(cache.hasCache?'真实缓存数据':'暂无真实缓存，当前使用 '+fallback)+'</strong>',
+    '当前 API 数据源：'+escapeHTML(getRealApiSourceLabel(provider)),
+    'Key 状态：'+escapeHTML(getRealApiKey(provider)?'已保存到本机浏览器':'未保存'),
+    '上次刷新时间：'+escapeHTML(cache.updatedAt),
     '本机缓存比赛数量：'+cache.count,
-    '真实赔率：未接入；赔率面板仍为 Sample 示例。',
+    '真实赔率状态：'+escapeHTML(getRealOddsText()),
     '免费额度提醒：免费 API 次数有限，建议每天手动刷新 1–3 次。',
     '省 API 模式：页面打开和进入实时赛程页都不会自动请求外部 API。'
   ].join('<br>');
   renderRealDataPanel();
-}
-function applyLiveDataset(matches,meta){
+}function applyLiveDataset(matches,meta){
   meta=meta||{};
   liveMatches=(matches||[]).map(normalizeLiveApiMatch).filter(Boolean);
   liveIsRealData=meta.kind==='api'||meta.kind==='cache';
@@ -5442,23 +5683,26 @@ function initLiveSchedule(){
   var provider=getRealApiProvider();
   var select=document.getElementById('realApiProvider');
   if(select)select.value=provider;
+  updateLocalProxyUI();
   var savedKey=getRealApiKey(provider);
   var input=document.getElementById('apiKeyInput');
-  if(savedKey&&input)input.value=savedKey;
+  if(input)input.value=savedKey||'';
   var cache=readApiMatchesCache();
   if(cache&&cache.matches.length){
     var status=document.getElementById('apiKeyStatus');
     if(status)status.textContent='已读取本机 API 缓存；页面打开未请求外部 API。';
+    setRealStatusMessage('已读取本机真实缓存：'+cache.matches.length+' 场比赛。页面打开没有请求外部 API。','success');
     applyLiveDataset(cache.matches,{kind:'cache',source:cache.source,updatedAt:cache.updatedAt,message:'API cache loaded'});
     return;
   }
   var staticMatches=getStaticLiveMatches();
   var hasStatic=typeof OFFICIAL_MATCHES!=='undefined'&&Array.isArray(OFFICIAL_MATCHES)&&OFFICIAL_MATCHES.length;
+  var msg='暂无真实缓存，当前使用'+(hasStatic?'静态JSON / 手动层':'Demo / Mock 回退')+'。只有点击“刷新真实赛程/比分”才会请求 API。';
   var statusEl=document.getElementById('apiKeyStatus');
-  if(statusEl)statusEl.textContent='暂无真实缓存，当前使用'+(hasStatic?'静态JSON':'模拟/Mock')+'数据。点击“手动刷新真实赛程/比分”才会调用 API。';
+  if(statusEl)statusEl.textContent=msg;
+  setRealStatusMessage(msg,'info');
   applyLiveDataset(staticMatches,{kind:hasStatic?'static':'mock',source:hasStatic?'static OFFICIAL_MATCHES':'built-in MOCK_MATCHES',message:'No cache; no API request'});
-}
-function saveAndLoadApi(){
+}function saveAndLoadApi(){
   saveRealApiKey();
 }
 function clearRealApiKey(){
@@ -5466,16 +5710,18 @@ function clearRealApiKey(){
   localStorage.removeItem(getRealApiKeyStorageKey(provider));
   var input=document.getElementById('apiKeyInput');
   if(input)input.value='';
+  var msg=getRealApiProviderLabel(provider)+' Key 已清除；真实比赛缓存未删除。';
   var status=document.getElementById('apiKeyStatus');
-  if(status)status.textContent=getRealApiProviderLabel(provider)+' Key 已清除。不会自动请求外部 API。';
+  if(status)status.textContent=msg;
+  setRealStatusMessage(msg,'success');
   showToast('API Key 已清除','success');
-  initLiveSchedule();
-}
-function clearApiKey(){
+  updateApiCacheStatusUI();
+  renderRealDataPanel();
+}function clearApiKey(){
   clearRealApiKey();
 }
 function clearApiMatchesCache(){
-  if(!confirm('确定清除真实数据缓存？清除后会回到静态JSON / 模拟数据。'))return;
+  if(!confirm('确定清除真实数据缓存？清除后会回到静态JSON / Demo 数据，但不会删除 API Key。'))return;
   localStorage.removeItem(API_MATCHES_CACHE_KEY);
   localStorage.removeItem(API_MATCHES_CACHE_UPDATED_AT_KEY);
   localStorage.removeItem(API_SOURCE_KEY);
@@ -5484,6 +5730,7 @@ function clearApiMatchesCache(){
   localStorage.removeItem(LEGACY_API_SOURCE_KEY);
   showToast('真实数据缓存已清除','success');
   initLiveSchedule();
+  setRealStatusMessage('真实缓存已清除；API Key 保留，当前回到静态/Demo 数据。','success');
 }
 async function fetchMatchesForCurrentProvider(key){
   var provider=getRealApiProvider();
@@ -5492,55 +5739,75 @@ async function fetchMatchesForCurrentProvider(key){
 async function testRealApiConnection(){
   var provider=getRealApiProvider();
   var key=(document.getElementById('apiKeyInput')?.value||getRealApiKey(provider)||'').trim();
-  if(!key){showToast('请输入 API key 后再测试连接','error');return;}
+  if(!key){setRealStatusMessage('请输入 API Key 后再测试连接。','error');showToast('请输入 API key 后再测试连接','error');return;}
   safeStorageSet(getRealApiKeyStorageKey(provider),key);
   var status=document.getElementById('apiKeyStatus');
-  if(status)status.textContent='正在测试 '+getRealApiProviderLabel(provider)+' 连接；这会消耗一次免费 API 调用。';
+  var startMsg='正在测试 '+getRealApiSourceLabel(provider)+' 连接；这会消耗一次免费 API 调用，但不会写入赛程缓存。';
+  if(status)status.textContent=startMsg;
+  setRealStatusMessage('正在测试连接...','loading');
+  setRealButtonBusy('realTestConnectionBtn',true,'正在测试...');
   try{
     var matches=await fetchMatchesForCurrentProvider(key);
-    if(status)status.textContent='连接成功：返回 '+matches.length+' 场赛程/比分数据。页面仍不会自动刷新。';
+    var okMsg='测试成功：返回 '+matches.length+' 场赛程/比分数据；未写入真实缓存。';
+    if(status)status.textContent=okMsg;
+    setRealStatusMessage(okMsg,'success');
     showToast('测试连接成功','success');
+    updateApiCacheStatusUI();
   }catch(e){
     console.warn('API connection test failed:',e.message);
-    if(status)status.textContent='测试连接失败：'+String(e.message||'API error').slice(0,140);
+    var msg='测试失败：'+String(e.message||'API error').slice(0,160)+'。未覆盖缓存，当前仍使用缓存/静态/Demo 数据。';
+    if(status)status.textContent=msg;
+    setRealStatusMessage(msg,'error');
     showToast('测试连接失败，未覆盖缓存','error');
+    updateApiCacheStatusUI();
+  }finally{
+    setRealButtonBusy('realTestConnectionBtn',false);
   }
 }
 async function refreshRealSchedule(){
-  var btn=document.getElementById('refreshBtn');
   var provider=getRealApiProvider();
-  var source=getRealApiProviderLabel(provider);
+  var source=getRealApiSourceLabel(provider);
   var k=(document.getElementById('apiKeyInput')?.value||getRealApiKey(provider)||'').trim();
-  if(!k){showToast('请输入 API key 后再手动刷新','error');return;}
+  if(!k){setRealStatusMessage('请输入 API Key 后再刷新真实赛程/比分。','error');showToast('请输入 API key 后再手动刷新','error');return;}
   safeStorageSet(getRealApiKeyStorageKey(provider),k);
   var last=safeStorageGet(API_MATCHES_CACHE_UPDATED_AT_KEY);
   if(last){
     var elapsed=Date.now()-Date.parse(last);
-    if(Number.isFinite(elapsed)&&elapsed<API_REFRESH_COOLDOWN_MS&&!confirm('10 分钟内已经刷新过。继续刷新会消耗免费 API 额度，确定继续吗？'))return;
+    if(Number.isFinite(elapsed)&&elapsed<API_REFRESH_COOLDOWN_MS&&!confirm('10 分钟内已经刷新过一次。继续刷新会消耗免费 API 额度，确定继续吗？')){
+      setRealStatusMessage('已取消刷新：10 分钟冷却期内未再次请求 API。','info');
+      return;
+    }
   }
-  if(btn)btn.classList.add('spinning');
+  setRefreshBusy(true);
+  setRealStatusMessage('正在刷新真实赛程/比分...','loading');
+  var status=document.getElementById('apiKeyStatus');
+  if(status)status.textContent='正在刷新 '+source+'；成功后会写入本机缓存。';
   var list=document.getElementById('liveMatchList');
-  if(list)list.innerHTML='<div class="live-loading"><div class="spinner"></div><div>正在手动刷新真实赛程/比分...</div></div>';
+  if(list)list.innerHTML='<div class="live-loading"><div class="spinner"></div><div>正在刷新真实赛程/比分...</div></div>';
   try{
     var matches=await fetchMatchesForCurrentProvider(k);
     var payload=saveApiMatchesCache(source,matches);
     liveScheduleError='';
-    var status=document.getElementById('apiKeyStatus');
-    if(status)status.textContent='手动刷新成功，真实赛程/比分已缓存到本机：'+matches.length+' 场比赛。';
+    var msg='已缓存 '+matches.length+' 场比赛；当前显示真实缓存数据。';
+    if(status)status.textContent=msg;
+    setRealStatusMessage(msg,'success');
     showToast('真实赛程/比分已刷新并缓存','success');
     applyLiveDataset(matches,{kind:'api',source:source,updatedAt:payload.updatedAt,message:'Manual refresh'});
   }catch(e){
     console.warn('Manual API refresh failed:',e.message);
-    liveScheduleError='手动刷新失败：'+String(e.message||'API error').slice(0,140);
+    var refreshRaw=String(e.message||'API error');
+    liveScheduleError=/Failed to fetch|NetworkError|Load failed|CORS/i.test(refreshRaw)?(provider==='football_data'&&isLocalProxyEnabled()?'请求失败：本机代理未启动或不可访问。请运行 run-local-proxy.bat，再刷新真实赛程/比分。':'请求失败：浏览器直连 football-data.org 可能被跨域/CORS 限制拦截。当前缓存/静态/Demo 数据保持不变。'):'请求失败：'+refreshRaw.slice(0,160);
+    var failMsg=liveScheduleError+' 继续使用缓存/静态/Demo 数据。';
     var statusEl=document.getElementById('apiKeyStatus');
-    if(statusEl)statusEl.textContent=liveScheduleError+'。保留当前缓存/静态/模拟数据。';
+    if(statusEl)statusEl.textContent=failMsg;
     showToast('真实赛程/比分刷新失败，未覆盖缓存','error');
     initLiveSchedule();
+    if(statusEl)statusEl.textContent=failMsg;
+    setRealStatusMessage(failMsg,'error');
   }finally{
-    if(btn)btn.classList.remove('spinning');
+    setRefreshBusy(false);
   }
-}
-function loadLiveSchedule(){
+}function loadLiveSchedule(){
   initLiveSchedule();
 }
 function renderLiveStats(){
@@ -7038,3 +7305,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
