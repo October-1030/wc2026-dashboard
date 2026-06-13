@@ -2,7 +2,7 @@
   "source": "Titan007 local sync",
   "dataType": "local_live_sync",
   "sourceUrl": "https://2026.titan007.com/?from=3",
-  "syncedAt": "2026-06-12T14:44:44.853Z",
+  "syncedAt": "2026-06-13T05:21:40.159Z",
   "count": 12,
   "groups": [
     {
@@ -54,35 +54,35 @@
         }
       ],
       "source": "Titan007 local sync",
-      "syncedAt": "2026-06-12T14:44:44.853Z"
+      "syncedAt": "2026-06-13T05:21:40.159Z"
     },
     {
       "group": "B组",
       "teams": [
         {
-          "name": "瑞士",
-          "rank": 1,
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goalDiff": 0,
-          "points": 0,
-          "qualifyIndex": "1.73"
-        },
-        {
           "name": "波黑",
-          "rank": 2,
-          "played": 0,
+          "rank": 1,
+          "played": 1,
           "wins": 0,
-          "draws": 0,
+          "draws": 1,
           "losses": 0,
           "goalDiff": 0,
-          "points": 0,
-          "qualifyIndex": "6"
+          "points": 1,
+          "qualifyIndex": "5.5"
         },
         {
           "name": "加拿大",
+          "rank": 2,
+          "played": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "goalDiff": 0,
+          "points": 1,
+          "qualifyIndex": "3.25"
+        },
+        {
+          "name": "瑞士",
           "rank": 3,
           "played": 0,
           "wins": 0,
@@ -90,7 +90,7 @@
           "losses": 0,
           "goalDiff": 0,
           "points": 0,
-          "qualifyIndex": "3"
+          "qualifyIndex": "1.66"
         },
         {
           "name": "卡塔尔",
@@ -105,7 +105,7 @@
         }
       ],
       "source": "Titan007 local sync",
-      "syncedAt": "2026-06-12T14:44:44.853Z"
+      "syncedAt": "2026-06-13T05:21:40.159Z"
     },
     {
       "group": "C组",
@@ -130,7 +130,7 @@
           "losses": 0,
           "goalDiff": 0,
           "points": 0,
-          "qualifyIndex": "1.22"
+          "qualifyIndex": "1.25"
         },
         {
           "name": "摩洛哥",
@@ -141,7 +141,7 @@
           "losses": 0,
           "goalDiff": 0,
           "points": 0,
-          "qualifyIndex": "4.5"
+          "qualifyIndex": "4"
         },
         {
           "name": "海地",
@@ -156,24 +156,24 @@
         }
       ],
       "source": "Titan007 local sync",
-      "syncedAt": "2026-06-12T14:44:44.853Z"
+      "syncedAt": "2026-06-13T05:21:40.159Z"
     },
     {
       "group": "D组",
       "teams": [
         {
-          "name": "土耳其",
+          "name": "美国",
           "rank": 1,
-          "played": 0,
-          "wins": 0,
+          "played": 1,
+          "wins": 1,
           "draws": 0,
           "losses": 0,
-          "goalDiff": 0,
-          "points": 0,
-          "qualifyIndex": "2.75"
+          "goalDiff": 3,
+          "points": 3,
+          "qualifyIndex": "1.53"
         },
         {
-          "name": "巴拉圭",
+          "name": "土耳其",
           "rank": 2,
           "played": 0,
           "wins": 0,
@@ -181,10 +181,10 @@
           "losses": 0,
           "goalDiff": 0,
           "points": 0,
-          "qualifyIndex": "4.75"
+          "qualifyIndex": "2.88"
         },
         {
-          "name": "美国",
+          "name": "澳大利亚",
           "rank": 3,
           "played": 0,
           "wins": 0,
@@ -192,22 +192,22 @@
           "losses": 0,
           "goalDiff": 0,
           "points": 0,
-          "qualifyIndex": "2.2"
+          "qualifyIndex": "12"
         },
         {
-          "name": "澳大利亚",
+          "name": "巴拉圭",
           "rank": 4,
-          "played": 0,
+          "played": 1,
           "wins": 0,
           "draws": 0,
-          "losses": 0,
-          "goalDiff": 0,
+          "losses": 1,
+          "goalDiff": -3,
           "points": 0,
-          "qualifyIndex": "9"
+          "qualifyIndex": "26"
         }
       ],
       "source": "Titan007 local sync",
-      "syncedAt": "2026-06-12T14:44:44.853Z"
+      "syncedAt": "2026-06-13T05:21:40.159Z"
     },
     {
       "group": "E组",
@@ -258,7 +258,7 @@
         }
       ],
       "source": "Titan007 local sync",
-      "syncedAt": "2026-06-12T14:44:44.853Z"
+      "syncedAt": "2026-06-13T05:21:40.159Z"
     },
     {
       "group": "F组",
@@ -294,7 +294,7 @@
           "losses": 0,
           "goalDiff": 0,
           "points": 0,
-          "qualifyIndex": "11"
+          "qualifyIndex": "17"
         },
         {
           "name": "日本",
@@ -305,11 +305,11 @@
           "losses": 0,
           "goalDiff": 0,
           "points": 0,
-          "qualifyIndex": "3.5"
+          "qualifyIndex": "3.25"
         }
       ],
       "source": "Titan007 local sync",
-      "syncedAt": "2026-06-12T14:44:44.853Z"
+      "syncedAt": "2026-06-13T05:21:40.159Z"
     },
     {
       "group": "G组",
@@ -360,7 +360,7 @@
         }
       ],
       "source": "Titan007 local sync",
-      "syncedAt": "2026-06-12T14:44:44.853Z"
+      "syncedAt": "2026-06-13T05:21:40.159Z"
     },
     {
       "group": "H组",
@@ -411,7 +411,7 @@
         }
       ],
       "source": "Titan007 local sync",
-      "syncedAt": "2026-06-12T14:44:44.853Z"
+      "syncedAt": "2026-06-13T05:21:40.159Z"
     },
     {
       "group": "I组",
@@ -462,7 +462,7 @@
         }
       ],
       "source": "Titan007 local sync",
-      "syncedAt": "2026-06-12T14:44:44.853Z"
+      "syncedAt": "2026-06-13T05:21:40.159Z"
     },
     {
       "group": "J组",
@@ -513,7 +513,7 @@
         }
       ],
       "source": "Titan007 local sync",
-      "syncedAt": "2026-06-12T14:44:44.853Z"
+      "syncedAt": "2026-06-13T05:21:40.159Z"
     },
     {
       "group": "K组",
@@ -564,7 +564,7 @@
         }
       ],
       "source": "Titan007 local sync",
-      "syncedAt": "2026-06-12T14:44:44.853Z"
+      "syncedAt": "2026-06-13T05:21:40.159Z"
     },
     {
       "group": "L组",
@@ -589,7 +589,7 @@
           "losses": 0,
           "goalDiff": 0,
           "points": 0,
-          "qualifyIndex": "4.5"
+          "qualifyIndex": "4"
         },
         {
           "name": "巴拿马",
@@ -611,11 +611,11 @@
           "losses": 0,
           "goalDiff": 0,
           "points": 0,
-          "qualifyIndex": "11"
+          "qualifyIndex": "13"
         }
       ],
       "source": "Titan007 local sync",
-      "syncedAt": "2026-06-12T14:44:44.853Z"
+      "syncedAt": "2026-06-13T05:21:40.159Z"
     }
   ],
   "meta": {
