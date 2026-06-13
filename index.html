@@ -2664,7 +2664,7 @@ function normalizeMatch(m,source){
     return{id:String(m.id||`${m.home}-${m.away}-${m.date}`),group:getPredictionGroupLabel(m).replace(/^Group\s+/i,''),stage:m.stage==='ko'?'KNOCKOUT_DEMO':'GROUP_STAGE',date:m.date||'Demo TBD',time:'TBD',venue:m.venue||'Neutral / Unknown',city:m.venue||'',home:m.home,away:m.away,status:'DEMO',score:m.score||'—',source:'prediction_demo',dataType:'demo_model',raw:m,predIndex:PREDICTIONS.indexOf(m)};
   }
   const utcDate=m.utcDate||((m.dataType==='local_live_sync'||m.source==='Titan007 local sync'||source==='titan_local_sync')?parseTitanUtcDate(m.date,m.time):'');
-  return{id:String(m.id||`${m.home}-${m.away}-${m.date}`),utcDate:utcDate,displayDate:m.displayDate||m.date||'',displayTime:m.displayTime||m.time||'',group:m.group||'',stage:m.stage||'GROUP_STAGE',date:m.date||'TBD',time:m.time||'TBD',venue:m.venue||'Unknown',city:m.city||'',home:m.home||'TBD',away:m.away||'TBD',status:m.status||'SCHEDULED',score:m.score||'—',source:m.source||source||'official/manual',dataType:m.dataType||'official_partial',raw:m};
+  return{id:String(m.id||`${m.home}-${m.away}-${m.date}`),utcDate:utcDate,displayDate:m.displayDate||m.date||'',displayTime:m.displayTime||m.time||'',group:m.group||'',stage:m.stage||'GROUP_STAGE',date:m.date||'TBD',time:m.time||'TBD',venue:m.venue||'Unknown',city:m.city||'',home:m.home||'TBD',away:m.away||'TBD',status:m.status||'SCHEDULED',score:m.score||'—',source:m.source||source||'official/manual',dataType:m.dataType||'official_partial',handicap:m.handicap||m.raw?.handicap||'',halfTime:m.halfTime||m.raw?.halfTime||'',syncedAt:m.syncedAt||m.raw?.syncedAt||'',raw:m};
 }
 function getActiveMatches(){return getEffectiveMatches();}
 function findPredictionForMatch(match){
@@ -3193,7 +3193,7 @@ function generateTeamReportText(teamName){
 }
 function getCoachReportDataLayer(){
   if(hasCustomDataset('matches')||hasCustomDataset('teams')||hasCustomDataset('groups')||hasCustomDataset('injuries'))return{source:'自定义导入数据',dataType:'Custom Override / Mixed',note:'已启用本机导入 JSON，优先于内置层。'};
-  if(typeof titan2026LocalStatus!=='undefined'&&titan2026LocalStatus.hasMatches)return{source:'Titan007 本地同步',dataType:'local_live_sync',note:`来自本机 JSON，同步时间 ${titan2026LocalStatus.syncedAt||'未知'}，比赛 ${titan2026LocalStatus.matchCount||0} 场，小组 ${titan2026LocalStatus.groupCount||0} 个。网页未直接请求 Titan007。`};
+  if(typeof titan2026LocalStatus!=='undefined'&&titan2026LocalStatus.hasMatches)return{source:'Titan007 本地同步',dataType:'local_live_sync',note:`来自本机 JSON，同步时间 ${formatStoredTimestampLocal(titan2026LocalStatus.syncedAt)||'未知'}，比赛 ${titan2026LocalStatus.matchCount||0} 场，小组 ${titan2026LocalStatus.groupCount||0} 个。网页未直接请求 Titan007。`};
   const cache=getApiMatchesCachePayload();
   if(cache&&Array.isArray(cache.matches)&&cache.matches.length)return{source:'真实缓存',dataType:'API Cache / Mixed',note:`来自 ${cache.source||'API'} 的本机缓存，刷新时间 ${cache.updatedAt||'未知'}。`};
   if(typeof REAL_MODE!=='undefined'&&REAL_MODE)return{source:'暂无实盘数据',dataType:'no_real_data',note:'当前未读取 Titan007 本地同步、用户导入或 API 缓存。实盘分析不会使用 Demo / Mock / Sample 伪数据。'};
@@ -3734,14 +3734,57 @@ function getAIMatchSourceFromTarget(target){
 function getAITeamName(target){
   return typeof target==='string'&&target?target:(document.getElementById('aiTeamSelect')?.value||getCoachDefaultTeam());
 }
+function formatTeamForPrompt(name){
+  const cn=cnName(name);
+  return cn&&cn!==name?`${cn} / ${name}`:String(name||'TBD');
+}
+function normalizePromptValue(value,emptyLabel){
+  const text=String(value??'').trim();
+  if(!text||text==='-'||text==='—'||/^unknown$/i.test(text)||/^neutral \/ unknown$/i.test(text)||text==='TBD')return emptyLabel!==undefined?emptyLabel:'暂无';
+  return text;
+}
+function getRawTitanSourceTime(match){
+  if(!match)return'—';
+  const date=match.displayDate||match.date||match.raw?.date||'';
+  const time=match.displayTime||match.time||match.raw?.time||'';
+  return date&&time?`${date} ${time} 北京时间`:'—';
+}
+function explainHandicapText(text,home,away){
+  const h=normalizePromptValue(text,'');
+  if(!h)return'暂无盘口文字，不能从市场让步判断强弱。';
+  if(h.includes('受')){
+    const cleaned=h.replace(/^受/,'');
+    return `盘口文字为“${h}”：按常见中文亚盘表达，主队 ${formatTeamForPrompt(home)} 受让 ${cleaned||h}，市场文字更偏向客队 ${formatTeamForPrompt(away)}。但当前没有水位/赔率，不能判断真实热度或价值。`;
+  }
+  if(h.includes('平/半'))return `盘口文字为“${h}”：按常见中文亚盘表达，主队 ${formatTeamForPrompt(home)} 略被看高，接近平手到让半球之间。没有水位/赔率，只能作为轻微信号。`;
+  if(h.includes('平手')||h==='平')return `盘口文字为“${h}”：双方市场定位接近，不能仅凭盘口判断明显强弱。`;
+  return `盘口文字为“${h}”：通常表示主队 ${formatTeamForPrompt(home)} 让 ${h}。没有水位/赔率，不能判断盘口是否升降或是否有真实市场优势。`;
+}
+function getPromptDataAudit(ctx){
+  const m=ctx.selectedMatch;
+  const available=[];
+  const missing=[];
+  if(m){
+    available.push('赛程时间（已转为浏览器本地时间）','小组/阶段','比赛状态','主客队','盘口文字');
+    if(normalizePromptValue(m.score,''))available.push('比分字段');
+    else missing.push('实时比分');
+    if(normalizePromptValue(m.halfTime,''))available.push('半场字段');
+    else missing.push('半场比分');
+    if(normalizePromptValue(m.venue,''))available.push('场馆字段');
+    else missing.push('明确场馆');
+  }
+  missing.push('首发阵容','真实伤停/停赛','球队近期正式比赛状态','真实赔率水位和盘口变化','天气/旅途/休息天数');
+  return{available,missing};
+}
 function summarizeAIMatchSource(src){
   if(!src)return{home:'TBD',away:'TBD',date:'—',venue:'—',status:'暂无实盘数据',stage:'—',group:'',handicap:'',halfTime:'',score:'',source:'暂无实盘数据',dataType:'no_real_data',prediction:null,match:null};
   const p=src?.prediction||null,m=src?.match||null;
   const home=p?.home||m?.home||'TBD',away=p?.away||m?.away||'TBD';
   const date=p?.date||formatScheduleDate(m);
-  const venue=p?.venue||m?.venue||m?.city||'Neutral / Unknown';
+  const sourceTime=m?getRawTitanSourceTime(m):'—';
+  const venue=p?.venue||m?.venue||m?.city||'';
   const status=m?getScheduleStatusLabel(m):(p?'Model Demo prediction':'—');
-  return{home,away,date,venue,status,stage:p?(p.stage==='ko'?'淘汰赛':'小组赛'):(m?getScheduleStageLabel(m):'—'),group:m?.group||'',handicap:m?.handicap||'',halfTime:m?.halfTime||'',score:m?.score||'',source:m?.source||'',dataType:m?.dataType||'',prediction:p,match:m};
+  return{home,away,date,sourceTime,venue,status,stage:p?(p.stage==='ko'?'淘汰赛':'小组赛'):(m?getScheduleStageLabel(m):'—'),group:m?.group||'',handicap:m?.handicap||'',halfTime:m?.halfTime||'',score:m?.score||'',source:m?.source||'',dataType:m?.dataType||'',prediction:p,match:m};
 }
 function buildAIContext(type,target){
   const layer=getCoachReportDataLayer();
@@ -3749,7 +3792,7 @@ function buildAIContext(type,target){
   const realMatches=getRealModeMatches();
   const ctx={type,dataSource:layer.source,dataType:layer.dataType,sourceNote:layer.note,apiCache:cache,hasRealMatches:realMatches.length>0,activeMatches:[],predictions:[],selectedMatch:null,selectedTeam:null,teamStats:null,injuries:[],oddsSample:null,venue:null,lastApiCacheTime:cache.updatedAt};
   ctx.activeMatches=realMatches.slice(0,12).map(m=>({
-    match:`${cnName(m.home)} / ${m.home} vs ${cnName(m.away)} / ${m.away}`,
+    match:`${formatTeamForPrompt(m.home)} vs ${formatTeamForPrompt(m.away)}`,
     date:formatScheduleDate(m),
     status:getScheduleStatusLabel(m),
     stage:getScheduleStageLabel(m),
@@ -3759,7 +3802,7 @@ function buildAIContext(type,target){
     dataType:dataTypeLabel(m.dataType||'schedule')
   }));
   ctx.predictions=(typeof REAL_MODE!=='undefined'&&REAL_MODE)?[]:PREDICTIONS.slice(0,12).map(p=>({
-    match:`${cnName(p.home)} / ${p.home} vs ${cnName(p.away)} / ${p.away}`,
+    match:`${formatTeamForPrompt(p.home)} vs ${formatTeamForPrompt(p.away)}`,
     pick:getModelPick(p).display,
     confidence:zhConfidence(getConfidenceLevel(p).label),
     score:p.score,
@@ -3789,6 +3832,7 @@ function buildAIContext(type,target){
   return ctx;
 }
 function formatAIContextBlock(ctx){
+  const audit=getPromptDataAudit(ctx);
   const lines=[
     '【数据来源说明】',
     `- 当前数据来源：${ctx.dataSource}（${dataTypeLabel(ctx.dataType)}）`,
@@ -3802,15 +3846,27 @@ function formatAIContextBlock(ctx){
     lines.push(
       '',
       '【选中比赛】',
-      `- 比赛：${cnName(ctx.selectedMatch.home)} / ${ctx.selectedMatch.home} vs ${cnName(ctx.selectedMatch.away)} / ${ctx.selectedMatch.away}`,
-      `- 时间/阶段/状态：${ctx.selectedMatch.date} · ${ctx.selectedMatch.stage} · ${ctx.selectedMatch.status}`,
-      `- 场馆：${ctx.selectedMatch.venue}`,
-      `- 小组/盘口/半场/比分：${ctx.selectedMatch.group||'—'} · ${ctx.selectedMatch.handicap||'—'} · ${ctx.selectedMatch.halfTime||'—'} · ${ctx.selectedMatch.score||'—'}`,
+      `- 比赛：${formatTeamForPrompt(ctx.selectedMatch.home)} vs ${formatTeamForPrompt(ctx.selectedMatch.away)}`,
+      `- 本地时间：${ctx.selectedMatch.date}`,
+      `- 源站时间：${ctx.selectedMatch.sourceTime||'—'}`,
+      `- 阶段/小组/状态：${ctx.selectedMatch.stage} · ${ctx.selectedMatch.group||'—'} · ${ctx.selectedMatch.status}`,
+      `- 场馆：${normalizePromptValue(ctx.selectedMatch.venue,'暂无明确场馆')}`,
+      `- 比分/半场：${normalizePromptValue(ctx.selectedMatch.score,'未开赛或暂无比分')} · ${normalizePromptValue(ctx.selectedMatch.halfTime,'暂无半场数据')}`,
+      `- 盘口文字：${normalizePromptValue(ctx.selectedMatch.handicap,'暂无盘口文字')}`,
+      `- 盘口解释：${explainHandicapText(ctx.selectedMatch.handicap,ctx.selectedMatch.home,ctx.selectedMatch.away)}`,
       `- 数据源：${ctx.selectedMatch.source||ctx.dataSource} · ${dataTypeLabel(ctx.selectedMatch.dataType||ctx.dataType)}`
     );
     if(p&&!(typeof REAL_MODE!=='undefined'&&REAL_MODE))lines.push(`- 模拟预测：${getModelPick(p).display}；信心 ${zhConfidence(getConfidenceLevel(p).label)}；比分 ${p.score}；概率 ${p.homeProb}/${p.drawProb}/${p.awayProb}`);
     else if(typeof REAL_MODE!=='undefined'&&REAL_MODE)lines.push('- 模型预测：实盘模式不使用内置模拟预测，请只基于赛程信息做谨慎分析。');
     else lines.push('- 模拟预测：暂无模型预测，请只基于赛程信息做谨慎分析。');
+    lines.push(
+      '',
+      '【这场比赛当前可用信息】',
+      ...(audit.available.length?audit.available.map(x=>`- ${x}`):['- 暂无足够实盘字段']),
+      '',
+      '【这场比赛当前缺失信息】',
+      ...audit.missing.map(x=>`- ${x}`)
+    );
   }
   if(ctx.teamStats){
     const t=ctx.teamStats;
@@ -3826,10 +3882,10 @@ function formatAIContextBlock(ctx){
       `- 赔率说明：${(typeof REAL_MODE!=='undefined'&&REAL_MODE)?'暂无真实赔率，当前未接赔率实盘':(ctx.oddsSample?`Sample Odds ${ctx.oddsSample.bet365}/${ctx.oddsSample.draftkings}/${ctx.oddsSample.fanduel}/${ctx.oddsSample.betmgm}`:'暂无示例赔率')}`
     );
   }
-  if(ctx.venue)lines.push('',`【场地因素】${getVenueFactorLine(ctx.venue)}`);
+  if(ctx.venue&&normalizePromptValue(ctx.venue,''))lines.push('',`【场地因素】${getVenueFactorLine(ctx.venue)}`);
   lines.push(
     '',
-    '【可用实盘赛程摘要】',
+    '【同批实盘赛程上下文】',
     ...(ctx.activeMatches.length?ctx.activeMatches.slice(0,8).map(m=>`- ${m.match}；${m.date}；${m.stage}；${m.status}；盘口 ${m.handicap}；半场 ${m.halfTime}；${m.dataType}`):['- 暂无实盘赛程。请先同步 Titan007 数据或导入 matches JSON。'])
   );
   if(!(typeof REAL_MODE!=='undefined'&&REAL_MODE)){
@@ -3842,29 +3898,32 @@ function formatAIContextBlock(ctx){
   return lines.join('\n');
 }
 function buildAIPrompt(role,task,ctx,extra){
+  const isMatch=ctx&&ctx.type==='match'&&ctx.selectedMatch;
   return[
     '角色设定：你是 DeepSeek-V4-Pro，正在扮演 2026 世界杯赛事分析顾问和教练组分析助手。',
     `补充角色：${role}`,
     '',
-    '请你基于这些数据替用户分析。不要编造当前数据中没有的事实，不要假装你知道页面没有提供的实时伤病、官方阵容、真实赔率或赛果。',
-    '必须明确区分真实缓存数据、静态数据、模拟数据、示例数据、Demo / Mock / Sample / Estimated 标签。',
+    '你不是在写泛泛赛前稿。你的任务是先审计数据够不够，再基于已有字段做“有限但可用”的分析。',
+    '请你基于这些数据替用户分析。不要编造当前数据中没有的事实，不要假装你知道页面没有提供的实时伤病、官方阵容、真实赔率、水位变化或赛果。',
+    '必须明确区分真实缓存数据、静态数据、模拟数据、示例数据、Demo / Mock / Sample / Estimated 标签。Titan007 本地同步只代表本机同步到的赛程/比分/盘口文字，不代表官方结论。',
     '输出中文优先，可以保留必要英文指标名。',
     '不要给投注建议，不要承诺预测准确率。',
     '',
     '【分析任务】',
     task,
+    isMatch?'请重点利用：小组/阶段、开赛时间、状态、盘口文字、比分/半场是否为空、同批赛程上下文。盘口只能解释为市场强弱线索，不能当成赔率收益或投注建议。':'',
     '',
     formatAIContextBlock(ctx),
     extra?'\n【补充页面报告】\n'+extra:'',
     '',
     '【请按以下结构输出】',
-    '1. 30秒结论',
-    '2. 胜负倾向或走势判断',
-    '3. 核心理由',
-    '4. 关键风险',
-    '5. 最大不确定性',
-    '6. 普通球迷能看懂的总结',
-    '7. 后续需要关注的数据',
+    '1. 数据够不够：先列出“能用的数据”和“不能判断的部分”。如果数据不足，请直接说不足，不要硬凑。',
+    '2. 30秒结论：一句话说明这场/这组当前最值得关注什么。',
+    '3. 盘口文字解读：解释盘口文字透露的强弱倾向，以及为什么不能等同于真实赔率或投注建议。',
+    '4. 比赛走势的三种情景：主队占优情景、均势情景、客队占优情景。每种情景只基于当前字段推导。',
+    '5. 关键风险：至少分成数据风险、比赛风险、市场信号风险。',
+    '6. 观察清单：开赛前/比赛中最该补看的 5 个数据点。',
+    '7. 普通球迷版总结：用 3 句人话说明，不要术语堆砌。',
     '末尾必须写：本分析仅用于赛事分析、学习和情景推演，不构成投注建议。'
   ].filter(Boolean).join('\n');
 }
@@ -3875,7 +3934,7 @@ function generateDailyAIPrompt(){
 function generateMatchAIPrompt(matchOrPrediction){
   const ctx=buildAIContext('match',matchOrPrediction);
   const src=getAIMatchSourceFromTarget(matchOrPrediction);
-  return buildAIPrompt('你是世界杯赛事分析顾问，擅长单场比赛赛前分析。','请分析这场实盘比赛的走势、关键因素、风险、可解释结论和普通球迷能看懂的总结。',ctx,(typeof REAL_MODE!=='undefined'&&REAL_MODE)?'':generateMatchReportText(src));
+  return buildAIPrompt('你是世界杯赛事分析顾问，擅长把有限赛程、盘口文字和比赛状态整理成有边界的单场赛前分析。','请分析这场实盘比赛：先判断当前信息是否足够，再解释盘口文字、比赛关注点、可能走势、风险和后续需要补看的数据。不要生成假装掌握阵容/伤病/赔率水位的结论。',ctx,(typeof REAL_MODE!=='undefined'&&REAL_MODE)?'':generateMatchReportText(src));
 }
 function generateTeamAIPrompt(teamName){
   teamName=getAITeamName(teamName);
